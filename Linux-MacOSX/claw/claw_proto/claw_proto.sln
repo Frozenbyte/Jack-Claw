@@ -1,0 +1,126 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C++ Express 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "particle_editor", "..\particle_editor2\particle_editor.vcproj", "{8E67D288-FEA9-4C6D-B095-0C6F3725404C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E51E797B-E20E-476C-8206-7AA9CF270541} = {E51E797B-E20E-476C-8206-7AA9CF270541}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scriptdev", "..\util\executables\scriptdev\scriptdev.vcproj", "{4C263DF5-39CC-4F01-9CC5-23F264196838}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "storm3dv2", "..\storm\storm3dv2\storm3dv2.vcproj", "{E51E797B-E20E-476C-8206-7AA9CF270541}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "claw_proto", "claw_proto.vcproj", "{5C78ED70-84DB-4568-AD42-A5142199F9F5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E51E797B-E20E-476C-8206-7AA9CF270541} = {E51E797B-E20E-476C-8206-7AA9CF270541}
+		{26E40BBD-9460-46B8-B105-868C8D85C376} = {26E40BBD-9460-46B8-B105-868C8D85C376}
+		{4C263DF5-39CC-4F01-9CC5-23F264196838} = {4C263DF5-39CC-4F01-9CC5-23F264196838}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "viewer", "..\editor\workspace\viewer\viewer.vcproj", "{1AF46AE6-AF6B-4F7B-BA1F-2D473A345F57}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E51E797B-E20E-476C-8206-7AA9CF270541} = {E51E797B-E20E-476C-8206-7AA9CF270541}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "editor", "..\editor\workspace\claw_proto_editor.vcproj", "{E516F2AD-1AD2-4F07-B65C-178180CC05BE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E51E797B-E20E-476C-8206-7AA9CF270541} = {E51E797B-E20E-476C-8206-7AA9CF270541}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "storm3dv2-gl", "..\storm\stormgl\stormgl.vcproj", "{26E40BBD-9460-46B8-B105-868C8D85C376}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		claw_proto D3D Debug|Win32 = claw_proto D3D Debug|Win32
+		claw_proto D3D Release|Win32 = claw_proto D3D Release|Win32
+		claw_proto OpenGL Debug|Win32 = claw_proto OpenGL Debug|Win32
+		claw_proto OpenGL Release|Win32 = claw_proto OpenGL Release|Win32
+		Legacy debug|Win32 = Legacy debug|Win32
+		Legacy release|Win32 = Legacy release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E67D288-FEA9-4C6D-B095-0C6F3725404C}.claw_proto D3D Debug|Win32.ActiveCfg = Debug|Win32
+		{8E67D288-FEA9-4C6D-B095-0C6F3725404C}.claw_proto D3D Debug|Win32.Build.0 = Debug|Win32
+		{8E67D288-FEA9-4C6D-B095-0C6F3725404C}.claw_proto D3D Release|Win32.ActiveCfg = Release|Win32
+		{8E67D288-FEA9-4C6D-B095-0C6F3725404C}.claw_proto D3D Release|Win32.Build.0 = Release|Win32
+		{8E67D288-FEA9-4C6D-B095-0C6F3725404C}.claw_proto OpenGL Debug|Win32.ActiveCfg = Debug|Win32
+		{8E67D288-FEA9-4C6D-B095-0C6F3725404C}.claw_proto OpenGL Debug|Win32.Build.0 = Debug|Win32
+		{8E67D288-FEA9-4C6D-B095-0C6F3725404C}.claw_proto OpenGL Release|Win32.ActiveCfg = Release|Win32
+		{8E67D288-FEA9-4C6D-B095-0C6F3725404C}.claw_proto OpenGL Release|Win32.Build.0 = Release|Win32
+		{8E67D288-FEA9-4C6D-B095-0C6F3725404C}.Legacy debug|Win32.ActiveCfg = shadowground no physics|Win32
+		{8E67D288-FEA9-4C6D-B095-0C6F3725404C}.Legacy debug|Win32.Build.0 = shadowground no physics|Win32
+		{8E67D288-FEA9-4C6D-B095-0C6F3725404C}.Legacy release|Win32.ActiveCfg = shadowground no physics|Win32
+		{8E67D288-FEA9-4C6D-B095-0C6F3725404C}.Legacy release|Win32.Build.0 = shadowground no physics|Win32
+		{4C263DF5-39CC-4F01-9CC5-23F264196838}.claw_proto D3D Debug|Win32.ActiveCfg = Debug|Win32
+		{4C263DF5-39CC-4F01-9CC5-23F264196838}.claw_proto D3D Debug|Win32.Build.0 = Debug|Win32
+		{4C263DF5-39CC-4F01-9CC5-23F264196838}.claw_proto D3D Release|Win32.ActiveCfg = Release|Win32
+		{4C263DF5-39CC-4F01-9CC5-23F264196838}.claw_proto D3D Release|Win32.Build.0 = Release|Win32
+		{4C263DF5-39CC-4F01-9CC5-23F264196838}.claw_proto OpenGL Debug|Win32.ActiveCfg = Debug|Win32
+		{4C263DF5-39CC-4F01-9CC5-23F264196838}.claw_proto OpenGL Debug|Win32.Build.0 = Debug|Win32
+		{4C263DF5-39CC-4F01-9CC5-23F264196838}.claw_proto OpenGL Release|Win32.ActiveCfg = Release|Win32
+		{4C263DF5-39CC-4F01-9CC5-23F264196838}.claw_proto OpenGL Release|Win32.Build.0 = Release|Win32
+		{4C263DF5-39CC-4F01-9CC5-23F264196838}.Legacy debug|Win32.ActiveCfg = shadowground no physics|Win32
+		{4C263DF5-39CC-4F01-9CC5-23F264196838}.Legacy debug|Win32.Build.0 = shadowground no physics|Win32
+		{4C263DF5-39CC-4F01-9CC5-23F264196838}.Legacy release|Win32.ActiveCfg = shadowground no physics|Win32
+		{4C263DF5-39CC-4F01-9CC5-23F264196838}.Legacy release|Win32.Build.0 = shadowground no physics|Win32
+		{E51E797B-E20E-476C-8206-7AA9CF270541}.claw_proto D3D Debug|Win32.ActiveCfg = Legacy debug|Win32
+		{E51E797B-E20E-476C-8206-7AA9CF270541}.claw_proto D3D Debug|Win32.Build.0 = Legacy debug|Win32
+		{E51E797B-E20E-476C-8206-7AA9CF270541}.claw_proto D3D Release|Win32.ActiveCfg = Legacy release|Win32
+		{E51E797B-E20E-476C-8206-7AA9CF270541}.claw_proto D3D Release|Win32.Build.0 = Legacy release|Win32
+		{E51E797B-E20E-476C-8206-7AA9CF270541}.claw_proto OpenGL Debug|Win32.ActiveCfg = Legacy debug|Win32
+		{E51E797B-E20E-476C-8206-7AA9CF270541}.claw_proto OpenGL Release|Win32.ActiveCfg = Legacy release|Win32
+		{E51E797B-E20E-476C-8206-7AA9CF270541}.Legacy debug|Win32.ActiveCfg = Legacy debug|Win32
+		{E51E797B-E20E-476C-8206-7AA9CF270541}.Legacy debug|Win32.Build.0 = Legacy debug|Win32
+		{E51E797B-E20E-476C-8206-7AA9CF270541}.Legacy release|Win32.ActiveCfg = Legacy release|Win32
+		{E51E797B-E20E-476C-8206-7AA9CF270541}.Legacy release|Win32.Build.0 = Legacy release|Win32
+		{5C78ED70-84DB-4568-AD42-A5142199F9F5}.claw_proto D3D Debug|Win32.ActiveCfg = Debug|Win32
+		{5C78ED70-84DB-4568-AD42-A5142199F9F5}.claw_proto D3D Debug|Win32.Build.0 = Debug|Win32
+		{5C78ED70-84DB-4568-AD42-A5142199F9F5}.claw_proto D3D Release|Win32.ActiveCfg = Release|Win32
+		{5C78ED70-84DB-4568-AD42-A5142199F9F5}.claw_proto D3D Release|Win32.Build.0 = Release|Win32
+		{5C78ED70-84DB-4568-AD42-A5142199F9F5}.claw_proto OpenGL Debug|Win32.ActiveCfg = Debug OpenGL|Win32
+		{5C78ED70-84DB-4568-AD42-A5142199F9F5}.claw_proto OpenGL Debug|Win32.Build.0 = Debug OpenGL|Win32
+		{5C78ED70-84DB-4568-AD42-A5142199F9F5}.claw_proto OpenGL Release|Win32.ActiveCfg = Release OpenGL|Win32
+		{5C78ED70-84DB-4568-AD42-A5142199F9F5}.claw_proto OpenGL Release|Win32.Build.0 = Release OpenGL|Win32
+		{5C78ED70-84DB-4568-AD42-A5142199F9F5}.Legacy debug|Win32.ActiveCfg = Release|Win32
+		{5C78ED70-84DB-4568-AD42-A5142199F9F5}.Legacy debug|Win32.Build.0 = Release|Win32
+		{5C78ED70-84DB-4568-AD42-A5142199F9F5}.Legacy release|Win32.ActiveCfg = Release|Win32
+		{5C78ED70-84DB-4568-AD42-A5142199F9F5}.Legacy release|Win32.Build.0 = Release|Win32
+		{1AF46AE6-AF6B-4F7B-BA1F-2D473A345F57}.claw_proto D3D Debug|Win32.ActiveCfg = Debug|Win32
+		{1AF46AE6-AF6B-4F7B-BA1F-2D473A345F57}.claw_proto D3D Debug|Win32.Build.0 = Debug|Win32
+		{1AF46AE6-AF6B-4F7B-BA1F-2D473A345F57}.claw_proto D3D Release|Win32.ActiveCfg = Release|Win32
+		{1AF46AE6-AF6B-4F7B-BA1F-2D473A345F57}.claw_proto D3D Release|Win32.Build.0 = Release|Win32
+		{1AF46AE6-AF6B-4F7B-BA1F-2D473A345F57}.claw_proto OpenGL Debug|Win32.ActiveCfg = Debug|Win32
+		{1AF46AE6-AF6B-4F7B-BA1F-2D473A345F57}.claw_proto OpenGL Debug|Win32.Build.0 = Debug|Win32
+		{1AF46AE6-AF6B-4F7B-BA1F-2D473A345F57}.claw_proto OpenGL Release|Win32.ActiveCfg = Release|Win32
+		{1AF46AE6-AF6B-4F7B-BA1F-2D473A345F57}.claw_proto OpenGL Release|Win32.Build.0 = Release|Win32
+		{1AF46AE6-AF6B-4F7B-BA1F-2D473A345F57}.Legacy debug|Win32.ActiveCfg = shadowground no physics|Win32
+		{1AF46AE6-AF6B-4F7B-BA1F-2D473A345F57}.Legacy debug|Win32.Build.0 = shadowground no physics|Win32
+		{1AF46AE6-AF6B-4F7B-BA1F-2D473A345F57}.Legacy release|Win32.ActiveCfg = shadowground no physics|Win32
+		{1AF46AE6-AF6B-4F7B-BA1F-2D473A345F57}.Legacy release|Win32.Build.0 = shadowground no physics|Win32
+		{E516F2AD-1AD2-4F07-B65C-178180CC05BE}.claw_proto D3D Debug|Win32.ActiveCfg = Debug|Win32
+		{E516F2AD-1AD2-4F07-B65C-178180CC05BE}.claw_proto D3D Debug|Win32.Build.0 = Debug|Win32
+		{E516F2AD-1AD2-4F07-B65C-178180CC05BE}.claw_proto D3D Release|Win32.ActiveCfg = Release|Win32
+		{E516F2AD-1AD2-4F07-B65C-178180CC05BE}.claw_proto D3D Release|Win32.Build.0 = Release|Win32
+		{E516F2AD-1AD2-4F07-B65C-178180CC05BE}.claw_proto OpenGL Debug|Win32.ActiveCfg = Debug|Win32
+		{E516F2AD-1AD2-4F07-B65C-178180CC05BE}.claw_proto OpenGL Debug|Win32.Build.0 = Debug|Win32
+		{E516F2AD-1AD2-4F07-B65C-178180CC05BE}.claw_proto OpenGL Release|Win32.ActiveCfg = Release|Win32
+		{E516F2AD-1AD2-4F07-B65C-178180CC05BE}.claw_proto OpenGL Release|Win32.Build.0 = Release|Win32
+		{E516F2AD-1AD2-4F07-B65C-178180CC05BE}.Legacy debug|Win32.ActiveCfg = shadowground no physics|Win32
+		{E516F2AD-1AD2-4F07-B65C-178180CC05BE}.Legacy debug|Win32.Build.0 = shadowground no physics|Win32
+		{E516F2AD-1AD2-4F07-B65C-178180CC05BE}.Legacy release|Win32.ActiveCfg = shadowground no physics|Win32
+		{E516F2AD-1AD2-4F07-B65C-178180CC05BE}.Legacy release|Win32.Build.0 = shadowground no physics|Win32
+		{26E40BBD-9460-46B8-B105-868C8D85C376}.claw_proto D3D Debug|Win32.ActiveCfg = Legacy debug|Win32
+		{26E40BBD-9460-46B8-B105-868C8D85C376}.claw_proto D3D Release|Win32.ActiveCfg = Legacy release|Win32
+		{26E40BBD-9460-46B8-B105-868C8D85C376}.claw_proto OpenGL Debug|Win32.ActiveCfg = Legacy debug|Win32
+		{26E40BBD-9460-46B8-B105-868C8D85C376}.claw_proto OpenGL Debug|Win32.Build.0 = Legacy debug|Win32
+		{26E40BBD-9460-46B8-B105-868C8D85C376}.claw_proto OpenGL Release|Win32.ActiveCfg = Legacy release|Win32
+		{26E40BBD-9460-46B8-B105-868C8D85C376}.claw_proto OpenGL Release|Win32.Build.0 = Legacy release|Win32
+		{26E40BBD-9460-46B8-B105-868C8D85C376}.Legacy debug|Win32.ActiveCfg = Legacy debug|Win32
+		{26E40BBD-9460-46B8-B105-868C8D85C376}.Legacy debug|Win32.Build.0 = Legacy debug|Win32
+		{26E40BBD-9460-46B8-B105-868C8D85C376}.Legacy release|Win32.ActiveCfg = Legacy release|Win32
+		{26E40BBD-9460-46B8-B105-868C8D85C376}.Legacy release|Win32.Build.0 = Legacy release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
