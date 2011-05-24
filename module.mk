@@ -57,7 +57,7 @@ endef
 
 
 # recurse directories
-DIRS:=claw_proto container convert editor filesystem game mingw net ogui particle_editor2 physics sound storm system ui util
+DIRS:=claw_proto container convert editor filesystem game net ogui particle_editor2 physics sound storm system ui util
 $(eval $(foreach directory, $(DIRS), $(call directory-module,$(directory)) ))
 
 
