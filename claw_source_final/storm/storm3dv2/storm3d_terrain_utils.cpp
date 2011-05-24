@@ -4,7 +4,7 @@
 
 #include "storm3d_terrain_utils.h"
 #include "storm3d_texture.h"
-#include "istorm3d_logger.h"
+#include "IStorm3D_Logger.h"
 #include <fstream>
 #include <vector>
 #include <d3d9.h>
@@ -12,9 +12,9 @@
 
 extern int storm3d_dip_calls;
 
-#include "..\..\filesystem\input_stream.h"
-#include "..\..\filesystem\file_package_manager.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../filesystem/input_stream.h"
+#include "../../filesystem/file_package_manager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 namespace frozenbyte {
 namespace storm {

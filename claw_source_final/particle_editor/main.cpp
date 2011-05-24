@@ -1,9 +1,9 @@
 
 //#include "DatatypeDef.h"
-#include <Storm3D_Ui.h>
+#include <Storm3D_UI.h>
 
-//#include "..\ui\particlesystem.h"
-//#include "..\ui\particlemanager.h"
+//#include "../ui/particlesystem.h"
+//#include "../ui/particlemanager.h"
 
 #pragma comment(lib, "storm3dv2.lib")
 //using namespace ui;
@@ -17,8 +17,8 @@
 #include <list>
 #include <fstream>
 #include <time.h>
-#include "..\editor\string_conversions.h"
-#include "..\editor\parser.h"
+#include "../editor/string_conversions.h"
+#include "../editor/parser.h"
 #include "track.h"
 #include "paramblock.h"
 #include "parseutil.h"

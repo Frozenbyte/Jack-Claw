@@ -37,7 +37,11 @@ public:
 	static std::string resolveModelName(const std::string &rootDir, const std::string &fileName);
 };
 
+
+std::string getFileName(const std::string &fullFileName);
+std::string getDirName(const std::string &fullFileName);
 bool fileExists(const std::string &fileName);
+
 
 } // editor
 } // frozenbyte

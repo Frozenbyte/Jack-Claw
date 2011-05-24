@@ -7,9 +7,9 @@
 // Includes
 //------------------------------------------------------------------
 #include "storm3d_common_imp.h"
-#include "istorm3d.h"
+#include "IStorm3D.h"
 #include "storm3d_resourcemanager.h"
-#include "storm3d_proceduralmanager.h"
+#include "Storm3D_ProceduralManager.h"
 #include <atlbase.h>
 
 // Forward declarations
@@ -254,7 +254,7 @@ public:
 	void SetGammaRamp(float gamma, float brightness, float contrast,
 		float red, float green, float blue, bool calibrate);
 
-	void Storm3D::SetGammaPeak(bool peakEnabled, float peakPosition, 
+	void SetGammaPeak(bool peakEnabled, float peakPosition, 
     float peakLowShape, float peakHighShape, 
     float peakRed, float peakGreen, float peakBlue);
 

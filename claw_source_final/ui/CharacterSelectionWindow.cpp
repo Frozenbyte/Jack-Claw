@@ -5,6 +5,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 #include <string>
 #include <sstream>
 #include <algorithm>
@@ -29,13 +30,13 @@
 #include "../game/scripting/GameScripting.h"
 #include "../util/LipsyncManager.h"
 #include "../sound/SoundMixer.h"
-#include <istorm3d.h>
-#include <IStorm3D_VideoStreamer.h>
+#include <IStorm3D.h>
+#include <istorm3d_videostreamer.h>
 #include "../ogui/OguiAligner.h"
 
 #include "../game/DHLocaleManager.h"
 
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 #include "../game/scripting/UnitScripting.h"
 #include "../game/UnitType.h"
 #include "../game/UnitList.h"

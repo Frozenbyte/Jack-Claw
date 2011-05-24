@@ -16,9 +16,9 @@
 #endif
 #ifndef INCLUDED_DATATYPEDEF_H
 #define INCLUDED_DATATYPEDEF_H
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 #endif
-#include <istorm3d_model.h>
+#include <IStorm3D_Model.h>
 
 #include <boost/shared_ptr.hpp>
 #include <string>

@@ -5,6 +5,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 #include <string>
 #include <sstream>
 
@@ -24,21 +25,21 @@
 #include "../game/SimpleOptions.h"
 #include "../game/options/options_graphics.h"
 #include "../game/scripting/GameScripting.h"
-#include "../system/timer.h"
+#include "../system/Timer.h"
 #include "../sound/sounddefs.h"
 #include "../sound/SoundMixer.h"
 #include "../ui/UIEffects.h"
 #include "../filesystem/input_stream_wrapper.h"
-#include <istorm3d.h>
-#include <IStorm3D_VideoStreamer.h>
-#include <istorm3d_terrain_renderer.h>
+#include <IStorm3D.h>
+#include <istorm3d_videostreamer.h>
+#include <istorm3D_terrain_renderer.h>
 
 #ifdef PROJECT_SURVIVOR
 	#include "SurvivalMenu.h"
 #endif
 
 #include "../game/DHLocaleManager.h"
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 #define LOADINGW_CLOSE 1
 #define LOADINGW_PROGRESS 2
@@ -103,7 +104,6 @@ namespace ui
 	{
 
 		FB_ASSERT( ogui != NULL );
-		FB_ASSERT( win != NULL );
 		FB_ASSERT( game != NULL );
 
 		
@@ -309,7 +309,7 @@ namespace ui
 		// hack: find alt index from savegame
 		else if(strncmp(mission.c_str(), "end0", 4) == 0 && game->getPendingLoad())
 		{
-			std::string filename = std::string(game->getGameProfiles()->getProfileDirectory( 0 )) + "/Save/save_" + std::string(game->getPendingLoad()) + ".dhs";
+			std::string filename = std::string(game->getGameProfiles()->getProfileDirectory( 0 )) + "/save/save_" + std::string(game->getPendingLoad()) + ".dhs";
 			frozenbyte::filesystem::FB_FILE *f = frozenbyte::filesystem::fb_fopen(filename.c_str(), "rb");
 			if(f != NULL)
 			{

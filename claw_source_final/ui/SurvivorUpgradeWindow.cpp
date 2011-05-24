@@ -23,7 +23,7 @@
 #include "../ogui/OguiSlider.h"
 
 #include "../util/TextureCache.h"
-#include "../util/parser.h"
+#include "../util/Parser.h"
 
 #include "../util/fb_assert.h"
 #include "../util/StringUtil.h"

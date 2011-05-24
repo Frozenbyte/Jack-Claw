@@ -13,7 +13,45 @@
 #include "../filesystem/file_package_manager.h"
 #include <stdio.h>
 #include <string>
+
+
+#ifdef _WIN32
+#include <windows.h>
 #include <direct.h>
+
+#else  // _WIN32
+
+#include <sys/stat.h>
+#include <errno.h>
+#define _mkdir(x) mkdir(x, S_IRWXU | S_IRWXG)
+#define Sleep usleep
+
+
+static inline bool DeleteFile(const char *filename)
+{
+	if (unlink(filename) == 0)
+		return true;
+	else {
+		// printf("WARNING: Deleting file %s failed (%s)\n",filename,errmsg());
+		return false;
+	}
+}
+
+
+static inline bool RemoveDirectory(const char *filename)
+{
+	if (rmdir(filename) == 0)
+		return true;
+	else {
+		// printf("WARNING: Removing directory %s failed (%s)\n",filename,errmsg());
+		return false;
+	}
+}
+
+
+#endif  // _WIN32
+
+
 #include <fstream>
 #include <vector>
 
@@ -79,13 +117,13 @@ namespace game
 				if (profile != NULL)
 				{
 					currentProfileDirectory = new char[64 + strlen(profile) + 1];
-					strcpy(currentProfileDirectory, "Profiles/");
+					strcpy(currentProfileDirectory, "profiles/");
 					strcat(currentProfileDirectory, profile);
 				}*/
 				if( player >= 0 && player < (int) currentProfiles.size() )
 				{
 					currentProfiles[ player ] = profile;
-					currentProfileDirectories[ player ] = "Profiles/" + profile;
+					currentProfileDirectories[ player ] = "profiles/" + profile;
 				}
 			}
 
@@ -93,9 +131,9 @@ namespace game
 			void loadCurrentProfile()
 			{
 				util::SimpleParser sp;
-				setCurrentProfile("Default");
+				setCurrentProfile("default");
 #ifdef LEGACY_FILES
-				if (sp.loadFile("Profiles/current_profile.txt"))
+				if (sp.loadFile("profiles/current_profile.txt"))
 #else
 				if (sp.loadFile("profiles/current_profile.txt"))
 #endif
@@ -111,7 +149,7 @@ namespace game
 								{
 									setCurrentProfile(sp.getValue());
 								} else {
-									Logger::getInstance()->warning("GameProfilesImpl::loadCurrentProfile - Current profile data does not exist (falling back to Default).");
+									Logger::getInstance()->warning("GameProfilesImpl::loadCurrentProfile - Current profile data does not exist (falling back to default).");
 								}
 							}
 						} 
@@ -123,8 +161,8 @@ namespace game
 								{
 									setCurrentProfile(sp.getValue(), 1);
 								} else {
-//									Logger::getInstance()->warning("GameProfilesImpl::loadCurrentProfile - Current profile data does not exist (falling back to Default).");
-									Logger::getInstance()->debug("GameProfilesImpl::loadCurrentProfile - Current profile data does not exist (falling back to Default).");
+//									Logger::getInstance()->warning("GameProfilesImpl::loadCurrentProfile - Current profile data does not exist (falling back to default).");
+									Logger::getInstance()->debug("GameProfilesImpl::loadCurrentProfile - Current profile data does not exist (falling back to default).");
 								}
 							}
 						}
@@ -136,8 +174,8 @@ namespace game
 								{
 									setCurrentProfile(sp.getValue(), 2);
 								} else {
-//									Logger::getInstance()->warning("GameProfilesImpl::loadCurrentProfile - Current profile data does not exist (falling back to Default).");
-									Logger::getInstance()->debug("GameProfilesImpl::loadCurrentProfile - Current profile data does not exist (falling back to Default).");
+//									Logger::getInstance()->warning("GameProfilesImpl::loadCurrentProfile - Current profile data does not exist (falling back to default).");
+									Logger::getInstance()->debug("GameProfilesImpl::loadCurrentProfile - Current profile data does not exist (falling back to default).");
 								}
 							}
 						}
@@ -149,8 +187,8 @@ namespace game
 								{
 									setCurrentProfile(sp.getValue(), 3);
 								} else {
-//									Logger::getInstance()->warning("GameProfilesImpl::loadCurrentProfile - Current profile data does not exist (falling back to Default).");
-									Logger::getInstance()->debug("GameProfilesImpl::loadCurrentProfile - Current profile data does not exist (falling back to Default).");
+//									Logger::getInstance()->warning("GameProfilesImpl::loadCurrentProfile - Current profile data does not exist (falling back to default).");
+									Logger::getInstance()->debug("GameProfilesImpl::loadCurrentProfile - Current profile data does not exist (falling back to default).");
 								}
 							}
 						}
@@ -162,7 +200,7 @@ namespace game
 			void saveCurrentProfile()
 			{
 #ifdef LEGACY_FILES
-				FILE *f = fopen("Profiles/current_profile.txt", "wb");
+				FILE *f = fopen("profiles/current_profile.txt", "wb");
 #else
 				FILE *f = fopen("profiles/current_profile.txt", "wb");
 #endif
@@ -201,14 +239,14 @@ namespace game
 
 			void newProfile( const std::string& profile )
 			{
-				_mkdir( ( "Profiles/"+profile ).c_str() );
-				_mkdir( ( "Profiles/"+profile + "/Save" ).c_str() );
-				_mkdir( ( "Profiles/"+profile + "/Config" ).c_str() );
+				_mkdir( ( "profiles/"+profile ).c_str() );
+				_mkdir( ( "profiles/"+profile + "/save" ).c_str() );
+				_mkdir( ( "profiles/"+profile + "/config" ).c_str() );
 				
 				// should copy the default keybinds to the 
-				// Profiles/"profile"/Config/
+				// profiles/"profile"/config/
 #ifdef LEGACY_FILES
-				copyFile( "Data/Misc/keybinds.txt", "Profiles/"+profile+"/Config/keybinds.txt" );
+				copyFile( "Data/Misc/keybinds.txt", "profiles/"+profile+"/config/keybinds.txt" );
 #else
 				copyFile( "data/misc/default_keybinds.txt", "profiles/"+profile+"/config/keybinds.txt" );
 #endif
@@ -220,15 +258,15 @@ namespace game
 				if( doesProfileExist( profile.c_str() ) )
 				{
 #ifdef LEGACY_FILES
-					removeDirectory( "Profiles/" + profile + "/Save" );
-					removeDirectory( "Profiles/" + profile + "/Config" );
-					removeDirectory( "Profiles/" + profile );
+					removeDirectory( "profiles/" + profile + "/save" );
+					removeDirectory( "profiles/" + profile + "/config" );
+					removeDirectory( "profiles/" + profile );
 
 					//HAXHAXHAX
 					Sleep(100);
-					removeDirectory( "Profiles/" + profile + "/Save" );
-					removeDirectory( "Profiles/" + profile + "/Config" );
-					removeDirectory( "Profiles/" + profile );
+					removeDirectory( "profiles/" + profile + "/save" );
+					removeDirectory( "profiles/" + profile + "/config" );
+					removeDirectory( "profiles/" + profile );
 #else
 					removeDirectory( "profiles/" + profile + "/save" );
 					removeDirectory( "profiles/" + profile + "/config" );
@@ -251,7 +289,7 @@ namespace game
 
 				frozenbyte::editor::FileWrapper fwbase(
 #ifdef LEGACY_FILES
-				std::string("Profiles"), std::string("*"), true);
+				std::string("profiles"), std::string("*"), true);
 #else
 				std::string("profiles"), std::string("*"), true);
 #endif
@@ -304,7 +342,7 @@ namespace game
 					for( i = 0; i < (int)tmplist.size(); i++ )
 					{
 						//if( _unlink( ( tmplist[i] ).c_str() ) != 0 )
-						if(DeleteFile(tmplist[i].c_str()) == FALSE)
+						if(DeleteFile(tmplist[i].c_str()) == false)
 						{
 							Logger::getInstance()->error( ( "GameProfilesImpl::removeDirectory() Could not remove file: " + tmplist[i] ).c_str()  );
 						}
@@ -312,7 +350,7 @@ namespace game
 				}
 
 				//if( _rmdir( directory.c_str() ) != 0 ) 
-				if(RemoveDirectory(directory.c_str()) == FALSE)
+				if(RemoveDirectory(directory.c_str()) == false)
 				{
 					Logger::getInstance()->error( "GameProfilesImpl::removeDirectory() Could not remove directory" );
 				};
@@ -435,7 +473,7 @@ namespace game
 		ret->currentPos = 0;
 
 		frozenbyte::editor::FileWrapper fwbase(
-			std::string("Profiles"), std::string("*"), true);
+			std::string("profiles"), std::string("*"), true);
 		std::vector<std::string> tmplist = fwbase.getAllDirs();
 		for (int j = 0; j < (int)tmplist.size(); j++)
 		{

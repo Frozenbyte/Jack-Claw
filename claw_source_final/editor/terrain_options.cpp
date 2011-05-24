@@ -11,7 +11,7 @@
 #include "../filesystem/output_stream.h"
 #include "../filesystem/input_stream.h"
 
-#include <istorm3d_terrain.h>
+#include <IStorm3D_Terrain.h>
 #include <boost/shared_ptr.hpp>
 #include <cassert>
 

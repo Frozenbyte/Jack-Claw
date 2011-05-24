@@ -14,8 +14,8 @@
 //#include <map>
 #include <vector>
 #include <list>
-#include <istorm3d_model.h>
-#include <istorm3d_mesh.h>
+#include <IStorm3D_Model.h>
+#include <IStorm3D_Mesh.h>
 
 #define PHYSX_GRAVITY
 //#define PHYSX_SPAWN_TEST

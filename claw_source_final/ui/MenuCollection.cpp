@@ -511,7 +511,8 @@ public:
 		else
 		{
 			activeMenu = openedMenusData.empty()?NULL:openedMenusData.top();
-			openedMenusData.pop();
+			if (!openedMenusData.empty())
+				openedMenusData.pop();
 
 			if( activeMenu ) 
 				activeMenu->show();

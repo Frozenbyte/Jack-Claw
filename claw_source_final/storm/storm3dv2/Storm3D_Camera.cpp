@@ -11,7 +11,7 @@
 #include <c2_frustum.h>
 
 #include "Storm3D_ShaderManager.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 // NOTE: apparently, this was previously 1.0f
 // now that it is 0.3f, has shadowmap quality possibly decreased? (assuming that shadows use
@@ -49,7 +49,7 @@ float *Storm3D_Camera::GetView4x4Matrix()
 //------------------------------------------------------------------
 // Storm3D_Camera::SetPosition
 //------------------------------------------------------------------
-void Storm3D_Camera::SetPosition(VC3 &v)
+void Storm3D_Camera::SetPosition(const VC3 &v)
 {
 	position=v;
 	visplane_update_needed=true;
@@ -60,7 +60,7 @@ void Storm3D_Camera::SetPosition(VC3 &v)
 //------------------------------------------------------------------
 // Storm3D_Camera::SetTarget
 //------------------------------------------------------------------
-void Storm3D_Camera::SetTarget(VC3 &v)
+void Storm3D_Camera::SetTarget(const VC3 &v)
 {
 	target=v;
 	visplane_update_needed=true;
@@ -71,7 +71,7 @@ void Storm3D_Camera::SetTarget(VC3 &v)
 //------------------------------------------------------------------
 // Storm3D_Camera::SetUpVec
 //------------------------------------------------------------------
-void Storm3D_Camera::SetUpVec(VC3 &v)
+void Storm3D_Camera::SetUpVec(const VC3 &v)
 {
 	upvec=v;
 	visplane_update_needed=true;
@@ -159,8 +159,8 @@ Frustum Storm3D_Camera::getFrustum() const
 //------------------------------------------------------------------
 // Storm3D_Camera::Storm3D_Camera
 //------------------------------------------------------------------
-Storm3D_Camera::Storm3D_Camera(Storm3D *s2,VC3 &_position,
-		VC3 &_target,float _vis_range,float _fov,VC3 &_upvec) :
+Storm3D_Camera::Storm3D_Camera(Storm3D *s2, const VC3 &_position,
+		const VC3 &_target, float _vis_range, float _fov, const VC3 &_upvec) :
 	Storm3D2(s2),
 	position(_position),
 	target(_target),
@@ -603,7 +603,7 @@ bool Storm3D_Camera::TestPointIsBehind(const VC3 &pointpos)
 //------------------------------------------------------------------
 // Storm3D_Camera::GetPosition
 //------------------------------------------------------------------
-VC3 &Storm3D_Camera::GetPosition()
+const VC3 &Storm3D_Camera::GetPosition() const
 {
 	return position;
 }
@@ -613,7 +613,7 @@ VC3 &Storm3D_Camera::GetPosition()
 //------------------------------------------------------------------
 // Storm3D_Camera::GetTarget
 //------------------------------------------------------------------
-VC3 &Storm3D_Camera::GetTarget()
+const VC3 &Storm3D_Camera::GetTarget() const
 {
 	return target;
 }
@@ -623,7 +623,7 @@ VC3 &Storm3D_Camera::GetTarget()
 //------------------------------------------------------------------
 // Storm3D_Camera::GetUpVec
 //------------------------------------------------------------------
-VC3 &Storm3D_Camera::GetUpVec()
+const VC3 &Storm3D_Camera::GetUpVec() const
 {
 	return upvec;
 }
@@ -785,3 +785,58 @@ void Storm3D_Camera::ForceOrthogonalProjection (bool force, float minX, float ma
 	
 }
 
+//! Get ray vector
+/*!
+	\param x
+	\param y
+	\param dir
+	\param origin
+	\param near_z
+*/
+void Storm3D_Camera::getRayVector(int x, int y, VC3 &dir, VC3 &origin, float near_z)
+{
+	D3DXMATRIX pProjection;
+	D3DXMATRIX pView;
+
+	D3DXVECTOR3 upvec(this->upvec.x, this->upvec.y, this->upvec.z);
+
+	D3DXVECTOR3 position(this->position.x, this->position.y, this->position.z);
+	D3DXVECTOR3 target(this->target.x, this->target.y, this->target.z);
+	D3DXMatrixLookAtLH(&pView, &position, &target, &upvec);
+
+	float fov = this->GetFieldOfView();
+	Storm3D_SurfaceInfo ss = Storm3D2->GetScreenSize();
+	float aspect=(float) ss.width / (float) ss.height;
+	float vis_range = this->GetVisibilityRange();
+
+	VC3 pV;
+
+	D3DXMatrixPerspectiveFovLH(&pProjection, fov, aspect, 1.0f, vis_range);
+
+	pV.x = ( ( ( 2.0f * (float)x * ss.width / 1024 ) / ss.width  ) - 1 ) / pProjection._11;
+	pV.y = ( ( ( 2.0f * (float)y * ss.height / 768 ) / ss.height ) - 1 ) / pProjection._22;
+	pV.z = 1.0f;
+
+	D3DXMATRIX m;
+	D3DXMatrixInverse(&m, NULL, &pView);
+
+	VC3 vPickRayDir;
+	VC3 vPickRayOrig;
+
+	vPickRayDir.x  = pV.x * m._11 + pV.y * m._21 + pV.z * m._31;
+	vPickRayDir.y  = pV.x * m._12 + pV.y * m._22 + pV.z * m._32;
+	vPickRayDir.z  = pV.x * m._13 + pV.y * m._23 + pV.z * m._33;
+	vPickRayDir.Normalize();
+	vPickRayOrig.x = m._41;
+	vPickRayOrig.y = m._42;
+	vPickRayOrig.z = m._43;
+
+	vPickRayOrig += vPickRayDir * near_z;
+
+	dir.x = vPickRayDir.x;
+	dir.y = vPickRayDir.y;
+	dir.z = vPickRayDir.z;
+	origin.x = vPickRayOrig.x;
+	origin.y = vPickRayOrig.y;
+	origin.z = vPickRayOrig.z;
+}

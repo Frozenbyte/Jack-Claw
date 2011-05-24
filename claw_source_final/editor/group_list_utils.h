@@ -4,7 +4,7 @@
 #define GROUP_LIST_UTILS_H
 
 #include "group_list.h"
-#include <istorm3d_model.h>
+#include <IStorm3D_Model.h>
 #include <vector>
 #include <boost/shared_ptr.hpp>
 

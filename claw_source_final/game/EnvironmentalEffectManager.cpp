@@ -8,7 +8,7 @@
 #include "../ui/Spotlight.h"
 #include "../container/LinkedList.h"
 #include "../system/Logger.h"
-#include "../editor/Parser.h"
+#include "../editor/parser.h"
 #include "../filesystem/file_package_manager.h"
 #include "../game/SimpleOptions.h"
 #include "../game/options/options_graphics.h"
@@ -17,10 +17,10 @@
 #include "scripting/GameScripting.h"
 #include "GameUI.h"
 #include "GameScene.h"
-#include <istorm3d_terrain_renderer.h>
+#include <istorm3D_terrain_renderer.h>
 
 // OH FFS... (just to get particleforces)
-#include <storm3d_ui.h>
+#include <Storm3D_UI.h>
 #include <string>
 #include <vector>
 #include <list>
@@ -110,10 +110,11 @@ struct EnvironmentalEffectManagerImpl
 	{
 		editor::Parser parser(true, false);
 #ifdef LEGACY_FILES
-		filesystem::FilePackageManager::getInstance().getFile("Data/Effects/environmental_effect_groups.txt") >> parser;
+		filesystem::InputStream env_file = filesystem::FilePackageManager::getInstance().getFile("Data/Effects/environmental_effect_groups.txt");
 #else
-		filesystem::FilePackageManager::getInstance().getFile("data/effect/environmental_effect_groups.txt") >> parser;
+		filesystem::InputStream env_file = filesystem::FilePackageManager::getInstance().getFile("data/effect/environmental_effect_groups.txt");
 #endif
+		env_file >> parser;
 
 		const editor::ParserGroup &global = parser.getGlobals();
 		try

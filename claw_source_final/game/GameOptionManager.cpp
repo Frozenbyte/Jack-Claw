@@ -21,6 +21,7 @@
 #include "options/options_all.h"
 #include "../filesystem/file_package_manager.h"
 #include "gamedefs.h"
+#include "userdata.h"
 #include <string>
 #include <stdlib.h>
 
@@ -140,7 +141,7 @@ namespace game
 		"4th_player_enabled", "b", "Players", "0", "-", "-",
 
 #ifdef LEGACY_FILES
-		"1st_player_keybinds", "s", "Players", "Config/keybinds.txt", "-", "-",
+		"1st_player_keybinds", "s", "Players", "config/keybinds.txt", "-", "-",
 #else
 		"1st_player_keybinds", "s", "Players", "config/keybinds.txt", "-", "-",
 #endif
@@ -637,10 +638,10 @@ namespace game
 		"_reserved369", "i", "Reserved", "-", "-", "-",
 #endif
 
-		"_reserved370", "i", "Reserved", "-", "-", "-",
-		"_reserved371", "i", "Reserved", "-", "-", "-",
-		"_reserved372", "i", "Reserved", "-", "-", "-",
-		"_reserved373", "i", "Reserved", "-", "-", "-",
+		"joystick1_deadzone", "i+", "Controllers", "200", "1000", "-",
+		"joystick2_deadzone", "i+", "Controllers", "200", "1000", "-",
+		"joystick3_deadzone", "i+", "Controllers", "200", "1000", "-",
+		"joystick4_deadzone", "i+", "Controllers", "200", "1000", "-",
 		"_reserved374", "i", "Reserved", "-", "-", "-",
 		"_reserved375", "i", "Reserved", "-", "-", "-",
 		"_reserved376", "i", "Reserved", "-", "-", "-",
@@ -719,10 +720,10 @@ namespace game
 		Logger::getInstance()->setLogLevel(LOGGER_LEVEL_DEBUG);
 #endif
 
-		// TODO: profile specific options (overriding even Config/options.txt)
+		// TODO: profile specific options (overriding even config/options.txt)
 		// (for inva-mouse, sound volumes, etc.)
 
-		//Parser::Parser options_config("Config/options.txt");
+		//Parser::Parser options_config("config/options.txt");
 		//Parser::Parser def_options_config("Data/Misc/default_game_options.txt");
 		//Parser::Parser locked_options_config("Data/Misc/locked_game_options.txt");
 
@@ -730,21 +731,32 @@ namespace game
 		editor::Parser def_options_config(true, false);
 		editor::Parser locked_options_config(true, false);
 #ifdef LEGACY_FILES
-		filesystem::FilePackageManager::getInstance().getFile("Config/options.txt") >> options_config;
-		filesystem::FilePackageManager::getInstance().getFile("Data/Misc/default_game_options.txt") >> def_options_config;
-		filesystem::FilePackageManager::getInstance().getFile("Data/Misc/locked_game_options.txt") >> locked_options_config;
+		filesystem::InputStream options_file = filesystem::FilePackageManager::getInstance().getFile(mapUserDataPrefix("config/options.txt"));
+		options_file >> options_config;
+
+		filesystem::InputStream def_options_file = filesystem::FilePackageManager::getInstance().getFile("Data/Misc/default_game_options.txt");
+		def_options_file >> def_options_config;
+
+		filesystem::InputStream locked_options_file = filesystem::FilePackageManager::getInstance().getFile("Data/Misc/locked_game_options.txt");
+		locked_options_file >> locked_options_config;
 #else
 		editor::Parser dev_options_config(true, false);
 
-		filesystem::FilePackageManager::getInstance().getFile("config/options.txt") >> options_config;
-		filesystem::FilePackageManager::getInstance().getFile("data/misc/default_game_options.txt") >> def_options_config;
-		filesystem::FilePackageManager::getInstance().getFile("data/misc/locked_game_options.txt") >> locked_options_config;
+		filesystem::InputStream options_file = filesystem::FilePackageManager::getInstance().getFile(mapUserDataPrefix("config/options.txt"));
+		options_file >> options_config;
+
+		filesystem::InputStream def_options_file = filesystem::FilePackageManager::getInstance().getFile("data/misc/default_game_options.txt");
+		def_options_file >> def_options_config;
+
+		filesystem::InputStream locked_options_file = filesystem::FilePackageManager::getInstance().getFile("data/misc/locked_game_options.txt");
+		locked_options_file >> locked_options_config;
 
 		FILE *devf = fopen("config/dev/dev_options.txt", "rb");
 		if (devf != NULL)
 		{
 			fclose(devf);
-			filesystem::FilePackageManager::getInstance().getFile("config/dev/dev_options.txt") >> dev_options_config;
+			filesystem::InputStream dev_options_file = filesystem::FilePackageManager::getInstance().getFile("config/dev/dev_options.txt");
+			dev_options_file >> dev_options_config;
 
 			Logger::getInstance()->info("Developer options file found, using it to override option values.");
 		}
@@ -935,7 +947,7 @@ namespace game
 		// NOTE: but should save profile specific options to profile directory though, which
 		//       means those values that were read from the profile directory.
 
-		editor::Parser options_config;//("Config/options.txt");
+		editor::Parser options_config;//("config/options.txt");
 
 		for (int i = 0; i < DH_OPT_AMOUNT; i++)
 		{
@@ -954,14 +966,14 @@ namespace game
 
 		std::fstream o;
 #ifdef LEGACY_FILES
-		o.open( "Config/options.txt", std::ios::out );
+		o.open( "config/options.txt", std::ios::out );
 #else
 		o.open( "config/options.txt", std::ios::out );
 #endif
 
 		o << options_config;
 		o.close();
-		// filesystem::FilePackageManager::getInstance().getFile("Config/options.txt") << options_config;
+		// filesystem::FilePackageManager::getInstance().getFile("config/options.txt") << options_config;
 
 		// assert(0);
 	}

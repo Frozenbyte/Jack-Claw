@@ -4,6 +4,7 @@
 #include "GameScene.h"
 
 #include <Storm3D_UI.h>
+#include <IStorm3D_Line.h>
 #include "../ui/Terrain.h"
 #include "../ui/VisualObject.h"
 #include "Unit.h"

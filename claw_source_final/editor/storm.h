@@ -9,12 +9,13 @@
 #endif
 #ifndef INCLUDED_DATATYPEDEF_H
 #define INCLUDED_DATATYPEDEF_H
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 #endif
-#ifndef INCLUDED_WINDOWS_H
-#define INCLUDED_WINDOWS_H
+
+#ifdef _WIN32
 #include <windows.h>
-#endif
+#endif  // _WIN32
+
 #ifndef INCLUDED_EDITOR_ALIGN_UNITS_H
 #include "align_units.h"
 #endif

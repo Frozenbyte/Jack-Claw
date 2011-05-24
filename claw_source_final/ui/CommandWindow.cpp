@@ -16,7 +16,7 @@
 #include "../system/Logger.h"
 #include "../util/Checksummer.h"
 
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 
 // button id's for command window

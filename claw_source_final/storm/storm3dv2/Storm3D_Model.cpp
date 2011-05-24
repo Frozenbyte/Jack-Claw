@@ -12,7 +12,7 @@
 #include "storm3d_light.h"
 #include "storm3d_helper.h"
 #include "storm3d_mesh.h"
-#include "iterator.h"
+#include "Iterator.h"
 
 // psd
 #include <vector>
@@ -25,8 +25,8 @@
 #include <boost/lexical_cast.hpp>
 #include "Storm3D_Bone.h"
 #include "IStorm3D_Logger.h"
-#include "..\..\filesystem\input_stream_wrapper.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../filesystem/input_stream_wrapper.h"
+#include "../../util/Debug_MemoryManager.h"
 
 #ifdef WORLD_FOLDING_ENABLED
 #include "WorldFold.h"
@@ -2604,7 +2604,7 @@ void Storm3D_Model::Object_Delete(IStorm3D_Model_Object *iobject)
 //------------------------------------------------------------------
 // Storm3D_Model::Helper_Point_New
 //------------------------------------------------------------------
-IStorm3D_Helper_Point *Storm3D_Model::Helper_Point_New(const char *name,VC3 &_position)
+IStorm3D_Helper_Point *Storm3D_Model::Helper_Point_New(const char *name, const VC3 &_position)
 {
 	// Create new helper and add it into the set
 	Storm3D_Helper_Point *help=new Storm3D_Helper_Point(name,this,_position);
@@ -2619,8 +2619,8 @@ IStorm3D_Helper_Point *Storm3D_Model::Helper_Point_New(const char *name,VC3 &_po
 //------------------------------------------------------------------
 // Storm3D_Model::Helper_Vector_New
 //------------------------------------------------------------------
-IStorm3D_Helper_Vector *Storm3D_Model::Helper_Vector_New(const char *name,VC3 &_position,
-	VC3 &_direction)
+IStorm3D_Helper_Vector *Storm3D_Model::Helper_Vector_New(const char *name, const VC3 &_position,
+	const VC3 &_direction)
 {
 	// Create new helper and add it into the set
 	Storm3D_Helper_Vector *help=new Storm3D_Helper_Vector(name,this,_position,_direction);
@@ -2635,8 +2635,8 @@ IStorm3D_Helper_Vector *Storm3D_Model::Helper_Vector_New(const char *name,VC3 &_
 //------------------------------------------------------------------
 // Storm3D_Model::Helper_Camera_New
 //------------------------------------------------------------------
-IStorm3D_Helper_Camera *Storm3D_Model::Helper_Camera_New(const char *name,VC3 &_position,
-	VC3 &_direction,VC3 &_up)
+IStorm3D_Helper_Camera *Storm3D_Model::Helper_Camera_New(const char *name, const VC3 &_position,
+	const VC3 &_direction, const VC3 &_up)
 {
 	// Create new helper and add it into the set
 	Storm3D_Helper_Camera *help=new Storm3D_Helper_Camera(name,this,_position,_direction,_up);
@@ -2651,8 +2651,8 @@ IStorm3D_Helper_Camera *Storm3D_Model::Helper_Camera_New(const char *name,VC3 &_
 //------------------------------------------------------------------
 // Storm3D_Model::Helper_Box_New
 //------------------------------------------------------------------
-IStorm3D_Helper_Box *Storm3D_Model::Helper_Box_New(const char *name,VC3 &_position,
-	VC3 &_size)
+IStorm3D_Helper_Box *Storm3D_Model::Helper_Box_New(const char *name, const VC3 &_position,
+	const VC3 &_size)
 {
 	// Create new helper and add it into the set
 	Storm3D_Helper_Box *help=new Storm3D_Helper_Box(name,this,_position,_size);
@@ -2667,7 +2667,7 @@ IStorm3D_Helper_Box *Storm3D_Model::Helper_Box_New(const char *name,VC3 &_positi
 //------------------------------------------------------------------
 // Storm3D_Model::Helper_Sphere_New
 //------------------------------------------------------------------
-IStorm3D_Helper_Sphere *Storm3D_Model::Helper_Sphere_New(const char *name,VC3 &_position,
+IStorm3D_Helper_Sphere *Storm3D_Model::Helper_Sphere_New(const char *name, const VC3 &_position,
 	float radius)
 {
 	// Create new helper and add it into the set
@@ -2772,7 +2772,7 @@ bool Storm3D_Model::hasBones ()
 //------------------------------------------------------------------
 // Storm3D_Model::SetPosition
 //------------------------------------------------------------------
-void Storm3D_Model::SetPosition(VC3 &_position)
+void Storm3D_Model::SetPosition(const VC3 &_position)
 {
 	if(fabsf(position.x - _position.x) < 0.01f)
 	if(fabsf(position.y - _position.y) < 0.01f)
@@ -2807,7 +2807,7 @@ collision_box_ok = false;
 //------------------------------------------------------------------
 // Storm3D_Model::SetRotation
 //------------------------------------------------------------------
-void Storm3D_Model::SetRotation(QUAT &_rotation)
+void Storm3D_Model::SetRotation(const QUAT &_rotation)
 {
 	rotation=_rotation;
 
@@ -2831,7 +2831,7 @@ collision_box_ok = false;
 //------------------------------------------------------------------
 // Storm3D_Model::SetScale
 //------------------------------------------------------------------
-void Storm3D_Model::SetScale(VC3 &_scale)
+void Storm3D_Model::SetScale(const VC3 &_scale)
 {
 	// HACK: re-scale if already calculated bounding sphere...?
 	// WARNING: incorrect result when calling SetScale several times!!!

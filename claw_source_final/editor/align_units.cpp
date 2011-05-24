@@ -5,7 +5,7 @@
 
 #include "align_units.h"
 #include "camera.h"
-#include <istorm3d_scene.h>
+#include <IStorm3D_Scene.h>
 #include <windows.h>
 
 namespace frozenbyte {

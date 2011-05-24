@@ -12,7 +12,7 @@
 #include "storm3d_material.h"
 #include "VertexFormats.h"
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 #include <d3dx9.h>
 
 extern int storm3d_dip_calls;

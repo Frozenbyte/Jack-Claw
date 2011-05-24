@@ -3669,8 +3669,13 @@ namespace util
 				sprintf(&buf[strlen(buf)], "Process IP stack: empty\r\n");
 			sprintf(&buf[strlen(buf)], "Process if-depth: %d\r\n", sp->ifDepth);
 		}
+#ifdef DEBUG_CHECK_FOR_UNINITIALIZED_SCRIPT_VALUE_USE
+		sprintf(&buf[strlen(buf)], "Process last value: %d\r\n", int(sp->lastValue));
+		sprintf(&buf[strlen(buf)], "Process secondary value: %d\r\n", int(sp->secondaryValue));
+#else  // DEBUG_CHECK_FOR_UNINITIALIZED_SCRIPT_VALUE_USE
 		sprintf(&buf[strlen(buf)], "Process last value: %d\r\n", sp->lastValue);
 		sprintf(&buf[strlen(buf)], "Process secondary value: %d\r\n", sp->secondaryValue);
+#endif  // DEBUG_CHECK_FOR_UNINITIALIZED_SCRIPT_VALUE_USE
 
 		int start = 0; // inclusive
 		int stop = commandAmount; // exclusive

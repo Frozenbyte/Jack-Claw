@@ -67,7 +67,7 @@
 #include "../../util/CircleAreaTracker.h"
 #include "../../util/ITrackable.h"
 
-#include "../../util/AI_Pathfind.h"
+#include "../../util/AI_PathFind.h"
 #include "../../util/ScriptManager.h"
 #include "../../util/ScriptProcess.h"
 #include "../../util/AngleRotationCalculator.h"

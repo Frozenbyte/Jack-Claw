@@ -83,7 +83,7 @@ namespace ui
 
 		void makeMuzzleAttachment(IPointableObject *unit, const std::string &name, const std::string &helper);
 		bool isMuzzleAttachment(IPointableObject *unit, const std::string &name, const std::string &helper);
-		void updateMuzzleAttachment(const std::string &name, const std::string &helper, VC3 &pos, VC3 &scale); 
+		void updateMuzzleAttachment(const std::string &name, const std::string &helper, const VC3 &pos, const VC3 &scale);
 
 	private:
 		void init(IPointableObject *object, IPointableObject *origin,

@@ -4,7 +4,7 @@
 #include "ParticleSpawnerManager.h"
 #include "ParticleSpawner.h"
 #include "../container/LinkedList.h"
-#include <IStorm3d_Scene.h>
+#include <IStorm3D_Scene.h>
 #include "Game.h"
 #include "GameScene.h"
 #include "SimpleOptions.h"

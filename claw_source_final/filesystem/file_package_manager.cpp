@@ -78,6 +78,22 @@ struct FilePackageManagerData
 				return result;
 		}
 
+		// Not found, try again all lowercase
+		// FIXME: this is a major hack
+		// to fix it, fix all data to use only lowercase file names
+		for(unsigned int i = 0; i < fileName.size(); ++i)
+		{
+			if(isupper(fileName[i]))
+				fileName[i] = tolower(fileName[i]);
+		}
+
+		for(PackageMap::reverse_iterator it = packages.rbegin(); it != packages.rend(); ++it)
+		{
+			InputStream result = it->second->getFile(fileName);
+			if(!result.isEof())
+				return result;
+		}
+
 		// Not found
 
 		if (logNonExisting)

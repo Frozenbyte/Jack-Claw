@@ -2,7 +2,13 @@
 #ifndef SAVEDATA_H
 #define SAVEDATA_H
 
-#include <windows.h> // to get BYTE ;)
+
+// FIXME : standard stdint.h header is missing on MSVC
+#ifdef WIN32
+typedef unsigned char uint8_t;
+#else
+#include <stdint.h>
+#endif
 
 namespace game
 {
@@ -21,7 +27,7 @@ namespace game
   // private:
     int id;
     int size;
-    BYTE *data;
+	uint8_t *data;
     GameObject **children;
   };
 

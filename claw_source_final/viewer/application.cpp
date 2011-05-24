@@ -24,12 +24,12 @@
 #include "../sound/lipsyncmanager.h"
 #include "../sound/lipsyncproperties.h"
 #include <stdio.h>
-#include <istorm3d.h>
-#include <istorm3d_scene.h>
-#include <istorm3d_mesh.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Scene.h>
+#include <IStorm3D_Mesh.h>
 #include <istorm3d_videostreamer.h>
 #include "resource.h"
-#include <istorm3d_terrain_renderer.h>
+#include <istorm3D_terrain_renderer.h>
 
 #pragma comment(lib, "fmodvc.lib")
 

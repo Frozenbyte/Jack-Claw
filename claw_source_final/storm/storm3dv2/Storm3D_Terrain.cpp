@@ -11,12 +11,12 @@
 #include "storm3d_texture.h"
 #include "storm3d_model.h"
 #include "storm3d_scene.h"
-#include "storm3d_shadermanager.h"
+#include "Storm3D_ShaderManager.h"
 
 #include "storm3d.h"
 #include <boost/scoped_array.hpp>
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 namespace {
 } // unnamed
@@ -369,7 +369,7 @@ void Storm3D_Terrain::rayTrace(const VC3 &position, const VC3 &directionNormaliz
 #include <vector>
 
 #include "Storm3D_ShaderManager.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 
 

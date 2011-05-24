@@ -6,8 +6,8 @@
 #include "camera.h"
 #include "mouse.h"
 #include "storm.h"
-#include <istorm3d.h>
-#include <datatypedef.h>
+#include <IStorm3D.h>
+#include <DatatypeDef.h>
 #include <windows.h>
 
 //#define TEKES

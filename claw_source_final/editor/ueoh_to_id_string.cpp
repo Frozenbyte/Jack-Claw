@@ -11,9 +11,9 @@ char ueoh_to_id_string_buf[8+1];
 const char *ueoh_to_id_string(UniqueEditorObjectHandle ueoh)
 {
 	assert(sizeof(UniqueEditorObjectHandle) == 8);
-	assert(ueoh & 0x8000000000000000);
+	assert(ueoh & 0x8000000000000000LL);
 
-	ueoh &= ~0x8000000000000000;
+	ueoh &= ~0x8000000000000000LL;
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -54,7 +54,7 @@ UniqueEditorObjectHandle id_string_to_ueoh(const char *str)
 	strcpy(tmp, str);
 	
 	UniqueEditorObjectHandle ret = *((UniqueEditorObjectHandle *)tmp);
-	ret |= 0x8000000000000000;
+	ret |= 0x8000000000000000LL;
 
 	return ret;
 }

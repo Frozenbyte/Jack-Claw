@@ -1,7 +1,7 @@
 #ifndef INCLUDED_FROZENBYTE_JOINT_BASE_H
 #define INCLUDED_FROZENBYTE_JOINT_BASE_H
 
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 #include <boost/shared_ptr.hpp>
 
 class NxJoint;

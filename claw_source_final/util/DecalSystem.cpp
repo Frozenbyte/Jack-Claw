@@ -9,9 +9,9 @@
 #include "../filesystem/file_package_manager.h"
 #include "../filesystem/input_stream.h"
 #include "../system/Logger.h"
-#include <istorm3d.h>
-#include <istorm3d_texture.h>
-#include <istorm3d_material.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Texture.h>
+#include <IStorm3D_Material.h>
 #include <boost/shared_ptr.hpp>
 #include <fstream>
 #include <vector>
@@ -108,6 +108,12 @@ namespace {
 
 			Logger::getInstance()->warning(message.c_str());
 			texture = storm.CreateNewTexture("missing.dds");
+
+			if (!texture)
+			{
+				// something is very wrong, bug out
+				return;
+			}
 		}
 
 		Storm3D_SurfaceInfo info = texture->GetSurfaceInfo();
@@ -146,7 +152,8 @@ struct DecalSystem::Data
 	void parseEffects()
 	{
 		Parser parser(false, true);
-		parser.readStream(filesystem::FilePackageManager::getInstance().getFile(fileName));
+		filesystem::InputStream effectsFile = filesystem::FilePackageManager::getInstance().getFile(fileName);
+		parser.readStream(effectsFile);
 
 		ParserGroup &global = parser.getGlobals();
 		int groupAmount = global.getSubGroupAmount();

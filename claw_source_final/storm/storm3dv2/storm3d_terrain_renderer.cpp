@@ -16,14 +16,14 @@
 #include "storm3d.h"
 #include "storm3d_terrain_utils.h"
 #include "storm3d_adapter.h"
-#include "storm3d_shadermanager.h"
+#include "Storm3D_ShaderManager.h"
 #include "storm3d_model.h"
-#include <istorm3d_logger.h>
-#include "vertexformats.h"
+#include <IStorm3D_Logger.h>
+#include "VertexFormats.h"
 
 #include <d3d9.h>
 #include <atlbase.h>
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 using namespace std;
 using namespace boost;
@@ -365,7 +365,7 @@ struct Storm3D_TerrainRendererData
 				if(result > 1.f)
 					result = 1.f;
 
-				unsigned char c = unsigned char(result * 255);
+				unsigned char c = static_cast<unsigned char>(result * 255);
 				buffer[y * pitch + x] = D3DCOLOR_RGBA(c, c, c, 0);
 			}
 
@@ -1649,7 +1649,7 @@ device.SetViewport(&data->viewport);
 					device.SetTextureStageState(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
 
 					device.SetFVF(FVF_VXFORMAT_2D);
-					int c = unsigned char(data->glowFactor * 255.f);
+					int c = static_cast<unsigned char>(data->glowFactor * 255.f);
 					if(c > 255)
 						c = 255;
 					else if(c < 1)
@@ -2149,7 +2149,7 @@ device.SetViewport(&data->viewport);
 			// Transparency
 			if(data->glowTransparencyFactor > 0.001f)
 			{
-				int c = unsigned char(data->glowTransparencyFactor * 255.f);
+				int c = static_cast<unsigned char>(data->glowTransparencyFactor * 255.f);
 				if(c > 255)
 					c = 255;
 				else if(c < 1)
@@ -2165,7 +2165,7 @@ device.SetViewport(&data->viewport);
 			// Additive
 			if(data->glowAdditiveFactor > 0.001f)
 			{
-				int c = unsigned char(data->glowAdditiveFactor * 255.f);
+				int c = static_cast<unsigned char>(data->glowAdditiveFactor * 255.f);
 				if(c > 255)
 					c = 255;
 				else if(c < 1)

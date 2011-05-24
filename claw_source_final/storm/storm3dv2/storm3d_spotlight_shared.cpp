@@ -1,12 +1,17 @@
 // Copyright 2002-2004 Frozenbyte Ltd.
 
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+
 #pragma warning(disable:4103)
 
 #include <math.h>
+#include <algorithm>
 #include "storm3d_spotlight_shared.h"
 #include "storm3d_camera.h"
 #include "storm3d_scene.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 #include <c2_frustum.h>
 
 Storm3D_SpotlightShared::Storm3D_SpotlightShared(IDirect3DDevice9 &device_)
@@ -135,10 +140,10 @@ void Storm3D_SpotlightShared::updateMatricesOffCenter(const float *cameraView, c
 		float d3 = p3.GetLength();
 		float d4 = p4.GetLength();
 		float maxRange = 0.0f;
-		maxRange = max( maxRange, d1 );
-		maxRange = max( maxRange, d2 );
-		maxRange = max( maxRange, d3 );
-		maxRange = max( maxRange, d4 );
+		maxRange = std::max( maxRange, d1 );
+		maxRange = std::max( maxRange, d2 );
+		maxRange = std::max( maxRange, d3 );
+		maxRange = std::max( maxRange, d4 );
 		//maxRange = sqrtf(maxRange);
 
 		// Calculate FOV of the camera.
@@ -150,10 +155,10 @@ void Storm3D_SpotlightShared::updateMatricesOffCenter(const float *cameraView, c
 		float t2 = camVec.GetDotWith( p2 ) / d2;
 		float t3 = camVec.GetDotWith( p3 ) / d3;
 		float t4 = camVec.GetDotWith( p4 ) / d4;
-		minDot = min( minDot, t1 );
-		minDot = min( minDot, t2 );
-		minDot = min( minDot, t3 );
-		minDot = min( minDot, t4 );
+		minDot = std::min( minDot, t1 );
+		minDot = std::min( minDot, t2 );
+		minDot = std::min( minDot, t3 );
+		minDot = std::min( minDot, t4 );
 		float maxAngle = acosf( minDot );
 
 		camera.SetPosition(position);

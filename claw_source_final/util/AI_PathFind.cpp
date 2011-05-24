@@ -12,11 +12,11 @@
 #include <IStorm3D_Model.h>
 
 #include <map>
+#ifndef __APPLE__
 #include <hash_map>
+#endif
 #include <math.h>
 
-// REMOVE
-#include <windows.h>
 
 //#define AI_PATHFIND_MAX_DEPTH 16000
 //#define AI_PATHFIND_HASHMAP_SIZE (2029 * 4 - 3)

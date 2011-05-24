@@ -6,9 +6,9 @@
 // Includes
 //------------------------------------------------------------------
 #include "storm3d.h"
-#include "vertexformats.h"
+#include "VertexFormats.h"
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 //------------------------------------------------------------------
 // Clip2DRectangle

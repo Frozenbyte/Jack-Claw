@@ -3,7 +3,7 @@
 #ifndef INCLUDED_EDITOR_STORM_GEOMETRY_H
 #define INCLUDED_EDITOR_STORM_GEOMETRY_H
 
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 
 class IStorm3D_Mesh;
 class IStorm3D_Model;

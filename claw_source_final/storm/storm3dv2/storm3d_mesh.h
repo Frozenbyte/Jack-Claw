@@ -7,7 +7,7 @@
 // Includes
 //------------------------------------------------------------------
 #include "storm3d_common_imp.h"
-#include "istorm3d_mesh.h"
+#include "IStorm3D_Mesh.h"
 #include "storm3d_mesh_collisiontable.h"
 #include "storm3d_resourcemanager.h"
 #include <c2_sphere.h>

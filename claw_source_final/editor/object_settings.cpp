@@ -11,8 +11,8 @@
 #include "common_dialog.h"
 #include "file_wrapper.h"
 #include "storm.h"
-#include <istorm3d_model.h>
-#include <istorm3d.h>
+#include <IStorm3D_Model.h>
+#include <IStorm3D.h>
 #include "../system/Logger.h"
 
 #include <fstream>

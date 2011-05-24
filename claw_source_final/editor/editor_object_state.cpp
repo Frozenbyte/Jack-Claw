@@ -2,7 +2,7 @@
 #pragma warning(disable:4786)
 
 #include "editor_object_state.h"
-#include <istorm3d_model.h>
+#include <IStorm3D_Model.h>
 
 using namespace std;
 typedef map<IStorm3D_Model_Object *, bool> CollisionMap;

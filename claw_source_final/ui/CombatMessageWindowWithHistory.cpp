@@ -2,7 +2,7 @@
 #include "precompiled.h"
 
 #include "CombatMessageWindowWithHistory.h"
-#include "../system/timer.h"
+#include "../system/Timer.h"
 #include "../game/DHLocaleManager.h"
 
 using namespace game;

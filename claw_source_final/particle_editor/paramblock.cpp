@@ -1,9 +1,9 @@
-#include <storm3d_ui.h>
+#include <Storm3D_UI.h>
 #include <boost/shared_ptr.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <vector>
 #include <string>
-#include "..\editor\parser.h"
+#include "../editor/parser.h"
 #include "track.h"
 #include "paramblock.h"
 

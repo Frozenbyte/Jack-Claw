@@ -8,10 +8,10 @@
 
 #include "procedural_applier.h"
 #include "procedural_properties.h"
-#include <istorm3d.h>
-#include <istorm3d_terrain.h>
-#include <istorm3d_terrain_renderer.h>
-#include <istorm3d_proceduralmanager.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Terrain.h>
+#include <istorm3D_terrain_renderer.h>
+#include <IStorm3D_ProceduralManager.h>
 
 namespace util {
 namespace {

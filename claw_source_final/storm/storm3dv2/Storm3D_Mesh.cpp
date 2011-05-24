@@ -17,7 +17,7 @@
 #include "Storm3D_Bone.h"
 #include "Storm3D_ShaderManager.h"
 #include <algorithm>
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 int storm3d_mesh_allocs = 0;
 int storm3d_dip_calls = 0;

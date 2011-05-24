@@ -11,7 +11,10 @@
 
 #include <boost/lexical_cast.hpp>
 #include <string>
+
+#ifdef _WIN32
 #include <windows.h>
+#endif  // _WIN32
 
 using namespace std;
 using namespace boost;
@@ -21,12 +24,14 @@ namespace {
 
 	void removeMessages()
 	{
+#ifdef _WIN32
 		MSG msg = { 0 };
 		while(PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 		{
 			if(msg.message == WM_PAINT)
 				return;
 		}
+#endif  // _WIN32
 	}
 
 } // unnamed

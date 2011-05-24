@@ -6,11 +6,10 @@
 //------------------------------------------------------------------
 // Includes
 //------------------------------------------------------------------
-#include <windows.h>
 
 // Storm3D includes 
-#include "storm3d_common.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "Storm3D_Common.h"
+#include "../../util/Debug_MemoryManager.h"
 
 
 
@@ -98,11 +97,17 @@ public:
 		return (*it);
 	}
 
+
+#if 0
+	// FIXME: this is clearly broken but passes msvc?
+
 	IteratorIM_PtrList(PtrList<A> *_ptrset)
 	{
 		ptrset=_ptrset;
 		it=ptrset->Begin();
 	}
+#endif  // 0
+
 
 	~IteratorIM_PtrList()
 	{
@@ -125,7 +130,7 @@ public:
 
 	ICreateIM_PtrList(PtrList<A> *_ptrSet)
 	{
-		ptrset=_ptrset;
+		ptrset=_ptrSet;
 	}
 };
 

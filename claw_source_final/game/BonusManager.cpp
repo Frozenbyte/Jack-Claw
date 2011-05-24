@@ -1,5 +1,12 @@
 #include "precompiled.h"
 
+#if defined __GNUC__ && !defined __APPLE__
+// for alloca
+// for alloca.h does not do it. WHY?
+
+#include <malloc.h>
+#endif  // __GNUC__
+
 #include "BonusManager.h"
 #include "../game/options/options_camera.h"
 #include "../game/options/options_graphics.h"
@@ -10,7 +17,7 @@
 #include "../game/scripting/GameScripting.h"
 #include <map>
 
-#define BONUS_OPTIONS_FILE "Config/bonus.dat"
+#define BONUS_OPTIONS_FILE "config/bonus.dat"
 
 namespace game
 {

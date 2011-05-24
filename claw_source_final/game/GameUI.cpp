@@ -62,7 +62,7 @@
 #include "../util/LipsyncManager.h"
 #include "../util/HelperPositionCalculator.h"
 
-#include "../ui/decalpositioncalculator.h"
+#include "../ui/DecalPositionCalculator.h"
 #include "../ui/cursordefs.h"
 #include "../ui/UIState.h"
 #include "../ui/Terrain.h"
@@ -127,7 +127,7 @@
 	#include "../ui/MissionFailureWindow.h"
 	#include <keyb3.h>
 #endif
-#include <istorm3d_terrain_renderer.h>
+#include <istorm3D_terrain_renderer.h>
 #include <istorm3d_terrain_decalsystem.h>
 
 #include "materials.h"
@@ -371,9 +371,9 @@ namespace game
 				if( load_options )
 				{
 #ifdef LEGACY_FILES
-					std::string tmp = "Profiles/";
+					std::string tmp = "profiles/";
 					tmp += game->getGameProfiles()->getCurrentProfile( c );
-					tmp += "/Config/keybinds.txt";
+					tmp += "/config/keybinds.txt";
 #else
 					std::string tmp = "profiles/";
 					tmp += game->getGameProfiles()->getCurrentProfile( c );
@@ -384,6 +384,8 @@ namespace game
 				gameController[c]->setMouseJoystickAutodetection( true );
 			}
 		}
+
+		thirdPersonView = true;
 
 		createCameras();
 
@@ -1966,7 +1968,7 @@ namespace game
 			}
 
 		}
-		// ..\game\GameUI.cpp(1920) : error C3861: 'updateIngameTabs': identifier not found
+		// ../game/GameUI.cpp(1920) : error C3861: 'updateIngameTabs': identifier not found
 //		updateIngameTabs();
 	}
 
@@ -2943,7 +2945,7 @@ namespace game
 #ifdef PROJECT_CLAW_PROTO
 									// hack: pressing esc in loading screen means quitting
 									if(SimpleOptions::getInt(DH_OPT_I_CLAW_CONTROL_TYPE) != 0
-										 && (GetKeyState(VK_ESCAPE) & 0x80))
+										 && Keyb3_IsKeyDown(KEYCODE_ESC))
 									{
 										setQuitRequested();
 									}
@@ -2976,8 +2978,8 @@ namespace game
 #ifdef PROJECT_CLAW_PROTO
 									// hack: pressing esc in menu means quitting
 									if(commandWindows[player] != NULL
-										 && SimpleOptions::getInt(DH_OPT_I_CLAW_CONTROL_TYPE) != 0
-										 && (GetKeyState(VK_ESCAPE) & 0x80))
+										 /*&& SimpleOptions::getInt(DH_OPT_I_CLAW_CONTROL_TYPE) != 0*/
+										 && Keyb3_IsKeyDown(KEYCODE_ESC))
 									{
 										setQuitRequested();
 									}
@@ -5029,7 +5031,8 @@ if (unit->isPhysicsObjectLock() && !unit->isDestroyed()
 					float xd = 0.f;
 					float yd = 0.f;
 
-					if(!cursorMode) // pad
+					// Read claw control input from both pad and mouse
+					//if(!cursorMode) // pad
 					{
 						float originalInputLength = sqrtf(float(jx)*float(jx) + float(jy)*float(jy));
 						float inputLength = originalInputLength;
@@ -5098,7 +5101,7 @@ if (unit->isPhysicsObjectLock() && !unit->isDestroyed()
 						yd = pad * float(jy) * 0.7928321376f;
 						*/
 					}
-					else // mouse
+					//else // mouse
 					{
 						int x = 0;
 						int y = 0;
@@ -5176,7 +5179,8 @@ if (unit->isPhysicsObjectLock() && !unit->isDestroyed()
 					delta.y -= float(yd) * dir.y;
 
 					//game->getClawController()->setTurbo(gameController[0]->isKeyDown(DH_CTRL_ATTACK_SECONDARY));
-					if(gameController[0]->isKeyDown(DH_CTRL_ATTACK_SECONDARY))
+					// This was DH_CTRL_ATTACK_SECONDARY, but that broke aiming mode with mouse
+					if(gameController[0]->isKeyDown(DH_CTRL_SPECIAL_MOVE))
 						game->getClawController()->setAction(ClawController::TurboThrow);
 //					if(gameController[0]->isKeyDown(DH_CTRL_WEAPON_1))
 //						game->getClawController()->moveToRestPosition();
@@ -5224,7 +5228,7 @@ if (unit->isPhysicsObjectLock() && !unit->isDestroyed()
 							lastDeltaTime = deltaTime;
 							lastTime = currentTime;
 
-							if(throttle)
+							if(throttle || gameController[0]->isKeyDown(DH_CTRL_ATTACK_SECONDARY))
 							{
 								static float rotationSpeed = 0;
 
@@ -5338,7 +5342,7 @@ if (unit->isPhysicsObjectLock() && !unit->isDestroyed()
 
 				// Actions
 				ClawController::Action activeAction = ClawController::ActionNone;
-				if(throttle < -3)
+				if(throttle < -3 || gameController[0]->isKeyDown(DH_CTRL_ATTACK_SECONDARY))
 				{
 					// enable aiming mode
 					activeAction = ClawController::ActionThrow;
@@ -5517,7 +5521,7 @@ if (unit->isPhysicsObjectLock() && !unit->isDestroyed()
 
 //				if(throttle > 3)
 //					game->getClawController()->setAction(ClawController::TurboHit);
-				if(throttle > 3)
+				if(throttle > 3 || gameController[0]->isKeyDown(DH_CTRL_EXECUTE))
 					game->getClawController()->moveToRestPosition();
 
 				if(game->inCombat && game->getClawController() && firstPerson[0] && firstPerson[0]->getVisualObject())

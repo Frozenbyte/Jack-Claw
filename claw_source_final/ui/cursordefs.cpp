@@ -3,9 +3,9 @@
 
 #include "cursordefs.h"
 #include "cursordefs_files.h"
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
-#include "..\game\DHLocaleManager.h"
+#include "../game/DHLocaleManager.h"
 #include <boost/lexical_cast.hpp>
 
 #define LOAD_CURSOR_CORNER(p_file, p_id) \

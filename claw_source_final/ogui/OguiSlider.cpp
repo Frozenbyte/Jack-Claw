@@ -1,12 +1,11 @@
 
 #include "precompiled.h"
 
-#include "OGuiSlider.h"
-#include "../ogui/ogui.h"
+#include "OguiSlider.h"
+#include "../ogui/Ogui.h"
 #include "../util/assert.h"
 
 // #include <assert.h>
-#include <windows.h>
 
 OguiSlider*		OguiSlider::updateThis = NULL;
 OguiSlider*		OguiSlider::updateThisIfHold = NULL;

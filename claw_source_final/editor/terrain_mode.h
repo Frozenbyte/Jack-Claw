@@ -8,7 +8,7 @@
 #endif
 #ifndef INCLUDED_DATATYPEDEF_H
 #define INCLUDED_DATATYPEDEF_H
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 #endif
 #ifndef INCLUDED_BOOST_SCOPED_PTR_HPP
 #define INCLUDED_BOOST_SCOPED_PTR_HPP

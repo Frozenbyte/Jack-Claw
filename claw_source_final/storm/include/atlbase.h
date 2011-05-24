@@ -158,7 +158,10 @@ public:
         HRESULT Advise(IUnknown* pUnk, const IID& iid, LPDWORD pdw)
         {
                 return AtlAdvise(p, pUnk, iid, pdw);
-        }
+		}
+
+
+#ifndef __GNUC__
         HRESULT CoCreateInstance(REFCLSID rclsid, LPUNKNOWN pUnkOuter = NULL, DWORD dwClsContext = CLSCTX_ALL)
         {
                 assert(p == NULL);
@@ -178,7 +181,10 @@ public:
         {
                 assert(pp != NULL && *pp == NULL);
                 return p->QueryInterface(__uuidof(Q), (void**)pp);
-        }
+		}
+#endif
+
+
         T* p;
 };
 

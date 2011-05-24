@@ -246,7 +246,7 @@ private:
 	// 0 = free, 1 = belongs to block
 	int blockedAt(int xPosition, int yPosition, const Pathblock &block) const;
 
-	friend class PathSimplifier;
+	friend class ::PathSimplifier;
 };
 
 } // end of namespace ai

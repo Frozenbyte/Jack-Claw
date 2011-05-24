@@ -15,10 +15,10 @@
 #include <cassert>
 #include <boost/lexical_cast.hpp>
 #include <boost/shared_ptr.hpp>
-#include <istorm3d.h>
-#include <istorm3d_bone.h>
-#include <istorm3d_mesh.h>
-#include <istorm3d_terrain_renderer.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Bone.h>
+#include <IStorm3D_Mesh.h>
+#include <istorm3D_terrain_renderer.h>
 
 namespace frozenbyte {
 namespace viewer {

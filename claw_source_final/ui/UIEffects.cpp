@@ -15,7 +15,7 @@
 #include "../system/Logger.h"
 
 #include <Storm3D_UI.h>
-#include <istorm3d_terrain_renderer.h>
+#include <istorm3D_terrain_renderer.h>
 
 #include "../util/Debug_MemoryManager.h"
 

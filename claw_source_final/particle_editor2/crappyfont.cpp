@@ -1,6 +1,6 @@
 // Copyright 2002-2004 Frozenbyte Ltd.
 
-#include <Storm3D_Ui.h>
+#include <Storm3D_UI.h>
 #include <boost/shared_ptr.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <vector>

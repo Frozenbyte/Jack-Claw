@@ -4,8 +4,6 @@
 
 #include "ScriptProcess.h"
 
-// TEMP
-#include <windows.h>
 
 #include <assert.h>
 #include "Script.h"

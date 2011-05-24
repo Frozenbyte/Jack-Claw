@@ -9,9 +9,9 @@
 #include "storm3d_scene_piclist.h"
 #include "storm3d_texture.h"
 #include "storm3d_font.h"
-#include "clipper.h"
+#include "Clipper.h"
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 
 //------------------------------------------------------------------

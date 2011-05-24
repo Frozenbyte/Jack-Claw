@@ -1,11 +1,11 @@
 
 #include "precompiled.h"
 
-#include "terrain.h"
+#include "Terrain.h"
 #include "../game/materials.h"
 #include <Storm3D_UI.h>
 #include <IStorm3D_Bone.h>
-#include <IStorm3D_Terrain_Renderer.h>
+#include <istorm3D_terrain_renderer.h>
 #include <Storm3D_ObstacleMapDefs.h>
 #include <stdlib.h>
 #include <time.h>
@@ -15,7 +15,7 @@
 #include "../util/fb_assert.h"
 #include "../util/ColorMap.h"
 #include "../game/gamedefs.h"
-#include "../game/gamemap.h"
+#include "../game/GameMap.h"
 #include <stdio.h>
 #include "../system/Logger.h"
 #include "../filesystem/input_stream_wrapper.h"
@@ -31,13 +31,13 @@
 #include "../game/physics/CapsulePhysicsObject.h"
 #include "../game/physics/physics_collisiongroups.h"
 #include "../physics/physics_lib.h"
-#include "../ui/lightmanager.h"
+#include "../ui/LightManager.h"
 #include "../ui/AmbientSoundManager.h"
 #ifdef PHYSICS_PHYSX
 #include "../game/physics/RackPhysicsObject.h"
 #include "../game/physics/TerrainPhysicsObject.h"
 #include "../game/physics/ConvexPhysicsObject.h"
-#include "../physics/Cooker.h"
+#include "../physics/cooker.h"
 #include "../game/options/options_physics.h"
 #include "../system/FileTimestampChecker.h"
 #endif
@@ -72,6 +72,11 @@
 #include "../game/ClawController.h"
 extern ::game::ClawController *gamephysics_clawController;
 #endif
+
+#ifdef _MSC_VER
+#define strcasecmp _stricmp
+#endif
+
 
 using namespace frozenbyte;
 
@@ -841,7 +846,7 @@ namespace {
 		boost::shared_ptr<IStorm3D_Texture> texture1;
 		boost::shared_ptr<IStorm3D_Texture> texture2;
 
-		std::vector<DWORD> weights;
+		std::vector<uint32_t> weights;
 
 		BlendPass()
 		:	textureA(-1),
@@ -849,7 +854,7 @@ namespace {
 		{
 		}
 
-		BlendPass(int textureA_, int textureB_, const std::vector<DWORD> &weights_)
+		BlendPass(int textureA_, int textureB_, const std::vector<uint32_t> &weights_)
 		:	textureA(textureA_),
 			textureB(textureB_),
 			weights(weights_)
@@ -1537,7 +1542,10 @@ static util::ObjectDurabilityParser durp;
 		if(version <= 2)
 			return;
 
-		heightMap.swap(boost::scoped_array<WORD> (new WORD[mapSize.x * mapSize.y]));
+		{
+			boost::scoped_array<WORD> newHeightMap(new WORD[mapSize.x * mapSize.y]);
+			heightMap.swap(newHeightMap);
+		}
 
 		// NOTICE: this obstaclemap thing is totally fucked up!
 		// keeping it that way to preserve compatibility with old editor exports.
@@ -1650,7 +1658,7 @@ static util::ObjectDurabilityParser durp;
 				stream >> textureA >> textureB;
 				assert(textureA >= 0);
 
-				std::vector<DWORD> weights(BLOCK_SIZE * BLOCK_SIZE);
+				std::vector<uint32_t> weights(BLOCK_SIZE * BLOCK_SIZE);
 
 				int weightSize = BLOCK_SIZE * BLOCK_SIZE;
 				if(j + 1 < passes)
@@ -1668,7 +1676,7 @@ static util::ObjectDurabilityParser durp;
 					if(j + 1 < passes)
 						b = weightBuffer[weightIndex++];
 
-					DWORD weight = a | (b << 24);
+					uint32_t weight = a | (b << 24);
 					weights[k] = weight;
 				}
 
@@ -2159,7 +2167,7 @@ static util::ObjectDurabilityParser durp;
 
 		{
 			bool singleTexturing = terrain->legacyTexturing();
-			std::vector<DWORD> weights(BLOCK_SIZE * BLOCK_SIZE);
+			std::vector<uint32_t> weights(BLOCK_SIZE * BLOCK_SIZE);
 
 			std::map<int, std::vector<BlendPass> >::iterator it = blendings.begin();
 			for(; it != blendings.end(); ++it)
@@ -2178,7 +2186,7 @@ static util::ObjectDurabilityParser durp;
 
 						for(unsigned int j = 0; j < BLOCK_SIZE * BLOCK_SIZE; ++j)
 						{
-							unsigned char value = unsigned char(pass.weights[j] & 0x000000FF);
+							unsigned char value = static_cast<unsigned char>(pass.weights[j] & 0x000000FF);
 							weights[j] = (value << 24) | (value << 16) | (value << 8) | value;
 						}
 
@@ -2191,7 +2199,7 @@ static util::ObjectDurabilityParser durp;
 						for(unsigned int k = 0; k < BLOCK_SIZE * BLOCK_SIZE; ++k)
 						{
 							DWORD weight = (pass.weights[k] & 0xFF000000);
-							unsigned char value = unsigned char(weight >> 24);
+							unsigned char value = static_cast<unsigned char>(weight >> 24);
 							weights[k] = (value << 24) | (value << 16) | (value << 8) | value;
 						}
 
@@ -2224,7 +2232,7 @@ static util::ObjectDurabilityParser durp;
 			if(textureSize < 1)
 				textureSize = 1;
 
-			std::vector<DWORD> buffer(textureSize * textureSize);
+			std::vector<uint32_t> buffer(textureSize * textureSize);
 			boost::shared_ptr<IStorm3D_Texture> black(storm->CreateNewTexture(1, 1, IStorm3D_Texture::TEXTYPE_BASIC), std::mem_fun(&IStorm3D_Texture::Release));
 			black->Copy32BitSysMembufferToTexture(&buffer[0]);
 
@@ -2874,7 +2882,7 @@ static util::ObjectDurabilityParser durp;
 			float radius = data.physicsData1.y;
 
 #ifdef LEGACY_FILES
-			cylinderFile = "Data/Models/cylinder_";
+			cylinderFile = "data/models/cylinder_";
 #else
 			cylinderFile = "data/model/cylinder_cook/cylinder_";
 #endif
@@ -3867,7 +3875,7 @@ UnifiedHandle Terrain::findTerrainObjectByIdString(const char *idString)
 	for(unsigned int i = 0; i < data->objects.size(); ++i)
 	{
 		Object &object = data->objects[i];
-		if(_stricmp(object.data.fileName.c_str(), "data\\models\\terrain_objects\\statue\\obelisk_monument\\obelisk_chainholder.s3d") != 0)
+		if(strcasecmp(object.data.fileName.c_str(), "data\\models\\terrain_objects\\statue\\obelisk_monument\\obelisk_chainholder.s3d") != 0)
 			continue;
 
 		if(index >= int(object.instances.size()))
@@ -3914,7 +3922,7 @@ UnifiedHandle Terrain::findTerrainObjectByIdString(const char *idString)
 	return UNIFIED_HANDLE_NONE;
 }
 
-UnifiedHandle Terrain::findTerrainObjectByHex(__int64 hex) const
+UnifiedHandle Terrain::findTerrainObjectByHex(int64_t hex) const
 {
 	for(unsigned int i = 0; i < data->objects.size(); ++i)
 	{
@@ -4972,7 +4980,7 @@ void Terrain::setInstanceDamageTexture(UnifiedHandle uh, float damageTextureFade
 
 UnifiedHandle Terrain::findUnifiedHandleByUniqueEditorObjectHandle(UniqueEditorObjectHandle ueoh) const
 {
-	return findTerrainObjectByHex((__int64)ueoh);
+	return findTerrainObjectByHex((int64_t)ueoh);
 }
 
 std::string Terrain::getTypeFilename(int terrainModelId)

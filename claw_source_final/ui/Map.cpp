@@ -4,28 +4,35 @@
 #include "Map.h"
 #include "../game/Game.h"
 #include "../game/GameMap.h"
-#include "../game/AreaMasks.h"
+#include "../game/areamasks.h"
 #include <map>
 #include <string>
 #include "../util/assert.h"
-#include "../system/logger.h"
-#include <istorm3d_texture.h>
+#include "../system/Logger.h"
+#include <IStorm3D_Texture.h>
 #include <fstream>
 #include <stdio.h>
-#include <windows.h>
 #include "../filesystem/input_stream_wrapper.h"
 #include "../filesystem/file_package_manager.h"
 #include "../filesystem/input_stream.h"
 
-#include "..\game\GameUI.h"
-#include "..\storm\storm3dv2\storm3d.h"
-#include <istorm3d_terrain_renderer.h>
-#include "..\game\GameScene.h"
-#include "..\game\SimpleOptions.h"
-#include "..\game\options\options_graphics.h"
+#include "../game/GameUI.h"
+#include <istorm3D_terrain_renderer.h>
+#include "../game/GameScene.h"
+#include "../game/SimpleOptions.h"
+#include "../game/options/options_graphics.h"
 
-#include "..\game\scripting\GameScripting.h"
+#include "../game/scripting/GameScripting.h"
 
+
+#ifdef _WIN32
+#include <windows.h>
+
+#else  // _WIN32
+typedef void *HANDLE;
+typedef void *OVERLAPPED;
+
+#endif  // _WIN32
 
 
 using namespace std;
@@ -469,7 +476,7 @@ namespace {
 				fileReader2->forceDataReady();
 
 			Storm3D_SurfaceInfo info = t.GetSurfaceInfo();
-			vector<DWORD> colorBuffer(info.height * info.width);
+			vector<uint32_t> colorBuffer(info.height * info.width);
 
 			if(!visibility.empty())
 			{
@@ -586,8 +593,8 @@ namespace {
 
 
 						//DWORD value = r << 16 | g << 8 | b | (a << 24);
-						DWORD alpha = 0xAA000000;
-						DWORD value = r << 16 | g << 8 | b | alpha;
+						uint32_t alpha = 0xAA000000;
+						uint32_t value = r << 16 | g << 8 | b | alpha;
 						colorBuffer[(info.height - y - 1) * info.width + x] = value;
 					}
 				}

@@ -1,13 +1,20 @@
 
 #include "precompiled.h"
 
+#ifdef __GNUC__
+// for alloca
+// for alloca.h does not do it. WHY?
+
+#include <malloc.h>
+#endif  // __GNUC__
+
 #include "SurvivalMenu.h"
 #include "CoopMenu.h"
 
-#include "../system/timer.h"
+#include "../system/Timer.h"
 #include "../ogui/Ogui.h"
 #include "../game/Game.h"
-#include "../game/SaveGameVars.h"
+#include "../game/savegamevars.h"
 #include "../game/GameUI.h"
 #include "MenuCollection.h"
 #include "../game/DHLocaleManager.h"
@@ -23,7 +30,7 @@
 #include "../util/fb_assert.h"
 #include "../util/Debug_MemoryManager.h"
 #include "../util/StringUtil.h"
-#include "../util/parser.h"
+#include "../util/Parser.h"
 #include "../game/options/options_locale.h"
 #include "../filesystem/input_stream_wrapper.h"
 
@@ -852,7 +859,7 @@ void SurvivalMenu::updateArrows()
 
 void SurvivalMenu::unlockMission(const std::string &mission)
 {
-	FILE *file = fopen("Config/unlocked_missions.dat", "ab");
+	FILE *file = fopen("config/unlocked_missions.dat", "ab");
 	if(file)
 	{
 		char buf[256];
@@ -883,7 +890,7 @@ bool SurvivalMenu::readLockedMissions(std::vector<std::string> &missions)
 	locked.push_back("surv_techfacil");
 
 	// open file
-	frozenbyte::filesystem::FB_FILE *f = frozenbyte::filesystem::fb_fopen("Config/unlocked_missions.dat", "rb");
+	frozenbyte::filesystem::FB_FILE *f = frozenbyte::filesystem::fb_fopen("config/unlocked_missions.dat", "rb");
 	if(f != NULL)
 	{
 		int flen = frozenbyte::filesystem::fb_fsize(f);

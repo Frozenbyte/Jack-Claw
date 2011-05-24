@@ -104,7 +104,7 @@ extern IStorm3D_Scene *disposable_scene;
 // this should be handled by a game request
 #include "../util/AI_PathFind.h"
 
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 
 // button id's

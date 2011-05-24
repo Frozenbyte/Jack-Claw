@@ -14,11 +14,11 @@
 
 #include <map>
 
-#include "../system/logger.h"
+#include "../system/Logger.h"
 #include "../container/LinkedList.h"
 
 #include "../util/assert.h"
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 
 /* --------------------------------------------------------- */
@@ -366,7 +366,6 @@ void Ogui::SetCursorImageOffset(int cursornum, int offsetX, int offsetY,
 
 OguiWindow *Ogui::CreateSimpleWindow(int x, int y, int sizex, int sizey, 
 	const char *imagefilename, int id)
-	throw (OguiException *)
 {
 	// NOTICE: image created here, but deleted by the window destructor
 	IOguiImage *img = NULL;
@@ -385,7 +384,6 @@ OguiWindow *Ogui::CreateSimpleWindow(int x, int y, int sizex, int sizey,
 OguiButton *Ogui::CreateSimpleImageButton(OguiWindow *win, int x, int y, 
 	int sizex, int sizey, const char *imageFilename, const char *imageDownFilename, 
 	const char *imageHighlightFilename, const char *imageDisabledFilename, int id, void *argument, bool clipToWindow )
-	throw (OguiException *)
 {
 	// these images loaded here get deleted by the button destructor 
 	// they are marked as autodel
@@ -415,7 +413,6 @@ OguiButton *Ogui::CreateSimpleImageButton(OguiWindow *win, int x, int y,
 OguiButton *Ogui::CreateSimpleImageButton(OguiWindow *win, int x, int y, 
 	int sizex, int sizey, const char *imageFilename, const char *imageDownFilename, 
 	const char *imageHighlightFilename, int id, void *argument)
-	throw (OguiException *)
 {
 	return this->CreateSimpleImageButton(win, x, y, sizex, sizey, imageFilename,
 		imageDownFilename, imageHighlightFilename, NULL, id, argument);
@@ -426,7 +423,6 @@ OguiButton *Ogui::CreateSimpleImageButton(OguiWindow *win, int x, int y,
 OguiButton *Ogui::CreateSimpleTextButton(OguiWindow *win, int x, int y, 
 	int sizex, int sizey, const char *imageFilename, const char *imageDownFilename, 
 	const char *imageHighlightFilename, const char *text, int id, void *argument, bool clipToWindow )
-	throw (OguiException *)
 {
 	// these images loaded here get deleted by the button destructor 
 	// they are marked as autodel
@@ -458,7 +454,6 @@ OguiButton *Ogui::CreateSimpleTextButton(OguiWindow *win, int x, int y,
 
 OguiTextLabel *Ogui::CreateTextLabel(OguiWindow *win, int x, int y, 
 	int sizex, int sizey, const char *text)
-	throw (OguiException *)
 {
 	if (defaultFont == NULL && defaultFontMissingWarningsPrinted < MAX_DEFAULT_FONT_MISSING_WARNINGS)
 	{
@@ -480,7 +475,6 @@ OguiTextLabel *Ogui::CreateTextLabel(OguiWindow *win, int x, int y,
 
 OguiTextLabel *Ogui::CreateTextArea(OguiWindow *win, int x, int y, 
 	int sizex, int sizey, const char *text)
-	throw (OguiException *)
 {
 	if (defaultFont == NULL && defaultFontMissingWarningsPrinted < MAX_DEFAULT_FONT_MISSING_WARNINGS)
 	{
@@ -509,7 +503,6 @@ OguiTextLabel *Ogui::CreateTextArea(OguiWindow *win, int x, int y,
 OguiSelectList *Ogui::CreateSelectList(OguiWindow *win, int x, int y, 
 	OguiSelectListStyle *style, int valueAmount, const char **values, const char **descs, 
 	bool multiSelectable, int defaultSelection, int id, void *argument)
-	throw (OguiException *)
 {
 
 	OguiButton **listb;

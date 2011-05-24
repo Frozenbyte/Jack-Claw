@@ -4,15 +4,15 @@
 
 #include "storm3d_fakespotlight.h"
 #include "storm3d_spotlight_shared.h"
-#include "storm3d_shadermanager.h"
+#include "Storm3D_ShaderManager.h"
 #include "storm3d_camera.h"
 #include "storm3d_terrain_utils.h"
 #include "storm3d.h"
-#include <istorm3d_logger.h>
+#include <IStorm3D_Logger.h>
 #include <atlbase.h>
 #include <d3d9.h>
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 using namespace boost;
 

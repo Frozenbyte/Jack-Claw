@@ -3,7 +3,7 @@
 
 #include <boost/scoped_ptr.hpp>
 #include <string>
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 #include "../game/unified_handle_type.h"
 #include "../editor/UniqueEditorObjectHandle.h"
 

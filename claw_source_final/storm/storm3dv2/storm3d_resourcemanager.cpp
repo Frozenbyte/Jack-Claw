@@ -7,7 +7,7 @@
 #include "storm3d_mesh.h"
 #include <cassert>
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 Storm3D_ResourceManager::Storm3D_ResourceManager()
 {

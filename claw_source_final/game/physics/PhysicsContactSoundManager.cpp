@@ -55,8 +55,10 @@ namespace game
 		// WARNING: unsafe IGamePhysicsObject -> AbstractPhysicsObject casts!
 		AbstractPhysicsObject *o1 = (AbstractPhysicsObject *)contact.obj1;
 		AbstractPhysicsObject *o2 = (AbstractPhysicsObject *)contact.obj2;
-		//assert(o1 != NULL);
-		//assert(o2 != NULL);
+
+		if (o1 == NULL || o2 == NULL)
+			return;
+
 		assert(contact.physicsObject1);
 		assert(contact.physicsObject2);
 

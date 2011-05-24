@@ -21,8 +21,8 @@
 
 #include <map>
 #include <vector>
-#include <istorm3d.h>
-#include <istorm3d_model.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Model.h>
 #include "resource/resource.h"
 
 namespace frozenbyte {

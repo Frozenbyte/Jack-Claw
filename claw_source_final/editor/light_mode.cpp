@@ -19,10 +19,10 @@
 #include "terrain_colormap.h"
 #include "../filesystem/output_stream.h"
 #include "../filesystem/input_stream.h"
-#include "../ui/lightmanager.h"
+#include "../ui/LightManager.h"
 #include "resource/resource.h"
-#include <istorm3d_model.h>
-#include <istorm3d_scene.h>
+#include <IStorm3D_Model.h>
+#include <IStorm3D_Scene.h>
 #include <boost/lexical_cast.hpp>
 
 using namespace boost;

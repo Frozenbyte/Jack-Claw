@@ -2,7 +2,7 @@
 
 #include "LocaleManager.h"
 #include "LocaleResource.h"
-#include "../editor/Parser.h"
+#include "../editor/parser.h"
 #include "../system/Logger.h"
 #include "../filesystem/file_package_manager.h"
 #include "../filesystem/input_stream.h"

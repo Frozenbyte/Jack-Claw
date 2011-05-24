@@ -7,7 +7,7 @@
 #include "terrain_textures.h"
 #include "storm.h"
 #include <vector>
-#include <istorm3d_terrain.h>
+#include <IStorm3D_Terrain.h>
 
 namespace frozenbyte {
 namespace editor {

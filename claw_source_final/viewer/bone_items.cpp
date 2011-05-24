@@ -14,10 +14,10 @@
 
 #include <boost/shared_ptr.hpp>
 #include <boost/lexical_cast.hpp>
-#include <istorm3d.h>
-#include <istorm3d_model.h>
-#include <istorm3d_helper.h>
-#include <istorm3d_bone.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Model.h>
+#include <IStorm3D_Helper.h>
+#include <IStorm3D_Bone.h>
 
 namespace frozenbyte {
 namespace viewer {	

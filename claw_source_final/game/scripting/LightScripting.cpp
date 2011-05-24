@@ -10,7 +10,7 @@
 #include "../../util/LightAmountManager.h"
 
 #include <IStorm3D_Terrain.h>
-#include <IStorm3D_Terrain_Renderer.h>
+#include <istorm3D_terrain_renderer.h>
 #include <math.h>
 #include "../Game.h"
 #include "../GameUI.h"

@@ -8,7 +8,7 @@
 #include "LinkedList.h"
 
 #include <assert.h>
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 
 #ifndef LINKEDLIST_USE_NODE_POOL

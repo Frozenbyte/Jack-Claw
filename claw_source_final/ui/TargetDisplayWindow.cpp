@@ -57,7 +57,8 @@ TargetDisplayWindow::TargetDisplayWindow( Ogui* ogui, Game* game, int player ) :
 	// WHY??? (THUS, NEED TO DISABLE REFERENCED ERROR LOGGING - THE NON EXISTING LOGGING DOES NOT WORK EITHER EVEN THOUGH ENABLED)
 	Parser parser(false, true);
 
-	filesystem::FilePackageManager::getInstance().getFile( fileName ) >> parser;
+	filesystem::InputStream targetDisplayFile = filesystem::FilePackageManager::getInstance().getFile( fileName );
+	targetDisplayFile >> parser;
 
 	int i;
 	for ( i = 0; i < parser.getGlobals().getSubGroupAmount(); i++ )

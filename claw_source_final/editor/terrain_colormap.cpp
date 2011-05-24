@@ -9,9 +9,9 @@
 #include "exporter_scene.h"
 #include "../filesystem/output_stream.h"
 #include "../filesystem/input_stream.h"
-#include <istorm3d_scene.h>
-#include <istorm3d_texture.h>
-#include <istorm3d.h>
+#include <IStorm3D_Scene.h>
+#include <IStorm3D_Texture.h>
+#include <IStorm3D.h>
 #include <vector>
 #include <fstream>
 #include <boost/scoped_array.hpp>

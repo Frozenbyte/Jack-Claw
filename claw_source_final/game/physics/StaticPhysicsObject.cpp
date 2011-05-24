@@ -1,11 +1,15 @@
 
 #include "precompiled.h"
 
+#include <assert.h>
+#include <string>
+#include <boost/foreach.hpp>
+
 #include "StaticPhysicsObject.h"
 
 #include "GamePhysics.h"
-#include "../system/FileTimestampChecker.h"
-#include "../system/Logger.h"
+#include "../../system/FileTimestampChecker.h"
+#include "../../system/Logger.h"
 #ifdef PHYSICS_PHYSX
 #include "../../physics/physics_lib.h"
 #include "../../physics/cooker.h"
@@ -13,13 +17,11 @@
 #include "../../physics/actor_base.h"
 #include <IStorm3D_Model.h>
 #endif
-#include <assert.h>
-#include <string>
 
 namespace game
 {
 #ifdef PHYSICS_PHYSX
-	typedef std::map<std::string, boost::shared_ptr<frozenbyte::physics::StaticMesh>> MeshHash;
+	typedef std::map<std::string, boost::shared_ptr<frozenbyte::physics::StaticMesh> > MeshHash;
 #endif
 
 	class StaticPhysicsObjectImpl
@@ -60,6 +62,14 @@ namespace game
 			frozenbyte::physics::Cooker cooker;
 			std::string cookfile = filename + ".cook";
 
+			// normalize
+			// FIXME: ugly hack
+			BOOST_FOREACH (char &c, cookfile)
+			{
+				if (c == '\\')
+					c = '/';
+			}
+
 			if (!FileTimestampChecker::isFileUpToDateComparedTo(cookfile.c_str(), filename.c_str()))
 			{
 				// cooking failed
@@ -86,7 +96,7 @@ namespace game
 				return boost::shared_ptr<frozenbyte::physics::StaticMesh>();
 			}
 
-			meshHash.insert(std::pair<std::string, boost::shared_ptr<frozenbyte::physics::StaticMesh>>(filename, m));
+			meshHash.insert(std::pair<std::string, boost::shared_ptr<frozenbyte::physics::StaticMesh> >(filename, m));
 
 			// MOVED FROM BUILDINGADDER
 			if(model)

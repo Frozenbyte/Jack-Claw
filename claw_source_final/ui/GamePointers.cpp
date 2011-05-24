@@ -4,6 +4,7 @@
 // UNPREFERRED DEPENDENCY! 
 // (due to directly modifying the visualobject models)
 #include <Storm3D_UI.h>
+#include <IStorm3D_Line.h>
 
 
 #include "../container/LinkedList.h"

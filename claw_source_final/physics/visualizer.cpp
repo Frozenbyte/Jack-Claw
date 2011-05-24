@@ -4,7 +4,7 @@
 #define NOMINMAX
 #include "visualizer.h"
 #include "physics_lib.h"
-#include <istorm3d_scene.h>
+#include <IStorm3D_Scene.h>
 #include "NxPhysics.h"
 
 

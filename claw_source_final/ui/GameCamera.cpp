@@ -143,7 +143,7 @@ namespace ui
 				this->camerasAdded++;
 			}
 
-		friend GameCamera;
+		friend class GameCamera;
 	};
 
 	float GameCameraImplData::lastFOV = -1;
@@ -423,7 +423,7 @@ namespace ui
   }
 
 
-  void GameCamera::setPosition(VC3 &position)
+  void GameCamera::setPosition(const VC3 &position)
   {
     cameraX = position.x;
     cameraHeight = position.y;

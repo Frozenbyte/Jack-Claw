@@ -2,7 +2,7 @@
 #ifndef IPHYSICSCONTACTLISTENER_H
 #define IPHYSICSCONTACTLISTENER_H
 
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 
 namespace frozenbyte {
 namespace physics {

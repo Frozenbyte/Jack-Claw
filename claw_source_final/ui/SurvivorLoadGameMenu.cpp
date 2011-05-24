@@ -4,17 +4,17 @@
 #include "SurvivorLoadGameMenu.h"
 #include "LoadGameMenu.h"
 
-#include "../system/timer.h"
+#include "../system/Timer.h"
 #include "../ogui/Ogui.h"
 #include "../game/Game.h"
-#include "../game/SaveGameVars.h"
+#include "../game/savegamevars.h"
 #include "../game/GameUI.h"
 #include "MenuCollection.h"
 #include "../game/DHLocaleManager.h"
 #include "../ui/GameController.h"
 #include "../game/SimpleOptions.h"
 #include "../game/options/options_game.h"
-#include "../game/gameProfiles.h"
+#include "../game/GameProfiles.h"
 #include "../filesystem/input_stream_wrapper.h"
 
 #include "../util/fb_assert.h"
@@ -66,9 +66,9 @@ SurvivorLoadGameMenu::SurvivorLoadGameMenu( MenuCollection* menu, MenuCollection
 	//
 	std::string filename = std::string(game->getGameProfiles()->getProfileDirectory( 0 ));
 	if(LoadGameMenu::startAsCoop)
-		filename += "/Save/lastsave_coop.txt";
+		filename += "/save/lastsave_coop.txt";
 	else
-		filename += "/Save/lastsave.txt";
+		filename += "/save/lastsave.txt";
 
 	filesystem::FB_FILE *f = filesystem::fb_fopen(filename.c_str(), "rb");
 	if (f != NULL)

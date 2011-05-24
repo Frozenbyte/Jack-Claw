@@ -25,10 +25,10 @@
 #include "editor_object_state.h"
 #include "../util/FogApplier.h"
 
-#include <istorm3d.h>
-#include <istorm3d_model.h>
-#include <istorm3d_mesh.h>
-#include <istorm3d_terrain_renderer.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Model.h>
+#include <IStorm3D_Mesh.h>
+#include <istorm3D_terrain_renderer.h>
 #include "resource/resource.h"
 #include <commctrl.h>
 #include <boost/scoped_array.hpp>

@@ -31,7 +31,7 @@
 #include "../options/options_game.h"
 #include "../../ui/CombatWindow.h"
 #include "../../ui/ElaborateHintMessageWindow.h"
-#include "../game/DHLocaleManager.h"
+#include "../DHLocaleManager.h"
 
 #ifdef PROJECT_SURVIVOR
 	#include "../../ui/SurvivalMenu.h"

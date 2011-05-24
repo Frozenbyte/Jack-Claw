@@ -11,7 +11,7 @@
 #include "storm3d_texture.h"
 #include "storm3d_scene.h"
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 int storm3d_material_allocs = 0;
 

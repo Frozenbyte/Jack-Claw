@@ -5,9 +5,9 @@
 
 #include "storm_geometry.h"
 #include "storm.h"
-#include <istorm3d_model.h>
-#include <istorm3d_mesh.h>
-#include <istorm3d.h>
+#include <IStorm3D_Model.h>
+#include <IStorm3D_Mesh.h>
+#include <IStorm3D.h>
 #include <vector>
 
 using namespace std;

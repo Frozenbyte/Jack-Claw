@@ -7,7 +7,7 @@
 // Includes
 //------------------------------------------------------------------
 #include "storm3d_common_imp.h"
-#include "istorm3d_model.h"
+#include "IStorm3D_Model.h"
 #include <vector>
 #include <list>
 #include <string>
@@ -36,7 +36,7 @@ public:
 //------------------------------------------------------------------
 // Model_BoneAnimation
 //	-> Stores per instance data for each animation
-//	-> Move this to storm3d_bone.h?
+//	-> Move this to Storm3D_Bone.h?
 //------------------------------------------------------------------
 class Model_BoneAnimation
 {
@@ -242,11 +242,11 @@ public:
 
 	// Helpers
 	void Helper_Delete(IStorm3D_Helper *help);
-	IStorm3D_Helper_Point *Helper_Point_New(const char *name,VC3 &_position);
-	IStorm3D_Helper_Vector *Helper_Vector_New(const char *name,VC3 &_position,VC3 &_direction);
-	IStorm3D_Helper_Camera *Helper_Camera_New(const char *name,VC3 &_position,VC3 &_direction,VC3 &_up);
-	IStorm3D_Helper_Box *Helper_Box_New(const char *name,VC3 &_position,VC3 &_size);
-	IStorm3D_Helper_Sphere *Helper_Sphere_New(const char *name,VC3 &_position,float radius);
+	IStorm3D_Helper_Point *Helper_Point_New(const char *name, const VC3 &_position);
+	IStorm3D_Helper_Vector *Helper_Vector_New(const char *name, const VC3 &_position, const VC3 &_direction);
+	IStorm3D_Helper_Camera *Helper_Camera_New(const char *name, const VC3 &_position, const VC3 &_direction, const VC3 &_up);
+	IStorm3D_Helper_Box *Helper_Box_New(const char *name, const VC3 &_position, const VC3 &_size);
+	IStorm3D_Helper_Sphere *Helper_Sphere_New(const char *name, const VC3 &_position, float radius);
 
 	IStorm3D_Helper *SearchHelper(const char *name);
 
@@ -275,9 +275,9 @@ public:
 	void ApplyAnimations();
 
 	// Set position/rotation/scale
-	void SetPosition(VC3 &_position);
-	void SetRotation(QUAT &_rotation);
-	void SetScale(VC3 &_scale);
+	void SetPosition(const VC3 &_position);
+	void SetRotation(const QUAT &_rotation);
+	void SetScale(const VC3 &_scale);
 	void SetSelfIllumination(const COL &color) { self_illumination = color; }
 	
 	/*

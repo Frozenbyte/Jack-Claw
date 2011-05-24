@@ -8,7 +8,7 @@
 #include "storm3d_font.h"
 #include "storm3d.h"
 #include "storm3d_texture.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 
 // Typedef...

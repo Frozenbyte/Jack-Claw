@@ -13,9 +13,9 @@
 #include <map>
 #include <list>
 #include <fstream>
-#include <storm3d_ui.h>
-#include "..\editor\string_conversions.h"
-#include "..\editor\parser.h"
+#include <Storm3D_UI.h>
+#include "../editor/string_conversions.h"
+#include "../editor/parser.h"
 #include "track.h"
 //#include "paramblock.h"
 #include "parseutil.h"
@@ -23,7 +23,7 @@
 #include "particleeffect.h"
 #include "sprayparticlesystem.h"
 #ifdef PHYSICS_PHYSX
-#include "particlephysics.h"
+#include "ParticlePhysics.h"
 #include "../game/physics/physics_collisiongroups.h"
 #endif
 

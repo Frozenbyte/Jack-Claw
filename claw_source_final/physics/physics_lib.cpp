@@ -17,8 +17,21 @@
 #include "../system/Logger.h"
 #include "../game/physics/physics_collisiongroups.h"
 #include <boost/lexical_cast.hpp>
-#include <windows.h>
 #include <map>
+
+
+#ifdef _WIN32
+#include <windows.h>
+
+#else  // _WIN32
+
+// TODO: should put this in Timer and use that
+#include <SDL.h>
+
+#define timeGetTime() SDL_GetTicks()
+
+#endif  // _WIN32
+
 
 #ifdef PROJECT_CLAW_PROTO
 #include "car_actor.h"
@@ -492,6 +505,8 @@ scene->setGroupCollisionFlag(PHYSICS_COLLISIONGROUP_NOCOLLISION, PHYSICS_COLLISI
 			int fluids = scene->getNbFluids();
 			assert(fluids == 0);
 
+			// For PhysX crash?
+			scene->shutdownWorkerThreads();
 			sdk->releaseScene(*scene);
 		}
 

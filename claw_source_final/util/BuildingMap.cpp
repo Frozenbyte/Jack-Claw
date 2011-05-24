@@ -3,6 +3,7 @@
 
 #include "BuildingMap.h"
 #include <Storm3D_UI.h>
+#include <keyb3.h>
 
 #include "../system/FileTimestampChecker.h"
 #include "../convert/str2int.h"
@@ -88,12 +89,9 @@ namespace {
 
 	bool isEscDown()
 	{
-		MSG msg = { 0 };
-		while(PeekMessage(&msg, 0, WM_KEYFIRST, WM_KEYLAST, PM_REMOVE))
-		{
-		}
+		Keyb3_UpdateDevices();
 
-		return (GetKeyState(VK_ESCAPE) & 0x80) ? true : false;
+		return Keyb3_IsKeyDown(KEYCODE_ESC);
 	}
 }
 
@@ -386,7 +384,7 @@ collisionInfo.hit = false;
 							obstH = 250.0f;
 					}
 
-					heightMap[i][j] = unsigned char((obstH + 0.5f));
+					heightMap[i][j] = static_cast<unsigned char>((obstH + 0.5f));
 
 					// floormap cannot be exactly 0, if it is, raise by one...
 					if (negativeHeights && heightMap[i][j] == 0)
@@ -399,7 +397,7 @@ collisionInfo.hit = false;
 				} else {
 					if (negativeHeights)
 					{
-						heightMap[i][j] = unsigned char(BUILDINGMAP_NO_FLOOR_BLOCK);
+						heightMap[i][j] = static_cast<unsigned char>(BUILDINGMAP_NO_FLOOR_BLOCK);
 					} else {
 						// NOTE: added this when adding negative values..
 						// assuming this was the default behaviour anyway.
@@ -471,13 +469,13 @@ collisionInfo.hit = false;
 								obstH = -124.0f;
 							if(obstH > char(heightMap[i][j])
 								|| char(heightMap[i][j]) == BUILDINGMAP_NO_FLOOR_BLOCK)
-								heightMap[i][j] = unsigned char((obstH + 0.5f));
+								heightMap[i][j] = static_cast<unsigned char>((obstH + 0.5f));
 							//Logger::getInstance()->error(int2str(k));
 						} else {
 							if (obstH > 250.0f) 
 								obstH = 250.0f;
 							if(obstH > heightMap[i][j])
-								heightMap[i][j] = unsigned char((obstH + 0.5f));
+								heightMap[i][j] = static_cast<unsigned char>((obstH + 0.5f));
 						}
 
 						break;
@@ -1195,13 +1193,19 @@ void BuildingMapHeightFillMapper::setByte(int x, int y, unsigned char value)
 
 /* BuildingMap */
 
-BuildingMap::BuildingMap(const char *fileName, IStorm3D_Model *model, int rotationX, int rotationY, int rotationZ)
+BuildingMap::BuildingMap(const char *fileName_, IStorm3D_Model *model, int rotationX, int rotationY, int rotationZ)
 {
 	data = new BuildingMapData();
 
+	std::string fileNameStr(fileName_);
+	int fileNameLen = fileNameStr.length();
+	for (int i=0; i<fileNameLen; ++i)
+		if (fileNameStr[i] == '\\')
+			fileNameStr[i] = '/';
+	const char *fileName = fileNameStr.c_str();
+
 	// gotta remove the @xx rotation part from filename first...
 	// --jpk
-	int fileNameLen = strlen(fileName);
 	int cutpos = 0;
 #ifdef LEGACY_FILES
 	for (int ri = 0; ri < fileNameLen; ri++)

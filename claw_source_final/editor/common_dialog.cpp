@@ -6,6 +6,7 @@
 #pragma warning(disable:4786)
 
 #include "common_dialog.h"
+#include "file_wrapper.h"
 #include <string.h>
 #include <windows.h>
 #include <fstream>
@@ -199,54 +200,6 @@ std::vector<std::string> getMultipleOpenFileName(const std::string &extension, c
 	return std::vector<std::string> ();
 }
 
-
-std::string getFileName(const std::string &fullFileName)
-{
-	for(int i = fullFileName.size() - 1; i >= 0; --i)
-	{
-		if(fullFileName[i] == '\\')
-		{
-			++i;
-			return fullFileName.substr(i, fullFileName.size() - i);
-		}
-	}
-
-	return fullFileName;
-}
-
-std::string getDirName(const std::string &fullFileName)
-{
-	for(int i = fullFileName.size() - 1; i >= 0; --i)
-	{
-		if(fullFileName[i] == '\\')
-		{
-			++i;
-			return fullFileName.substr(0, i);
-		}
-	}
-
-	return fullFileName;
-}
-
-bool fileExists(const std::string &fileName)
-{
-	if(!std::ifstream(fileName.c_str()))
-		return false;
-
-	return true;
-	/*
-	if(!fileName.empty())
-		return false;
-
-	filesystem::FB_FILE *fp = filesystem::fb_fopen(fileName.c_str(), "rb");
-	if(fp == 0)
-		return false;
-
-	filesystem::fb_fclose(fp);
-	return true;
-	*/
-
-}
 
 } // end of namespace editor
 } // end of namespace frozenbyte

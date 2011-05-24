@@ -7,8 +7,8 @@
 // Includes
 //------------------------------------------------------------------
 #include "storm3d_common_imp.h"
-#include "istorm3d_particle.h"
-#include "vertexformats.h"
+#include "IStorm3D_Particle.h"
+#include "VertexFormats.h"
 #include "storm3d_terrain_utils.h"
 #include "storm3d.h"
 

@@ -27,7 +27,7 @@
 
 #include "../filesystem/output_stream.h"
 #include "../filesystem/input_stream.h"
-#include "../ui/lightmanager.h"
+#include "../ui/LightManager.h"
 #include <vector>
 #include "resource/resource.h"
 

@@ -27,7 +27,7 @@
 #include "../ui/AnimationSet.h"
 #include "../ui/VisualEffect.h"
 
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 #define UNIT_MAX_ARMOR_AMOUNT 100
 #define UNIT_MAX_ARMOR_CLASS 3
@@ -3893,7 +3893,7 @@ namespace game
 		this->followPlayer = followPlayer;
 	}
 
-	void Unit::setLastLightUpdatePosition(VC3 &position)
+	void Unit::setLastLightUpdatePosition(const VC3 &position)
 	{
 		this->lastLightUpdatePosition = position;
 	}

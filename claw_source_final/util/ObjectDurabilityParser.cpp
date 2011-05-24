@@ -6,7 +6,7 @@
 #include "../editor/string_conversions.h"
 #include "../filesystem/input_file_stream.h"
 #include "../filesystem/file_package_manager.h"
-#include "../system/logger.h"
+#include "../system/Logger.h"
 #include <assert.h>
 #include "../system/Logger.h"
 
@@ -41,7 +41,8 @@ ObjectDurabilityParser::ObjectDurabilityParser()
 	}
 
 	Parser parser;
-	filesystem::FilePackageManager::getInstance().getFile("data/misc/object_durabilities.txt") >> parser;
+	filesystem::InputStream durabilityFile = filesystem::FilePackageManager::getInstance().getFile("data/misc/object_durabilities.txt");
+	durabilityFile >> parser;
 
 	// TODO: parser sorts these alphabetically... I don't like that - would rather want them unsorted.
 	// if parser cannot be fixed, should add some index value to each durability type...

@@ -7,7 +7,7 @@
 //------------------------------------------------------------------
 #include "storm3d.h"
 #include "RenderWindow.h"
-#include "iterator.h"
+#include "Iterator.h"
 #include "storm3d_adapter.h"
 #include "storm3d_texture.h"
 #include "storm3d_material.h"
@@ -23,18 +23,18 @@
 #include "Storm3D_Bone.h"
 #include "Storm3D_Line.h"
 #include "Storm3D_ShaderManager.h"
-#include "Storm3D_VideoStreamer.h"
+#include "storm3d_videostreamer.h"
 #include <stdio.h>
 #include <fstream>
-#include "IStorm3d_Logger.h"
-#include "..\..\filesystem\file_package_manager.h"
-#include "..\..\filesystem\ifile_package.h"
-#include "..\..\filesystem\standard_package.h"
-#include "..\..\filesystem\input_stream_wrapper.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "IStorm3D_Logger.h"
+#include "../../filesystem/file_package_manager.h"
+#include "../../filesystem/ifile_package.h"
+#include "../../filesystem/standard_package.h"
+#include "../../filesystem/input_stream_wrapper.h"
+#include "../../util/Debug_MemoryManager.h"
 
 // HACK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#include "..\..\system\Logger.h"
+#include "../../system/Logger.h"
 
 using namespace frozenbyte;
 
@@ -2539,7 +2539,7 @@ bool Storm3D::RenderSceneToArray( IStorm3D_Scene * stormScene, unsigned char * d
 		stormScene->RenderScene();
 		SetRenderTarget ( NULL, 0 );
 
-		target->CopyTextureTo32BitSysMembuffer( (DWORD*)dest );
+		target->CopyTextureTo32BitSysMembuffer( (uint32_t*)dest );
 		Remove( target );
 		return true;
 	}

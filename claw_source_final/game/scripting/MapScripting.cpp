@@ -504,7 +504,7 @@ namespace game
 
 						//IStorm3D_Texture * static_texture = game->gameUI->getStorm3D()->CreateNewTexture( "", TEXLOADFLAGS_NOCOMPRESS, 0, mapData, width*height*4 );
 						IStorm3D_Texture * static_texture = game->gameUI->getStorm3D()->CreateNewTexture( width, height, IStorm3D_Texture::TEXTYPE_BASIC );
-						static_texture->Copy32BitSysMembufferToTexture( (DWORD *)mapData );
+						static_texture->Copy32BitSysMembufferToTexture( (uint32_t *)mapData );
 						static_texture->saveToFile( filename.c_str() );
 
 						static_texture->Release();

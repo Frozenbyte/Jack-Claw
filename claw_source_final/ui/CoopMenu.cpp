@@ -8,7 +8,7 @@
 #include "OptionsMenu.h"
 
 #include "../util/assert.h"
-#include "../ogui/ogui.h"
+#include "../ogui/Ogui.h"
 #include "../ui/MenuCollection.h"
 #include "../game/DHLocaleManager.h"
 #include "../game/Game.h"
@@ -380,9 +380,9 @@ void CoopMenu::applyChanges()
 			if(profile.empty() == false )
 			{
 #ifdef LEGACY_FILES
-				std::string tmp = "Profiles/";
+				std::string tmp = "profiles/";
 				tmp += game->getGameProfiles()->getCurrentProfile( i );
-				tmp += "/Config/keybinds.txt";
+				tmp += "/config/keybinds.txt";
 #else
 				std::string tmp = "profiles/";
 				tmp += game->getGameProfiles()->getCurrentProfile( i );
@@ -533,9 +533,9 @@ bool CoopMenu::enableCoopGameSettings(Game *game, bool test_only)
 			if(profile.empty() == false )
 			{
 #ifdef LEGACY_FILES
-				std::string tmp = "Profiles/";
+				std::string tmp = "profiles/";
 				tmp += game->getGameProfiles()->getCurrentProfile( i );
-				tmp += "/Config/keybinds.txt";
+				tmp += "/config/keybinds.txt";
 #else
 				std::string tmp = "profiles/";
 				tmp += game->getGameProfiles()->getCurrentProfile( i );

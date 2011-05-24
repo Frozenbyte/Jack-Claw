@@ -1,7 +1,7 @@
 #ifndef INCLUDED_FROZENBYTE_ACTOR_BASE_H
 #define INCLUDED_FROZENBYTE_ACTOR_BASE_H
 
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 
 class NxActor;
 class NxScene;

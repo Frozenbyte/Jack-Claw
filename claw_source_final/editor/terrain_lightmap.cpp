@@ -11,12 +11,12 @@
 #include "storm_texture.h"
 #include "exporter.h"
 #include "exporter_scene.h"
-#include <istorm3d.h>
-#include <istorm3d_scene.h>
-#include <istorm3d_mesh.h>
-#include <istorm3d_material.h>
-#include <istorm3d_model.h>
-#include <istorm3d_terrain_renderer.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Scene.h>
+#include <IStorm3D_Mesh.h>
+#include <IStorm3D_Material.h>
+#include <IStorm3D_Model.h>
+#include <istorm3D_terrain_renderer.h>
 #include <boost/scoped_array.hpp>
 #include <fstream>
 

@@ -4,7 +4,7 @@
 #include "NewGameMenu.h"
 
 #include "../util/assert.h"
-#include "../ogui/ogui.h"
+#include "../ogui/Ogui.h"
 #include "../ui/MenuCollection.h"
 #include "../game/DHLocaleManager.h"
 #include "../game/Game.h"
@@ -466,9 +466,9 @@ void NewGameMenu::applyChanges()
 			if( selectedGameplaySelection == COMMANDS_MULTIPLAYER && profile.empty() == false )
 			{
 #ifdef LEGACY_FILES
-				std::string tmp = "Profiles/";
+				std::string tmp = "profiles/";
 				tmp += game->getGameProfiles()->getCurrentProfile( i );
-				tmp += "/Config/keybinds.txt";
+				tmp += "/config/keybinds.txt";
 #else
 				std::string tmp = "profiles/";
 				tmp += game->getGameProfiles()->getCurrentProfile( i );

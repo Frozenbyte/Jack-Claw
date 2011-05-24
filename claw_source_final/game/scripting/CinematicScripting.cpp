@@ -26,9 +26,9 @@
 #include "../../util/ScriptProcess.h"
 #include "../../util/Script.h"
 #include "../../util/LipsyncManager.h"
-#include <istorm3d_terrain_renderer.h>
+#include <istorm3D_terrain_renderer.h>
 #include "../../sound/SoundMixer.h"
-#include "../Game/options/options_camera.h"
+#include "../../game/options/options_camera.h"
 
 #include "../../util/Debug_MemoryManager.h"
 

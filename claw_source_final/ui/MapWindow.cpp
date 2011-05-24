@@ -12,10 +12,10 @@
 #include "../game/DHLocaleManager.h"
 #include "../ui/GUIEffectWindow.h"
 #include "../ui/uidefaults.h"
-#include "../system/logger.h"
+#include "../system/Logger.h"
 #include "../game/GameScene.h"
-#include <istorm3d_terrain_renderer.h>
-#include <istorm3d_terrain.h>
+#include <istorm3D_terrain_renderer.h>
+#include <IStorm3D_Terrain.h>
 #include <vector>
 #include <map>
 #include <string>

@@ -8,13 +8,13 @@
 #include "../editor/parser.h"
 #include "../editor/string_conversions.h"
 #include "../util/assert.h"
-#include "../system/timer.h"
-#include "../system/logger.h"
+#include "../system/Timer.h"
+#include "../system/Logger.h"
 #include "../filesystem/file_package_manager.h"
 #include "../filesystem/input_stream.h"
-#include <istorm3d.h>
-#include <istorm3d_scene.h>
-#include <istorm3d_texture.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Scene.h>
+#include <IStorm3D_Texture.h>
 #include <boost/shared_ptr.hpp>
 #include <fstream>
 #include <map>
@@ -279,10 +279,11 @@ struct LipsyncManager::Data
 	{
 		Parser parser(false, true);
 #ifdef LEGACY_FILES
-		filesystem::FilePackageManager::getInstance().getFile("Data/Animations/lipsync.txt") >> parser;
+		filesystem::InputStream	lipsyncFile = filesystem::FilePackageManager::getInstance().getFile("Data/Animations/lipsync.txt");
 #else
-		filesystem::FilePackageManager::getInstance().getFile("data/animation/lipsync.txt") >> parser;
+		filesystem::InputStream	lipsyncFile = filesystem::FilePackageManager::getInstance().getFile("data/animation/lipsync.txt");
 #endif
+		lipsyncFile >> parser;
 
 		const ParserGroup &root = parser.getGlobals();
 		const ParserGroup &chars = root.getSubGroup("Characters");

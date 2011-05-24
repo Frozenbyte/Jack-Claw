@@ -25,7 +25,7 @@
 #include "camera.h"
 #include "../filesystem/output_stream.h"
 #include "../filesystem/input_stream.h"
-#include "../ui/lightmanager.h"
+#include "../ui/LightManager.h"
 #include "../util/mod_selector.h"
 
 #include <boost/shared_ptr.hpp>
@@ -33,9 +33,9 @@
 #include <boost/scoped_array.hpp>
 #include <map>
 #include <vector>
-#include <istorm3d.h>
-#include <istorm3d_model.h>
-#include <istorm3d_texture.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Model.h>
+#include <IStorm3D_Texture.h>
 #include <istorm3d_line.h>
 #include <commctrl.h>
 #include "resource/resource.h"

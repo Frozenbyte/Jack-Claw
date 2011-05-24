@@ -3,7 +3,7 @@
 #ifndef INCLUDED_STORM3D_TERRAIN_H
 #define INCLUDED_STORM3D_TERRAIN_H
 
-#include <istorm3d_terrain.h>
+#include <IStorm3D_Terrain.h>
 #include <boost/scoped_ptr.hpp>
 
 class Storm3D;
@@ -107,9 +107,9 @@ public:
 #include "Storm3D.h"
 #include "IStorm3D_Terrain.h"
 #include "Storm3D_Texture.h"
-#include "Storm3D_Model.h"
-#include "Storm3D_Model_Object.h"
-#include "Storm3D_Mesh.h"
+#include "storm3d_model.h"
+#include "storm3d_model_object.h"
+#include "storm3d_mesh.h"
 #include "Storm3D_Material.h"
 #include "Storm3D_Scene.h"
 #include "Iterator_TRBMOList.h"

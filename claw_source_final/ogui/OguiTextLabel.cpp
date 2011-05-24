@@ -2,11 +2,10 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <istorm3d_font.h>
 #include "OguiTextLabel.h"
 #include "OguiStormDriver.h"
-#include "..\util\UnicodeConverter.h"
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/UnicodeConverter.h"
+#include "../util/Debug_MemoryManager.h"
 
 
 OguiTextLabel::OguiTextLabel(OguiButton *but)

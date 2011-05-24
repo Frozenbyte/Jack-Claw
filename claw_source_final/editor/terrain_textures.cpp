@@ -18,8 +18,8 @@
 #include <boost/shared_ptr.hpp>
 #include <map>
 #include <cassert>
-#include <istorm3d_texture.h>
-#include <istorm3d.h>
+#include <IStorm3D_Texture.h>
+#include <IStorm3D.h>
 
 namespace frozenbyte {
 namespace editor {

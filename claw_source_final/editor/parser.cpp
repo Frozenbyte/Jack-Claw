@@ -19,7 +19,7 @@
 #define VALUEMAP_MASK_REFERENCED 1
 #define VALUEMAP_MASK_LOG_NONEXISTING 2
 
-typedef std::map<std::string, std::pair<std::string, int>> ValueMap;
+typedef std::map<std::string, std::pair<std::string, int> > ValueMap;
 typedef std::vector<std::string> LineList;
 
 namespace frozenbyte {

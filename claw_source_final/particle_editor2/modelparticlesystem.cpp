@@ -10,9 +10,9 @@
 #include <map>
 #include <list>
 #include <fstream>
-#include <storm3d_ui.h>
-#include "..\editor\string_conversions.h"
-#include "..\editor\parser.h"
+#include <Storm3D_UI.h>
+#include "../editor/string_conversions.h"
+#include "../editor/parser.h"
 #include "track.h"
 #include "parseutil.h"
 #include "particlesystem.h"

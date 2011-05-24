@@ -2,14 +2,14 @@
 #include "precompiled.h"
 
 #include "CreditsMenu.h"
-#include "../ogui/ogui.h"
+#include "../ogui/Ogui.h"
 #include "../ogui/OguiFormattedText.h"
 #include "../game/DHLocaleManager.h"
 #include "../game/SimpleOptions.h"
-#include "../system/timer.h"
-#include "../game/game.h"
-#include "../game/gameui.h"
-#include "../ui/gamecontroller.h"
+#include "../system/Timer.h"
+#include "../game/Game.h"
+#include "../game/GameUI.h"
+#include "../ui/GameController.h"
 
 #include "../util/Debug_MemoryManager.h"
 

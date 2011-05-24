@@ -485,7 +485,7 @@ namespace game
 
 		ui::AniRecorderWindow *getAniRecorderWindow();
 
-		ui::GameConsole *GameUI::getConsole();
+		ui::GameConsole *getConsole();
 
 		VC3 getListenerPosition();
 

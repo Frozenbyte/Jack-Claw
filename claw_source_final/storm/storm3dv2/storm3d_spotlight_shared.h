@@ -4,7 +4,7 @@
 #define INCLUDED_STORM3D_SPOTLIGHT_SHARED_H
 
 #include <d3dx9.h>
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 
 class Storm3D_Camera;
 class Storm3D_Scene;

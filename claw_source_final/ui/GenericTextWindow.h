@@ -6,7 +6,7 @@ class OguiWindow;
 class OguiLocaleWrapper;
 class OguiFormattedText;
 
-#include "../ogui/ogui.h"
+#include "../ogui/Ogui.h"
 #include "ICombatSubWindow.h"
 #include <string>
 

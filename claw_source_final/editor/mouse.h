@@ -11,7 +11,7 @@
 struct Storm3D_CollisionInfo;
 class ObstacleCollisionInfo;
 
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 
 namespace frozenbyte {
 namespace editor {

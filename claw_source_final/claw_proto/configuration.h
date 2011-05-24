@@ -26,10 +26,10 @@
 #ifdef _DEBUG
 
   // enable memorymanager
-  #define FROZENBYTE_DEBUG_MEMORY 1
+  // #define FROZENBYTE_DEBUG_MEMORY 1
 
   // make memorymanager print extra data (string allocations' contents)
-  #define FROZENBYTE_DEBUG_MEMORY_PRINT_DATA 1
+  // #define FROZENBYTE_DEBUG_MEMORY_PRINT_DATA 1
 	
 	// old external script debug console (?)
 	//#define SCRIPT_DEBUG 1

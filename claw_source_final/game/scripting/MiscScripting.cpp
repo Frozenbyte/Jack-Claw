@@ -9,13 +9,13 @@
 
 #include <DatatypeDef.h>
 #include <IStorm3D.h>
-#include <istorm3d_mesh.h>
+#include <IStorm3D_Mesh.h>
 
 #include "GameScriptData.h"
 #include "GameScriptingUtils.h"
 #include "../Game.h"
 #include "../GameUI.h"
-#include "../ui/GameConsole.h"
+#include "../../ui/GameConsole.h"
 #include "../GameStats.h"
 #include "../../util/BuildingHandler.h"
 #include "../GameMap.h"
@@ -41,8 +41,8 @@
 #include "../../util/StringUtil.h"
 #include "../../ui/Animator.h"
 
-#include "../physics/gamephysics.h"
-#include "../physics/abstractphysicsobject.h"
+#include "../physics/GamePhysics.h"
+#include "../physics/AbstractPhysicsObject.h"
 
 #include "../../system/Logger.h"
 #include "../../system/Timer.h"
@@ -66,7 +66,7 @@
 #ifdef PROJECT_SURVIVOR
 	#include "../../ui/GenericTextWindow.h"
 #endif
-#include <istorm3d_terrain_renderer.h>
+#include <istorm3D_terrain_renderer.h>
 #include "../UnifiedHandleManager.h"
 #include "../GameWorldFold.h"
 #include "../../editor/UniqueEditorObjectHandle.h"
@@ -1635,9 +1635,9 @@ namespace game
 						int c = *lastValue;
 
 #ifdef LEGACY_FILES
-						std::string tmp = "Profiles/";
+						std::string tmp = "profiles/";
 						tmp += game->getGameProfiles()->getCurrentProfile( c );
-						tmp += "/Config/keybinds.txt";
+						tmp += "/config/keybinds.txt";
 #else
 						std::string tmp = "profiles/";
 						tmp += game->getGameProfiles()->getCurrentProfile( c );

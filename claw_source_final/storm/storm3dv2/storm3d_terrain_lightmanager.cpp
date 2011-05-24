@@ -9,12 +9,12 @@
 #include "storm3d_spotlight.h"
 #include "storm3d_fakespotlight.h"
 #include "storm3d_scene.h"
-#include "storm3d_shadermanager.h"
-#include "vertexformats.h"
+#include "Storm3D_ShaderManager.h"
+#include "VertexFormats.h"
 #include <atlbase.h>
 #include <d3d9.h>
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 using namespace std;
 using namespace boost;

@@ -1,7 +1,11 @@
 #ifndef PRECOMPILED_H
 #define PRECOMPILED_H
 
+#ifndef __OBJC__
+
+#ifdef _MSC_VER
 #pragma message("Creating precompiled header (stormtest).")
+#endif
 
 #ifdef _MSC_VER
 #define NOMINMAX
@@ -13,6 +17,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <string>
+
+#ifdef __APPLE__
+#include "configuration.h"
+#endif
 
 #include "../util/Debug_MemoryManager.h"
 
@@ -30,5 +38,5 @@
 #include "../util/Script.h"
 #include "../util/ScriptProcess.h"
 
-#endif
-
+#endif  //__OBJC__
+#endif  //PRECOMPILED_H

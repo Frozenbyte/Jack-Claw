@@ -7,7 +7,7 @@
 // Includes
 //------------------------------------------------------------------
 #include "storm3d_common_imp.h"
-#include "istorm3d_bone.h"
+#include "IStorm3D_Bone.h"
 
 #include "Storm3D_Datatypes.h"
 #include <vector>

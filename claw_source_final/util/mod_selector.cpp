@@ -12,7 +12,24 @@
 #include <map>
 #include <vector>
 #include <boost/shared_ptr.hpp>
+
+#ifdef _WIN32
 #include <windows.h>
+
+#else  // _WIN32
+#include <unistd.h>
+
+static inline int GetCurrentDirectory(int size, char *buf) {
+#ifdef __APPLE__
+	return strlen(getcwd(buf, size));
+#else
+	return strnlen(getcwd(buf, size), size);
+#endif
+}
+
+#define SetCurrentDirectory(dir) chdir((dir))
+
+#endif  // _WIN32
 
 namespace frozenbyte {
 namespace util {
@@ -55,7 +72,7 @@ struct ModSelector::Data
 		{
 			const std::string &fullName = fileList.getDirName(root, i);
 			std::string dirName;
-			int index = fullName.find_first_of("/\\");
+			std::string::size_type index = fullName.find_first_of("/\\");
 			if(index != fullName.npos)
 				dirName = fullName.substr(index + 1, fullName.size() - index - 1);
 
@@ -106,7 +123,6 @@ struct ModSelector::Data
 		std::map<std::string, std::string>::iterator it = modList.begin();
 		for(; it != modList.end(); ++it)
 		{
-			const std::string &s = it->second;
 			if(strcmp(it->second.c_str(), active.c_str()) == 0)
 			{
 				for(unsigned int i = 0; i < modStringList.size(); ++i)
@@ -134,7 +150,7 @@ struct ModSelector::Data
 		//stream << file;
 
 		for(unsigned int i = 0; i < file.size(); ++i)
-			stream << unsigned char(file[i]);
+			stream << static_cast<unsigned char>(file[i]);
 	}
 
 	void restoreDir()

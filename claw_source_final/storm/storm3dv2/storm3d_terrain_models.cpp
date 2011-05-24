@@ -14,14 +14,14 @@
 #include "storm3d_mesh.h"
 #include "storm3d_material.h"
 #include "storm3d_texture.h"
-#include "storm3d_shadermanager.h"
+#include "Storm3D_ShaderManager.h"
 #include "storm3d.h"
 #include <c2_qtree.h>
 #include <c2_oobb.h>
 #include <boost/scoped_ptr.hpp>
 #include <boost/lexical_cast.hpp>
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 
 

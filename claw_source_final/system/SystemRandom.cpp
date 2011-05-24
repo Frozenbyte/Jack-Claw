@@ -9,7 +9,7 @@
 
 
 #include "SystemRandom.h"
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 SystemRandom *SystemRandom::instance = NULL;
 
@@ -34,7 +34,7 @@ void SystemRandom::cleanInstance()
 
 SystemRandom::SystemRandom()
 {
-  srand(unsigned int(time(0)));
+  srand(static_cast<unsigned int>(time(0)));
 }
 
 SystemRandom::~SystemRandom()

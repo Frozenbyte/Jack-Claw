@@ -5,16 +5,16 @@
 #include "../game/SimpleOptions.h"
 #include "../game/options/options_memory.h"
 #include "../util/ModelTextureUncompress.h"
-#include "../util/parser.h"
+#include "../util/Parser.h"
 #include "../util/LightAmountManager.h"
 #include "../game/GameMap.h"
 #include "../ui/Terrain.h"
 #include <Storm3D_UI.h>
-#include <istorm3d_terrain_renderer.h>
+#include <istorm3D_terrain_renderer.h>
 #include <istorm3d_terrain_decalsystem.h>
 
 #include <time.h>
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 namespace ui {
 

@@ -16,6 +16,8 @@
 #endif*/
 
 
+#include <math.h>
+
 
 //------------------------------------------------------------------
 // Help defines
@@ -32,6 +34,11 @@
 //#define HUGE			1.0e+38f
 // Blows math.h
 //  -- psd
+// Required on Linux so just include math.h first
+//  -- turol
+#ifndef HUGE
+#define HUGE			1.0e+38f
+#endif
 
 #define EPSILON		1.0e-5f
 #define RND()			(((float)rand())/(float)RAND_MAX)			// Random number [0,1]
@@ -39,7 +46,7 @@
 
 #define SAFE_DELETE(p)			{if(p) {delete(p);(p)=NULL;}}
 #define SAFE_DELETE_ARRAY(p)	{if(p) {delete[] (p);(p)=NULL;}}
-#endif
+#endif  // C2_DO_NOT_DEFINE_MACROS
 
 #ifndef C2_DO_NOT_DEFINE_DATATYPES
 typedef unsigned char	BYTE;

@@ -155,15 +155,13 @@ public:
   /**
    * Select a state (one of loaded images) for cursor.
    */
-  void SetCursorImageState(int cursornum, int state)
-    throw (OguiException *);
+  void SetCursorImageState(int cursornum, int state);
 
   /**
    * Change cursor image offset for given cursor and state.
    */
   void SetCursorImageOffset(int cursornum, int offsetX, int offsetY, 
-    int forstate = 0)
-    throw (OguiException *);
+    int forstate = 0);
 
   /**
    * Get cursor X-coordinate relative to screen.
@@ -254,7 +252,7 @@ public:
   // Create a select list 
   // Works fine as a button/checkbutton/radiobutton group too...
   // (Just use proper images and argument values to make them)
-  OguiSelectList *Ogui::CreateSelectList(OguiWindow *win, int x, int y, 
+  OguiSelectList *CreateSelectList(OguiWindow *win, int x, int y,
     OguiSelectListStyle *style, int valueAmount, const char **values, const char **descs, 
     bool multiSelectable = false, int defaultSelection = -1, int id = 0,
     void *argument = NULL);

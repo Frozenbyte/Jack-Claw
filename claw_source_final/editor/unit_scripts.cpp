@@ -7,7 +7,7 @@
 #include "string_conversions.h"
 #include "parser.h"
 #include "../filesystem/input_file_stream.h"
-#include <istorm3d_model.h>
+#include <IStorm3D_Model.h>
 #include <boost/shared_ptr.hpp>
 #include <vector>
 #include <map>

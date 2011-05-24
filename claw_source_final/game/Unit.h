@@ -515,7 +515,7 @@ namespace game
 		 * visualized.
 		 */
 		//virtual ui::VisualObject *getVisualObject();
-		ui::VisualObject *Unit::getVisualObject()
+		ui::VisualObject *getVisualObject()
 		{
 			return visualObject;
 		}
@@ -1014,7 +1014,7 @@ namespace game
 		util::DirectionalLight &getDirectionalLight() { return directionalLight; }
 		const util::DirectionalLight &getDirectionalLight() const { return directionalLight; }
 
-		void setLastLightUpdatePosition(VC3 &position);
+		void setLastLightUpdatePosition(const VC3 &position);
 		VC3 getLastLightUpdatePosition();
 
 		void increaseContinuousFireTime();

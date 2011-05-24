@@ -8,7 +8,7 @@
 
 #include "zip_package.h"
 #include "empty_buffer.h"
-#include "../system/logger.h"
+#include "../system/Logger.h"
 #include "../convert/str2int.h"
 #include "ifile_list.h"
 

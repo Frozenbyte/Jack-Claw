@@ -3,17 +3,34 @@
 
 // Copyright 2002-2004 Frozenbyte Ltd.
 
+#ifdef _MSC_VER
 #pragma warning(disable:4103)
 #pragma warning(disable:4786)
+#endif
 
+
+#ifdef _WIN32
 #include <windows.h>
+
+#else  // _WIN32
+#include <SDL.h>
+
+#endif  // _WIN32
+
+
+#ifdef _MSC_VER
+typedef __int64 int64_t;
+
+#endif  // _MSC_VER
+
+
 #include "Timer.h"
 
 // TEMP!!
 #include <string.h>
 #include "Logger.h"
 
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 #define TIMER_FACTOR_MULTIPLIER 256
 #define TIMER_FACTOR_MULTIPLIER_SHIFT 8
@@ -27,20 +44,40 @@ int Timer::timeFactor = TIMER_FACTOR_MULTIPLIER;
 
 void Timer::init()
 {
+#ifdef _WIN32
 	timeBeginPeriod(1);
+#endif  // _WIN32
 	update();
 }
 
 
 void Timer::uninit()
 {
+#ifdef _WIN32
 	timeEndPeriod(1);
+#endif  // _WIN32
 }
 
 
 int Timer::getTime()
 {
   return currentTime;
+}
+
+
+int Timer::getCurrentTime()
+{
+	// TODO: apple
+
+#ifdef _WIN32
+	return timeGetTime();
+
+#else
+	// assume linux
+	return SDL_GetTicks();
+
+#endif
+
 }
 
 
@@ -59,7 +96,12 @@ void Timer::setTimeFactor(float factor)
 	// factor as that is not really used (would cause a cumulative error)
 	float newFactor = float(int(factor * TIMER_FACTOR_MULTIPLIER)) / TIMER_FACTOR_MULTIPLIER;
 
-	__int64 curActualTime = timeGetTime();
+#ifdef _WIN32
+	int64_t curActualTime = timeGetTime();
+#else  // _WIN32
+	int64_t curActualTime = SDL_GetTicks();
+#endif  // _WIN32
+
 	int newFactorTimeAdd = 
 		oldFactorTimeAdd + (int)((float)curActualTime * (oldFactor - newFactor));
 
@@ -92,9 +134,14 @@ void Timer::update()
   // May well need a more accurate timer!
   //currentTime = GetTickCount();
 	// fixed like this...
+#ifdef _WIN32
 	currentUnfactoredTime = timeGetTime();
+#else  // _WIN32
+	currentUnfactoredTime = SDL_GetTicks();
+#endif  // _WIN32
+
 	currentTime = currentUnfactoredTime;
-	currentTime = (int)(((__int64)currentTime * (__int64)timeFactor) >> TIMER_FACTOR_MULTIPLIER_SHIFT);
+	currentTime = (int)(((int64_t)currentTime * (int64_t)timeFactor) >> TIMER_FACTOR_MULTIPLIER_SHIFT);
 	currentTime += factorTimeAdd;
 	currentTime -= timeHaxSub;
 }

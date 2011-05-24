@@ -3,12 +3,12 @@
 #pragma warning(disable:4103)
 
 #include "Storm3D_Line.h"
-#include "Storm3D.h"
+#include "storm3d.h"
 #include <cassert>
 
 #include "Storm3D_ShaderManager.h"
 #include "VertexFormats.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 extern int storm3d_dip_calls;
 

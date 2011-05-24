@@ -52,7 +52,8 @@ ItemWindowUpdator::ItemWindowUpdator( Game* game, ItemWindow* item ) :
 
 	Parser parser;
 
-	filesystem::createInputFileStream( fileName ) >> parser;
+	filesystem::InputStream itemFile = filesystem::createInputFileStream( fileName );
+	itemFile >> parser;
 
 	int i;
 	for ( i = 0; i < parser.getGlobals().getSubGroupAmount(); i++ )

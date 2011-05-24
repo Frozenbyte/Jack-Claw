@@ -14,7 +14,7 @@
 #include <boost/lexical_cast.hpp>
 
 #include "Storm3D_Bone.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 
 #ifdef PROJECT_AOV
@@ -549,7 +549,7 @@ void Storm3D_Model_Object::InformChangeToChilds()
 //------------------------------------------------------------------
 // Storm3D_Model_Object::SetPosition
 //------------------------------------------------------------------
-void Storm3D_Model_Object::SetPosition(VC3 &_position)
+void Storm3D_Model_Object::SetPosition(const VC3 &_position)
 {
 	position=_position;
 
@@ -579,7 +579,7 @@ void Storm3D_Model_Object::SetPosition(VC3 &_position)
 //------------------------------------------------------------------
 // Storm3D_Model_Object::SetRotation
 //------------------------------------------------------------------
-void Storm3D_Model_Object::SetRotation(QUAT &_rotation)
+void Storm3D_Model_Object::SetRotation(const QUAT &_rotation)
 {
 	rotation=_rotation;
 
@@ -600,7 +600,7 @@ void Storm3D_Model_Object::SetRotation(QUAT &_rotation)
 //------------------------------------------------------------------
 // Storm3D_Model_Object::SetScale
 //------------------------------------------------------------------
-void Storm3D_Model_Object::SetScale(VC3 &_scale)
+void Storm3D_Model_Object::SetScale(const VC3 &_scale)
 {
 	scale=_scale;
 

@@ -9,18 +9,18 @@
 #include <d3dx9core.h>
 
 #include "Storm3D_ShaderManager.h"
-#include "Storm3D_Model.h"
-#include "Storm3D_Model_Object.h"
+#include "storm3d_model.h"
+#include "storm3d_model_object.h"
 #include "Storm3D_Bone.h"
-#include "Storm3D_Mesh.h"
+#include "storm3d_mesh.h"
 
 #include <vector>
 #include <string>
 #include <stdio.h>
 #include <boost/static_assert.hpp>
 
-#include "..\..\filesystem\input_stream_wrapper.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../filesystem/input_stream_wrapper.h"
+#include "../../util/Debug_MemoryManager.h"
 
 using namespace frozenbyte;
 
@@ -346,7 +346,7 @@ void Storm3D_ShaderManager::SetForceAmbient(const Color &color)
 	ambient_force_color.z = color.b;
 }
 
-void Storm3D_ShaderManager::SetLight(int index, Vector &direction, const Color &color, float range)
+void Storm3D_ShaderManager::SetLight(int index, const Vector &direction, const Color &color, float range)
 {
 	if(index >= 0 && index < LIGHT_MAX_AMOUNT)
 	{

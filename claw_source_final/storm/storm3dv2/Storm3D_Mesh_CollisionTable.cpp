@@ -7,7 +7,7 @@
 //------------------------------------------------------------------
 #include "storm3d_mesh_collisiontable.h"
 #include "storm3d_mesh.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 #include <algorithm>
 #include <string>

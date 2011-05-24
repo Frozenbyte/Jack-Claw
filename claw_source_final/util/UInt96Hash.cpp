@@ -5,7 +5,42 @@
 
 #include <assert.h>
 #include <stdlib.h>
+#ifndef __APPLE__
 #include <hash_map>
+#endif
+
+
+#ifdef __GNUC__
+
+#include <ext/hash_map>
+
+#define FB_HASH_MAP __gnu_cxx::hash_map
+
+
+namespace __gnu_cxx
+{
+
+
+#ifndef __LP64__
+	template<> struct hash< uint64_t >
+	{
+		size_t operator()( const uint64_t& x ) const
+		{
+			return hash< uint32_t >()( (x >> 32) ^ (x & 0xFFFFFFFF) );
+		}
+	};
+#endif // __LP64__
+
+
+}  // namespace __gnu_cxx
+
+
+#else  // __GNUC__
+
+#define FB_HASH_MAP std::hash_map
+
+#endif  // __GNUC__
+
 
 #include "Debug_MemoryManager.h"
 
@@ -27,8 +62,8 @@ namespace util
 	};
 #pragma pack(pop)
 
-	typedef std::hash_map<__int64, unsigned char *> UpperHashType;
-	typedef std::pair<__int64, unsigned char *> UpperHashPairType;
+	typedef FB_HASH_MAP<uint64_t, unsigned char *> UpperHashType;
+	typedef std::pair<uint64_t, unsigned char *> UpperHashPairType;
 
 
 	uint_96_hash_data::uint_96_hash_data()
@@ -144,7 +179,7 @@ namespace util
 				} else {
 					if (blockLowerValue == 0)
 					{
-						unsigned __int64 blockHigherValue = ((hash_block_header *)block)->key.higherValue;
+						uint64_t blockHigherValue = ((hash_block_header *)block)->key.higherValue;
 						if (blockHigherValue == 0)
 						{
 						  emptyLowerSlot = i;
@@ -293,7 +328,7 @@ namespace util
 			{
 				unsigned char *block = &buffer[i * impl->actualBlockSize];
 				unsigned int blockLowerValue = ((hash_block_header *)block)->key.lowerValue;
-				unsigned __int64 blockUpperValue = ((hash_block_header *)block)->key.higherValue;
+				uint64_t blockUpperValue = ((hash_block_header *)block)->key.higherValue;
 				assert(((hash_block_header *)block)->reserved == 0);
 
 				if (blockLowerValue != 0 && blockUpperValue != 0)
@@ -353,7 +388,7 @@ namespace util
 			{
 				unsigned char *block = &buffer[i * impl->actualBlockSize];
 				unsigned int blockLowerValue = ((hash_block_header *)block)->key.lowerValue;
-				unsigned __int64 blockUpperValue = ((hash_block_header *)block)->key.higherValue;
+				uint64_t blockUpperValue = ((hash_block_header *)block)->key.higherValue;
 				assert(((hash_block_header *)block)->reserved == 0);
 
 				if (blockLowerValue != 0 && blockUpperValue != 0)
@@ -411,7 +446,7 @@ namespace util
 		{
 			const unsigned char *block = &buffer[bufpos];
 			unsigned int blockLowerValue = ((hash_block_header *)block)->key.lowerValue;
-			unsigned __int64 blockUpperValue = ((hash_block_header *)block)->key.higherValue;
+			uint64_t blockUpperValue = ((hash_block_header *)block)->key.higherValue;
 			assert(((hash_block_header *)block)->reserved == 0);
 
 			// FIXME: data should not contain buffer padding zeroes!!!

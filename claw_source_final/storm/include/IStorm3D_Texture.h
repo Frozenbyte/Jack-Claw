@@ -6,13 +6,18 @@
 //------------------------------------------------------------------
 // Includes
 //------------------------------------------------------------------
-#include <windows.h>
 
-// Storm3D includes 
+// Storm3D includes
 #include "Storm3D_Common.h"
 #include "Storm3D_Datatypes.h"
 
-
+// FIXME : standard stdint.h header is missing on MSVC
+#ifdef WIN32
+typedef unsigned char uint8_t;
+typedef unsigned int uint32_t;
+#else
+#include <stdint.h>
+#endif
 
 //------------------------------------------------------------------
 // Interface class prototypes
@@ -45,13 +50,13 @@ public:
 
 	// Get parameters
 	virtual const char *GetFilename()=0;		// Returns NULL, if dynamic texture
-	virtual DWORD GetTexIdentity()=0;
+	virtual uint32_t GetTexIdentity()=0;
 
 	// Texture edit etc
 	virtual Storm3D_SurfaceInfo GetSurfaceInfo()=0;
 	virtual void CopyTextureToAnother(IStorm3D_Texture *other)=0;
-	virtual void Copy32BitSysMembufferToTexture(DWORD *sysbuffer)=0;
-	virtual void CopyTextureTo32BitSysMembuffer(DWORD *sysbuffer)=0;
+	virtual void Copy32BitSysMembufferToTexture(uint32_t *sysbuffer)=0;
+	virtual void CopyTextureTo32BitSysMembuffer(uint32_t *sysbuffer)=0;
 
 	virtual int getWidth() const = 0;
 	virtual int getHeight() const = 0;

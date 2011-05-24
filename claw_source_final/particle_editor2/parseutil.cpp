@@ -9,7 +9,7 @@
 #include <boost/shared_ptr.hpp>
 #include <string>
 #include <vector>
-#include <storm3d_ui.h>
+#include <Storm3D_UI.h>
 #include "../editor/string_conversions.h"
 #include "../editor/parser.h"
 #include "track.h"

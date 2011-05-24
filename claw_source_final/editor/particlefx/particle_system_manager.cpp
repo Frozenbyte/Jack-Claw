@@ -6,7 +6,7 @@
 #include <string>
 #include <istream>
 #include <ostream>
-#include <Storm3D_Ui.h>
+#include <Storm3D_UI.h>
 #include "particle_typedef.h"
 #include "particle.h"
 #include "float_track.h"

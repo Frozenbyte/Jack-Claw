@@ -9,7 +9,7 @@
 
 #include <DatatypeDef.h>
 #include <IStorm3D.h>
-#include <istorm3d_mesh.h>
+#include <IStorm3D_Mesh.h>
 
 #include "GameScriptData.h"
 #include "GameScriptingUtils.h"

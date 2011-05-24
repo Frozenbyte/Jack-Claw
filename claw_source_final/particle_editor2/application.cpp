@@ -18,10 +18,10 @@
 #include "../filesystem/file_package_manager.h"
 #include "../filesystem/standard_package.h"
 #include "../util/SoundMaterialParser.h"
-#include <istorm3d_mesh.h>
-#include <istorm3d.h>
-#include <istorm3d_scene.h>
-#include <istorm3d_terrain_renderer.h>
+#include <IStorm3D_Mesh.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Scene.h>
+#include <istorm3D_terrain_renderer.h>
 #include "resource.h"
 #include "track.h"
 #include "particlesystem.h"
@@ -30,7 +30,7 @@
 #include "../viewer/model.h"
 
 #ifdef PHYSICS_PHYSX
-  #include "particlephysics.h"
+  #include "ParticlePhysics.h"
 	#include "../physics/physics_lib.h"
 	#include "../physics/box_actor.h"
 	#include "../physics/convex_actor.h"

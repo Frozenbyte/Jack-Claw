@@ -8,7 +8,7 @@
 #include "standard_package.h"
 #include "input_file_stream.h"
 #include "ifile_list.h"
-#include "../editor/findfilewrapper.h"
+#include "../editor/FindFileWrapper.h"
 #include <string>
 
 #include "../util/Debug_MemoryManager.h"
@@ -88,13 +88,13 @@ void iterateDir(const std::string &dir, const std::string &extension, IFileList 
 	getFiles(dir, extension, result);
 
 	string searchString = dir;
-	searchString += "/*.*";
+	searchString += "/*";
 
 	editor::FindFileWrapper wrapper(searchString.c_str(), editor::FindFileWrapper::Dir);
 	for(; !wrapper.end(); wrapper.next())
 	{
 		std::string currentDir = dir;
-		currentDir += "\\";
+		currentDir += "/";
 		currentDir += wrapper.getName();
 
 		result.addDir(currentDir);

@@ -52,6 +52,10 @@ void Storm3D_VideoStreamer::render(IStorm3D_Scene *scene)
 {
 }
 
+void Storm3D_VideoStreamer::getTextureCoords(float &x, float &y)
+{
+}
+
 #else
 
 #include "storm3d.h"
@@ -60,7 +64,7 @@ void Storm3D_VideoStreamer::render(IStorm3D_Scene *scene)
 #include "storm3d_scene.h"
 #include "storm3d_string_util.h"
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 //#pragma pack(8)
 
 #include <windows.h>
@@ -73,12 +77,13 @@ void Storm3D_VideoStreamer::render(IStorm3D_Scene *scene)
 #include "wmvsync\rostream.h"
 #include "wmvsync\reader.h"
 #pragma comment(lib, "wmvcore.lib")
-
+/*
 #if defined(DEBUG) || defined(_DEBUG)
 	#pragma comment(lib, "storm_strmbasd.lib")
 #else
 	#pragma comment(lib, "storm_strmbase.lib")
 #endif
+*/
 
 namespace {
 
@@ -548,5 +553,9 @@ void Storm3D_VideoStreamer::render(IStorm3D_Scene *scene)
 
 	update();
 	scene->Render2D_Picture(data->material.get(), data->start, data->end, data->alpha, 0, 0,0,1,1);
+}
+
+void Storm3D_VideoStreamer::getTextureCoords(float &x, float &y)
+{
 }
 #endif

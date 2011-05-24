@@ -9,7 +9,7 @@
 #include "storm3d_scene.h"
 #include "storm3d_model_object.h"
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 
 //------------------------------------------------------------------

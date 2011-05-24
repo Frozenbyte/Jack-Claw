@@ -17,7 +17,7 @@
 #endif
 #ifndef INCLUDED_DATATYPEDEF_H
 #define INCLUDED_DATATYPEDEF_H
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 #endif
 
 class IStorm3D_Texture;

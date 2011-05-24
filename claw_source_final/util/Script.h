@@ -236,7 +236,7 @@ namespace util
 
 		bool hasSub(const char *subName);
 
-		char *Script::matchSuitableCommands(int *amount, const char *command,
+		char *matchSuitableCommands(int *amount, const char *command,
 			int *smallestMatchLength);
 
 		char *getName();

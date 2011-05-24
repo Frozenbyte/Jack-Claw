@@ -7,7 +7,7 @@
 // Includes
 //------------------------------------------------------------------
 #include "storm3d_common_imp.h"
-#include "istorm3d_texture.h"
+#include "IStorm3D_Texture.h"
 #include <string>
 
 class IStorm3D_Logger;
@@ -62,13 +62,13 @@ public:
 
 	// Get parameters
 	const char *GetFilename();		// Returns NULL, if dynamic texture
-	DWORD GetTexIdentity();
+	uint32_t GetTexIdentity();
 
 	// Texture edit etc
 	Storm3D_SurfaceInfo GetSurfaceInfo();
 	void CopyTextureToAnother(IStorm3D_Texture *other);
-	void Copy32BitSysMembufferToTexture(DWORD *sysbuffer);
-	void CopyTextureTo32BitSysMembuffer(DWORD *sysbuffer);
+	void Copy32BitSysMembufferToTexture(uint32_t *sysbuffer);
+	void CopyTextureTo32BitSysMembuffer(uint32_t *sysbuffer);
 	void CopyTextureTo8BitSysMembuffer(BYTE *sysbuffer);	// Creates grayscale color from green color component
 
 	// DX buffer handling (for lost devices)

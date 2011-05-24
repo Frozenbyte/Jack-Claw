@@ -8,7 +8,7 @@
  *
  */
 
-#include <Storm3D_datatypes.h>
+#include <Storm3D_Datatypes.h>
 
 class IStorm3D;
 class IStorm3D_Scene;

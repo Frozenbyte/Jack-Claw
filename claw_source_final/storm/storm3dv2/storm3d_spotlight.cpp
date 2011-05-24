@@ -6,18 +6,18 @@
 #include "storm3d_spotlight_shared.h"
 #include "storm3d_terrain_utils.h"
 #include "storm3d_texture.h"
-#include "storm3d_shadermanager.h"
+#include "Storm3D_ShaderManager.h"
 #include "storm3d_adapter.h"
 #include "storm3d_camera.h"
 #include "storm3d.h"
-#include <istorm3d_logger.h>
+#include <IStorm3D_Logger.h>
 #include "c2_sphere.h"
 #include <atlbase.h>
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <math.h>
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 namespace {
 	int SHADOW_WIDTH = 512;

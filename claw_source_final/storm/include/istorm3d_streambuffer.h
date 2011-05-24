@@ -3,6 +3,15 @@
 
 #include <boost/shared_ptr.hpp>
 
+#ifdef _MSC_VER
+typedef unsigned __int64 uint64_t;
+
+#else  // _MSC_VER
+#include <stdint.h>
+
+#endif  // _MSC_VER
+
+
 class IStorm3D_Stream
 {
 public:
@@ -12,8 +21,8 @@ public:
 	virtual void deactivate() = 0;
 
 	// channels * bits
-	virtual void addSample(const char *buffer, int length, unsigned __int64 start, unsigned __int64 duration) = 0;
-	virtual unsigned __int64 getCurrentTime() const = 0;
+	virtual void addSample(const char *buffer, int length, uint64_t start, uint64_t duration) = 0;
+	virtual uint64_t getCurrentTime() const = 0;
 };
 
 class IStorm3D_StreamBuilder

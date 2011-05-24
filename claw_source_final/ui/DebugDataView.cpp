@@ -970,7 +970,7 @@ namespace ui
 				impl->debugData[(DEBUG_DATA_VIEW_SIZE_X / 2 + (DEBUG_DATA_VIEW_SIZE_Y / 2) * DEBUG_DATA_VIEW_SIZE_X) * 4 + 3] = 255;
 				//}
 
-				impl->debugDataTexture->Copy32BitSysMembufferToTexture((DWORD *)impl->debugData);
+				impl->debugDataTexture->Copy32BitSysMembufferToTexture((uint32_t *)impl->debugData);
 			}
 			scene->Render2D_Picture(impl->debugDataMaterial, VC2(0,0), VC2(DEBUG_DATA_VIEW_SIZE_X*2, DEBUG_DATA_VIEW_SIZE_Y*2));
 		} else {

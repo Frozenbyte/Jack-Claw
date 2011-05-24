@@ -12,8 +12,8 @@
 #include "WaveReader.h"
 #include "AmplitudeArray.h"
 #include "../util/assert.h"
-#include <istorm3d.h>
-#include <istorm3d_bone.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Bone.h>
 #include <boost/shared_ptr.hpp>
 #include <string>
 #include <map>

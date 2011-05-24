@@ -17,8 +17,8 @@ class Storm3D_Terrain;
 #include <windows.h>
 
 // Storm3D includes 
-#include "storm3d_common.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "Storm3D_Common.h"
+#include "../../util/Debug_MemoryManager.h"
 
 
 //------------------------------------------------------------------

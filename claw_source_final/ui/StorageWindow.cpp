@@ -14,7 +14,7 @@
 #include "../game/Part.h"
 #include "../game/GameUI.h"
 
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 // button id's for storage window
 #define STORAGEW_EXIT 1
@@ -226,6 +226,17 @@ namespace ui
     }
   }
 
+
+  // FIXME: huge hack
+  // because const confusion below
+  static char *tors = "Tors";
+  static char *head = "Head";
+  static char *arm = "Arm";
+  static char *leg = "Leg";
+  static char *weap = "Weap";
+  static char *pack = "Pack";
+
+
   void StorageWindow::refresh()
   {
     while (!buttons->isEmpty())
@@ -254,7 +265,7 @@ namespace ui
     OguiButton *b;
 
     b = ogui->CreateSimpleTextButton(win, 103 + 0 * 116, 4, 
-      116, 80, NULL, NULL, NULL, "Torso", STORAGEW_PARTTYPE, "Tors");
+      116, 80, NULL, NULL, NULL, "Torso", STORAGEW_PARTTYPE, tors);
     if (partType == getPartTypeById(PARTTYPE_ID_STRING_TO_INT("Tors")))
       b->SetStyle(partTypeSelectActiveStyle);
     else
@@ -263,7 +274,7 @@ namespace ui
     buttons->append(b);
 
     b = ogui->CreateSimpleTextButton(win, 103 + 1 * 116, 4, 
-      116, 80, NULL, NULL, NULL, "Head", STORAGEW_PARTTYPE, "Head");
+      116, 80, NULL, NULL, NULL, "Head", STORAGEW_PARTTYPE, head);
     if (partType == getPartTypeById(PARTTYPE_ID_STRING_TO_INT("Head")))
       b->SetStyle(partTypeSelectActiveStyle);
     else
@@ -272,7 +283,7 @@ namespace ui
     buttons->append(b);
 
     b = ogui->CreateSimpleTextButton(win, 103 + 2 * 116, 4, 
-      116, 80, NULL, NULL, NULL, "Arm", STORAGEW_PARTTYPE, "Arm");
+      116, 80, NULL, NULL, NULL, "Arm", STORAGEW_PARTTYPE, arm);
     if (partType == getPartTypeById(PARTTYPE_ID_STRING_TO_INT("Arm")))
       b->SetStyle(partTypeSelectActiveStyle);
     else
@@ -281,7 +292,7 @@ namespace ui
     buttons->append(b);
 
     b = ogui->CreateSimpleTextButton(win, 103 + 3 * 116, 4, 
-      116, 80, NULL, NULL, NULL, "Leg", STORAGEW_PARTTYPE, "Leg");
+      116, 80, NULL, NULL, NULL, "Leg", STORAGEW_PARTTYPE, leg);
     if (partType == getPartTypeById(PARTTYPE_ID_STRING_TO_INT("Leg")))
       b->SetStyle(partTypeSelectActiveStyle);
     else
@@ -290,7 +301,7 @@ namespace ui
     buttons->append(b);
 
     b = ogui->CreateSimpleTextButton(win, 103 + 4 * 116, 4, 
-      116, 80, NULL, NULL, NULL, "Weapon", STORAGEW_PARTTYPE, "Weap");
+      116, 80, NULL, NULL, NULL, "Weapon", STORAGEW_PARTTYPE, weap);
     if (partType == getPartTypeById(PARTTYPE_ID_STRING_TO_INT("Weap")))
       b->SetStyle(partTypeSelectActiveStyle);
     else
@@ -299,7 +310,7 @@ namespace ui
     buttons->append(b);
 
     b = ogui->CreateSimpleTextButton(win, 103 + 5 * 116, 4, 
-      116, 80, NULL, NULL, NULL, "Misc", STORAGEW_PARTTYPE, "Pack");
+      116, 80, NULL, NULL, NULL, "Misc", STORAGEW_PARTTYPE, pack);
     if (partType == getPartTypeById(PARTTYPE_ID_STRING_TO_INT("Pack")))
       b->SetStyle(partTypeSelectActiveStyle);
     else

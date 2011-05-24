@@ -9,8 +9,8 @@
 #include "../game/Game.h"
 #include "../game/GameUI.h"
 #include "GameController.h"
-#include "../system/timer.h"
-#include "../system/logger.h"
+#include "../system/Timer.h"
+#include "../system/Logger.h"
 #include "../util/assert.h"
 
 using namespace game;

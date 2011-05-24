@@ -5,12 +5,12 @@
 #pragma warning(disable:4786)
 
 #include "LightManager.h"
-#include <istorm3d_terrain_renderer.h>
+#include <istorm3D_terrain_renderer.h>
 #include <istorm3d_spotlight.h>
 #include <istorm3d_fakespotlight.h>
-#include <istorm3d_texture.h>
-#include <istorm3d.h>
-#include <istorm3d_model.h>
+#include <IStorm3D_Texture.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Model.h>
 #include <c2_frustum.h>
 #include <boost/shared_ptr.hpp>
 #include <vector>
@@ -1768,8 +1768,8 @@ for(int i = STATIC_LIGHT_LIMIT; i < LIGHT_MAX_AMOUNT; ++i)
 
 		for(int i = 0; i < LIGHTING_FAKE_SPOT_AMOUNT; ++i)
 		{
-			int spotIndex = activeFakes[i];
-			if(spotIndex < 0)
+			unsigned int spotIndex = activeFakes[i];
+			if(spotIndex < 0 || spotIndex > fakeSpots.size() || fakeSpots.size() <= 0)
 				continue;
 
 			const SpotImp &light = fakeSpots[spotIndex];

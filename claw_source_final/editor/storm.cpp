@@ -5,12 +5,12 @@
 
 #include "storm.h"
 #include "mouse.h"
-#include <istorm3d.h>
-#include "../ui/lightmanager.h"
+#include <IStorm3D.h>
+#include "../ui/LightManager.h"
 #include "../util/procedural_properties.h"
 #include "../util/procedural_applier.h"
 #include "../filesystem/file_package_manager.h"
-#include <istorm3d_mesh.h>
+#include <IStorm3D_Mesh.h>
 
 using namespace std;
 using namespace boost;

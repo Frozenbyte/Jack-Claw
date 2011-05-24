@@ -6,9 +6,9 @@
 #include "mouse.h"
 #include "storm.h"
 #include <cassert>
-#include <datatypedef.h>
-#include <istorm3d_scene.h>
-#include <istorm3d_terrain.h>
+#include <DatatypeDef.h>
+#include <IStorm3D_Scene.h>
+#include <IStorm3D_Terrain.h>
 
 #include <string>
 #include <set>

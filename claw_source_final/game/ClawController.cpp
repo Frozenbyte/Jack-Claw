@@ -15,9 +15,9 @@
 #include "GameUI.h"
 #include "Unit.h"
 #include "UnitLevelAI.h"
-#include <istorm3d_model.h>
-#include <istorm3d_bone.h>
-#include <istorm3d_scene.h>
+#include <IStorm3D_Model.h>
+#include <IStorm3D_Bone.h>
+#include <IStorm3D_Scene.h>
 #include <boost/lexical_cast.hpp>
 #include "../util/SoundMaterialParser.h"
 #include "../ui/AnimationSet.h"
@@ -2226,7 +2226,8 @@ Logger::getInstance()->error( ss.str().c_str() );
 	void parseStuff()
 	{
 		frozenbyte::editor::Parser parser;
-		frozenbyte::filesystem::createInputFileStream("Data/claw_settings.txt") >> parser;
+		frozenbyte::filesystem::InputStream clawSettingsFile = frozenbyte::filesystem::createInputFileStream("Data/claw_settings.txt");
+		clawSettingsFile >> parser;
 
 		const ParserGroup &globals = parser.getGlobals();
 		int groups = globals.getSubGroupAmount();

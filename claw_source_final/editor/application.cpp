@@ -36,8 +36,8 @@
 
 #include <vector>
 #include <windows.h>
-#include <istorm3d.h>
-#include <istorm3d_terrain_renderer.h>
+#include <IStorm3D.h>
+#include <istorm3D_terrain_renderer.h>
 #include <istorm3d_terrain_decalsystem.h>
 #include <istorm3d_spotlight.h>
 #include <istorm3d_videostreamer.h>

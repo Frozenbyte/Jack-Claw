@@ -6,7 +6,23 @@
 //------------------------------------------------------------------
 // Includes
 //------------------------------------------------------------------
+#ifdef _WIN32
 #include <windows.h>
+
+#else
+// this is ugly, window handle should not be visible outside storm
+typedef void *HWND;
+
+// and this is especially ugly
+typedef void *LRESULT;
+typedef void *LPARAM;
+typedef void *WPARAM;
+typedef unsigned int UINT;
+
+#define WINAPI
+
+#endif
+
 #include <vector>
 #include <string>
 

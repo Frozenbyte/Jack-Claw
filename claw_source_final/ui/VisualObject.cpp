@@ -27,7 +27,7 @@
 // ANOTHER BAD DEPENDENCY FOR EFFECT DURATIONS...
 #include "../game/gamedefs.h"
 
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 namespace ui
 {

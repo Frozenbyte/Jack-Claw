@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 //#include "../util/Parser.h"
-#include <istorm3D_model.h>
+#include <IStorm3D_Model.h>
 #include <boost/scoped_ptr.hpp>
 
 #include "../game/tracking/ITrackableUnifiedHandleObjectImplementationManager.h"
@@ -13,6 +13,13 @@
 #include "../editor/UniqueEditorObjectHandle.h"
 #include <boost/shared_ptr.hpp>
 #include <c2_oobb.h>
+
+
+// FIXME: this belongs in a separate header
+#ifdef _MSC_VER
+typedef __int64 int64_t;
+#endif
+
 
 namespace frozenbyte {
 namespace physics {
@@ -175,7 +182,7 @@ public:
 	UnifiedHandle findClosestTerrainObjectOfMaterial(const VC3 &position, const char *material, float maxRadius);
 	UnifiedHandle findClosestTerrainObjectWithFilenamePart(const VC3 &position, const char *filenamePart, float maxRadius);
 	UnifiedHandle findTerrainObjectByIdString(const char *idString);
-	UnifiedHandle findTerrainObjectByHex(__int64 hex) const;
+	UnifiedHandle findTerrainObjectByHex(int64_t hex) const;
 	boost::shared_ptr<game::AbstractPhysicsObject> getPhysicsActor(UnifiedHandle handle);
 
 	void ForcemapHeight(const Vector2D &position, float radius, bool above, bool below);

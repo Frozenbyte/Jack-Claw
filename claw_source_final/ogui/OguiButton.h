@@ -17,6 +17,13 @@
 #include "OguiButtonStyle.h"
 
 
+// FIXME : standard stdint.h header is missing on MSVC
+#ifdef _WIN32
+typedef unsigned int uint32_t;
+#else
+#include <stdint.h>
+#endif
+
 // these must be the same as the button event type values
 #define OGUI_EMASK_CLICK 1
 #define OGUI_EMASK_PRESS 2
@@ -173,7 +180,7 @@ public:
 	struct Vertex
 	{
 		int x,y;
-		DWORD color;
+		uint32_t color;
 	};
 	void SetCustomShape(Vertex *vertices, int numVertices);
 

@@ -34,7 +34,7 @@ struct ConvertFrom: private ConvertBase<Type>
 {
 	explicit ConvertFrom(const Type &t)
 	{
-		value.t = t;
+		this->value.t = t;
 	}
 
 	using ConvertBase<Type>::getSize;
@@ -42,7 +42,7 @@ struct ConvertFrom: private ConvertBase<Type>
 	unsigned char getByte(int index) const
 	{
 		assert((index >= 0) && (index < getSize()));
-		return value.c[index];
+		return this->value.c[index];
 	}
 };
 
@@ -54,12 +54,12 @@ struct ConvertTo: private ConvertBase<Type>
 	void setByte(int index, unsigned char c)
 	{
 		assert((index >= 0) && (index < getSize()));
-		value.c[index] = c;
+		this->value.c[index] = c;
 	}
 
 	const Type &getValue() const
 	{
-		return value.t;
+		return this->value.t;
 	}
 };
 

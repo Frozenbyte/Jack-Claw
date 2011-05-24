@@ -5,10 +5,10 @@
 //------------------------------------------------------------------
 // Includes
 //------------------------------------------------------------------
-#include "storm3d_datatypes.h"
+#include "Storm3D_Datatypes.h"
 #include <memory.h>
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 //------------------------------------------------------------------
 // Storm3D_Face::Storm3D_Face

@@ -33,7 +33,7 @@
 #include "../sound/SoundLooper.h"
 
 #include "../util/LightAmountManager.h"
-#include "../util/Colormap.h"
+#include "../util/ColorMap.h"
 #include "../util/HelperPositionCalculator.h"
 #include "../ui/Animator.h"
 #include "../ui/AnimationSet.h"
@@ -53,8 +53,8 @@
 #include "IAIDirectControl.h"
 
 #ifdef PROJECT_CLAW_PROTO
-	#include <istorm3d_model.h>
-	#include <istorm3d_bone.h>
+	#include <IStorm3D_Model.h>
+	#include <IStorm3D_Bone.h>
 
 	// debug:
 	#include <Storm3D_UI.h>
@@ -7951,7 +7951,7 @@ if (unit->variables.getVariable(proningvarnamenum) <= 0
 
 #pragma optimize("", on)
 
-	bool UnitActor::shoot(Unit *unit, VC3 &target)
+	bool UnitActor::shoot(Unit *unit, const VC3 &target)
 	{
 		bool shot = false;
 

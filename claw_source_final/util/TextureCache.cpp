@@ -6,8 +6,8 @@
 
 #include "TextureCache.h"
 #include "../system/Logger.h"
-#include <istorm3d.h>
-#include <istorm3d_texture.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Texture.h>
 #include "../filesystem/input_stream_wrapper.h"
 
 #include <boost/lexical_cast.hpp>

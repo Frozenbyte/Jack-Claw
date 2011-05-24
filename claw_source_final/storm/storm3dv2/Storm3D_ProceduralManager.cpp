@@ -4,8 +4,8 @@
 #include "storm3d.h"
 #include "storm3d_texture.h"
 #include "storm3d_terrain_utils.h"
-#include "storm3d_shadermanager.h"
-#include <istorm3d_logger.h>
+#include "Storm3D_ShaderManager.h"
+#include <IStorm3D_Logger.h>
 #include <d3d9.h>
 #include <boost/shared_ptr.hpp>
 

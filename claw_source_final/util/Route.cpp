@@ -1,8 +1,8 @@
 
 #include "precompiled.h"
 
-#include "Route.H"
-#include "..\util\Debug_MemoryManager.h"
+#include "Route.h"
+#include "../util/Debug_MemoryManager.h"
 
 static int DirX[8]={1,0,-1,0,1,-1,-1,1};
 static int DirY[8]={0,-1,0,1,-1,-1,1,1};

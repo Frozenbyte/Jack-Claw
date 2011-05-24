@@ -14,7 +14,7 @@
 #include "icommand.h"
 #include "command_list.h"
 #include "string_conversions.h"
-#include "../util/parser.h"
+#include "../util/Parser.h"
 #include "../filesystem/output_stream.h"
 #include "../filesystem/input_stream.h"
 

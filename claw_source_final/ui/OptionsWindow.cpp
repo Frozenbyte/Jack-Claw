@@ -179,11 +179,11 @@ namespace ui
 				{
 					txt = getLocaleGuiString("gui_options_custom"); //" Custom";
 
-					if (strcmp(keybinds, "Config/keybinds_mouse.txt") == 0)
+					if (strcmp(keybinds, "config/keybinds_mouse.txt") == 0)
 						txt = getLocaleGuiString("gui_options_kb_mouse");//" Kb+Mouse";
-					if (strcmp(keybinds, "Config/keybinds_joypad1.txt") == 0)
+					if (strcmp(keybinds, "config/keybinds_joypad1.txt") == 0)
 						txt = getLocaleGuiString("gui_options_joypad1");//" Joypad 1";
-					if (strcmp(keybinds, "Config/keybinds_joypad2.txt") == 0)
+					if (strcmp(keybinds, "config/keybinds_joypad2.txt") == 0)
 						txt = getLocaleGuiString("gui_options_joypad2");//" Joypad 2";
 				}
 
@@ -307,30 +307,30 @@ namespace ui
 			{
 				if (keybinds != NULL && keybinds[0] != '\0')
 				{
-					if (strcmp(keybinds, "Config/keybinds_mouse.txt") == 0)
+					if (strcmp(keybinds, "config/keybinds_mouse.txt") == 0)
 					{
-						keybinds = "Config/keybinds_joypad1.txt";
+						keybinds = "config/keybinds_joypad1.txt";
 						controlScheme = 1;
 						hasCursor = false;
 					}
-					else if (strcmp(keybinds, "Config/keybinds_joypad1.txt") == 0)
+					else if (strcmp(keybinds, "config/keybinds_joypad1.txt") == 0)
 					{
-						keybinds = "Config/keybinds_joypad2.txt";
+						keybinds = "config/keybinds_joypad2.txt";
 						controlScheme = 4;
 						hasCursor = false;
 					}
-					else if (strcmp(keybinds, "Config/keybinds_joypad2.txt") == 0)
+					else if (strcmp(keybinds, "config/keybinds_joypad2.txt") == 0)
 					{
-						keybinds = "Config/keybinds_mouse.txt";
+						keybinds = "config/keybinds_mouse.txt";
 						controlScheme = 0;
 						hasCursor = true;
 					} else {
-						keybinds = "Config/keybinds_mouse.txt";
+						keybinds = "config/keybinds_mouse.txt";
 						controlScheme = 0;
 						hasCursor = true;
 					}
 				} else {
-					keybinds = "Config/keybinds_mouse.txt";
+					keybinds = "config/keybinds_mouse.txt";
 					controlScheme = 0;
 					hasCursor = true;
 				}

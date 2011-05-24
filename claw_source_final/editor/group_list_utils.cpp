@@ -7,7 +7,7 @@
 #include "align_units.h"
 #include "object_settings.h"
 #include "storm.h"
-#include <istorm3d.h>
+#include <IStorm3D.h>
 
 using namespace boost;
 

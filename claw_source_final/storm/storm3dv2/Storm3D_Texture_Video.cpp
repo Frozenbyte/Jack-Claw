@@ -9,7 +9,7 @@
 #include "storm3d_texture.h"
 #include <vfw.h>		// Video for Windows header (to load AVIs)
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 
 namespace {

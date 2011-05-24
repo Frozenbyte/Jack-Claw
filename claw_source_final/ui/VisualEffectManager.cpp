@@ -51,7 +51,7 @@
 #include "../filesystem/input_stream.h"
 #include "../filesystem/file_package_manager.h"
 #include "../particle_editor2/particleeffect.h"
-#include "../particle_editor2/particlephysics.h"
+#include "../particle_editor2/ParticlePhysics.h"
 
 #include "../filesystem/ifile_list.h"
 

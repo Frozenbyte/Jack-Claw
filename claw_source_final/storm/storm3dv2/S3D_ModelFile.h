@@ -1,7 +1,7 @@
 // Copyright 2002-2004 Frozenbyte Ltd.
 
 #include "storm3d_material.h"
-#include <istorm3d_helper.h>
+#include <IStorm3D_Helper.h>
 #include <string>
 
 

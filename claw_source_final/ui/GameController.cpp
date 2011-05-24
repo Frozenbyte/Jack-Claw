@@ -3,7 +3,6 @@
 
 #include "GameController.h"
 
-#include <windows.h> // keyb3 fails to include this
 #include <keyb3.h>
 #include <assert.h>
 #include <string.h>
@@ -24,7 +23,7 @@
 #include "../game/options/options_players.h"
 #include "../game/options/options_controllers.h"
 
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 #define KEYCODE_NAME_AMOUNT (534 + ADDITIONAL_KEYBOARD_KEYS_AMOUNT)
 //#define KEYCODE_NAME_AMOUNT 534 
@@ -513,7 +512,8 @@ void GameController::loadConfiguration( const char *filename)
 
 	//Parser::Parser conf(filename);
 	editor::Parser conf(true, false);
-	filesystem::FilePackageManager::getInstance().getFile(filename) >> conf;
+	filesystem::InputStream conf_file = filesystem::FilePackageManager::getInstance().getFile(filename);
+	conf_file >> conf;
 
 	// Get the joystick axis
 	joystickXAxis = convertToEnum( conf.getGlobals().getValue( joystickXAxisConfName ) );
@@ -1454,6 +1454,31 @@ void GameController::getJoystickValues(int joynum, int *x, int *y, int *rx, int 
 {
 	assert(joynum >= 0 && joynum < 4);
 	Keyb3_ReadJoystick(joynum, x, y, rx, ry, throttle, rudder);
+
+	// dead zones
+	int deadzoneSize = game::SimpleOptions::getInt(DH_OPT_I_JOYSTICK1_DEADZONE + joynum);
+
+	if (abs(*x) < deadzoneSize && abs(*y) < deadzoneSize)
+	{
+		*x = 0;
+		*y = 0;
+	}
+
+	if (abs(*rx) < deadzoneSize && abs(*ry) < deadzoneSize)
+	{
+		*rx = 0;
+		*ry = 0;
+	}
+
+	if (abs(*throttle) < deadzoneSize)
+	{
+		*throttle = 0;
+	}
+
+	if (abs(*rudder) < deadzoneSize)
+	{
+		*rudder = 0;
+	}
 }
 
 
@@ -1461,12 +1486,37 @@ void GameController::getJoystickValues( int joynum, int *out_x, int *out_y )
 {
 	assert( joynum >= 0 && joynum < 4 );
 	
-	int x, y;
-	int rx, ry;
-	int throttle;
-	int rudder;
+	int x = 0, y = 0;
+	int rx = 0, ry = 0;
+	int throttle = 0;
+	int rudder = 0;
 
 	Keyb3_ReadJoystick(joynum, &x, &y, &rx, &ry, &throttle, &rudder);
+
+	// dead zones
+	int deadzoneSize = game::SimpleOptions::getInt(DH_OPT_I_JOYSTICK1_DEADZONE + joynum);
+
+	if (abs(x) < deadzoneSize && abs(y) < deadzoneSize)
+	{
+		x = 0;
+		y = 0;
+	}
+
+	if (abs(rx) < deadzoneSize && abs(ry) < deadzoneSize)
+	{
+		rx = 0;
+		ry = 0;
+	}
+
+	if (abs(throttle) < deadzoneSize)
+	{
+		throttle = 0;
+	}
+
+	if (abs(rudder) < deadzoneSize)
+	{
+		rudder = 0;
+	}
 
 	{
 		int result;
@@ -1493,7 +1543,6 @@ void GameController::getJoystickValues( int joynum, int *out_x, int *out_y )
 		default:
 			result = 0;
 			break;
-		
 		}
 
 		(*out_x) = result;
@@ -1523,7 +1572,7 @@ void GameController::getJoystickValues( int joynum, int *out_x, int *out_y )
 			break;
 		default:
 			result = 0;
-			break;		
+			break;
 		}
 
 		(*out_y) = result;

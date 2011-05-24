@@ -2,7 +2,7 @@
 #include "precompiled.h"
 
 #include "OguiException.h"
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 OguiException *ogui_last_exception = NULL;
 char *ogui_last_exception_msg = NULL;

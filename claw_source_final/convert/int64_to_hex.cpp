@@ -15,16 +15,16 @@ char hex_convert_strbuf[16+1];
 
 int _last_hex_to_int64_errno = 0;
 
-char *int64_to_hex(__int64 value_orig)
+char *int64_to_hex(int64_t value_orig)
 {
-	unsigned __int64 value = value_orig;
+	uint64_t value = value_orig;
 
-  unsigned __int64 tmp;
-  unsigned __int64 expv;
+  uint64_t tmp;
+  uint64_t expv;
   int strpos = 0;
 
 	// note, this is a really silly way of doing this. should rather use a shifting bitmask.
-  for (expv = 0x1000000000000000; expv > 0; expv /= 16)
+  for (expv = 0x1000000000000000LL; expv > 0; expv /= 16)
   {
     tmp = (value / expv);
     value -= tmp * expv;
@@ -46,12 +46,12 @@ char *int64_to_hex(__int64 value_orig)
 
 // does not check for possible overflow...
 
-__int64 hex_to_int64(const char *string)
+int64_t hex_to_int64(const char *string)
 {
   int i;
   int len = strlen(string);
-  unsigned __int64 value = 0;
-  unsigned __int64 exp = 1;
+  uint64_t value = 0;
+  uint64_t exp = 1;
 
 	assert(len == 16);
   if (len != 16) 

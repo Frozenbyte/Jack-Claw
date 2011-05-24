@@ -15,21 +15,23 @@
 #include "../options/options_game.h"
 
 #include <boost/scoped_ptr.hpp>
+#ifndef __APPLE__
 #include <hash_map>
+#endif
 #include <assert.h>
 #include <vector>
 
 // oh ffs...
 #include <Storm3D_UI.h>
-#include "../editor/parser.h"
-#include "../particle_editor2/particleeffect.h"
+#include "../../editor/parser.h"
+#include "../../particle_editor2/particleeffect.h"
 
 #include "StaticPhysicsObject.h"
 #ifdef PHYSICS_PHYSX
 #include "ConvexPhysicsObject.h"
-#include "../physics/joint_base.h"
-#include "../physics/actor_base.h"
-#include "../physics/d6_joint.h"
+#include "../../physics/joint_base.h"
+#include "../../physics/actor_base.h"
+#include "../../physics/d6_joint.h"
 #endif
 
 #ifdef PHYSICS_FEEDBACK
@@ -46,10 +48,10 @@
 #include "../ClawController.h"
 #include "../Game.h"
 #include "../GameUI.h"
-#include "../ui/VisualEffectManager.h"
-#include "../ui/Terrain.h"
+#include "../../ui/VisualEffectManager.h"
+#include "../../ui/Terrain.h"
 #include "PhysicsContactUtils.h"
-#include "../physics/actor_base.h"
+#include "../../physics/actor_base.h"
 game::ClawController *gamephysics_clawController = NULL;
 game::Game *gamephysics_game = NULL;
 #endif
@@ -242,7 +244,7 @@ class GamePhysicsObjectImpl
 		}
 
 
-		void GamePhysicsImpl::createPhysics(IGamePhysicsScriptRunner *scriptRunner)
+		void createPhysics(IGamePhysicsScriptRunner *scriptRunner)
 		{
 #ifdef PHYSICS_PHYSX
 			assert(physicsLib == NULL);
@@ -413,7 +415,8 @@ class GamePhysicsObjectImpl
 				//char foo[256];
 				//sprintf(foo, "implementing %p", o);
 				//Logger::getInstance()->error(foo);
-				addNewObjectToList(o, o->createImplementationObject());
+				PHYSICS_ACTOR implObject = o->createImplementationObject();
+				addNewObjectToList(o, implObject);
 			}
 			interfaceObjectsToAdd.clear();
 

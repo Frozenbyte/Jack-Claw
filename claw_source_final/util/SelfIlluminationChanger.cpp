@@ -6,10 +6,10 @@
 
 #include "SelfIlluminationChanger.h"
 #include <map>
-#include <istorm3d_model.h>
-#include <istorm3d_scene.h>
-#include <istorm3d_material.h>
-#include <istorm3d_mesh.h>
+#include <IStorm3D_Model.h>
+#include <IStorm3D_Scene.h>
+#include <IStorm3D_Material.h>
+#include <IStorm3D_Mesh.h>
 
 using namespace std;
 using namespace boost;

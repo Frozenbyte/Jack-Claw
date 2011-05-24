@@ -6,9 +6,9 @@
 // Includes
 //------------------------------------------------------------------
 #include "storm3d_helper.h"
-#include "storm3d_bone.h"
+#include "Storm3D_Bone.h"
 #include "storm3d_model_object.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 
 

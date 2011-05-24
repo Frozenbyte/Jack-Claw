@@ -2,10 +2,10 @@
 
 
 //#include "DatatypeDef.h"
-#include <Storm3D_Ui.h>
+#include <Storm3D_UI.h>
 
-//#include "..\ui\particlesystem.h"
-//#include "..\ui\particlemanager.h"
+//#include "../ui/particlesystem.h"
+//#include "../ui/particlemanager.h"
 
 //using namespace ui;
 
@@ -18,8 +18,8 @@
 #include <list>
 #include <fstream>
 #include <time.h>
-#include "..\editor\string_conversions.h"
-#include "..\editor\parser.h"
+#include "../editor/string_conversions.h"
+#include "../editor/parser.h"
 #include "parseutil.h"
 #include "particleeffect.h"
 #include <tchar.h>

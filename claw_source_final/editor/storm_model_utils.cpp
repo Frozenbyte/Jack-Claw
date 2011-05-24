@@ -4,10 +4,10 @@
 #pragma warning(disable:4786)
 
 #include "storm_model_utils.h"
-#include <istorm3d.h>
-#include <istorm3d_model.h>
-#include <istorm3d_bone.h>
-#include <istorm3d_mesh.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Model.h>
+#include <IStorm3D_Bone.h>
+#include <IStorm3D_Mesh.h>
 #include <boost/scoped_ptr.hpp>
 
 namespace frozenbyte {

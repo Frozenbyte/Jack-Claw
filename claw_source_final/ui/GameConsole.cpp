@@ -42,7 +42,7 @@ namespace ui
 
 		if (game::SimpleOptions::getBool(DH_OPT_B_CONSOLE_HISTORY_SAVE))
 		{
-			loadHistory("Config/console_history.txt");
+			loadHistory("config/console_history.txt");
 		}
 	}
 
@@ -50,7 +50,7 @@ namespace ui
 	{
 		if (game::SimpleOptions::getBool(DH_OPT_B_CONSOLE_HISTORY_SAVE))
 		{
-			saveHistory("Config/console_history.txt");
+			saveHistory("config/console_history.txt");
 		}
 
 		for (int i = 0; i < GAMECONSOLE_HISTORY; i++)

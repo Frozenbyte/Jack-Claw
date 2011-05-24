@@ -16,14 +16,14 @@
 #include "storm3d_model.h"
 #include "storm3d_texture.h"
 #include "storm3d_particle.h"
-#include "storm3d_structs.h"
+#include "Storm3D_structs.h"
 #include "storm3d_scene.h"
 #include "storm3d_terrain.h"
 #include "storm3d_terrain_renderer.h"
 #include "storm3d_terrain_models.h"
 #include "storm3d_video_player.h"
-#include <istorm3d_logger.h>
-#include "iterator.h"
+#include <IStorm3D_Logger.h>
+#include "Iterator.h"
 #include "VertexFormats.h"
 #include <boost/lexical_cast.hpp>
 #include <d3dx9shape.h>
@@ -32,7 +32,7 @@
 #include "Storm3D_Bone.h"
 #include "Storm3D_ShaderManager.h"
 #include "Storm3D_Line.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 #ifdef WORLD_FOLDING_ENABLED
 #include "WorldFold.h"
@@ -143,7 +143,7 @@ Storm3D_Scene::~Storm3D_Scene()
 //------------------------------------------------------------------
 // Storm3D_Scene::RenderSceneWithParams
 //------------------------------------------------------------------
-void Storm3D_Scene::RenderSceneWithParams(bool flip,bool disable_hsr, bool update_time, bool render_mirrored)
+void Storm3D_Scene::RenderSceneWithParams(bool flip,bool disable_hsr, bool update_time, bool render_mirrored, IStorm3D_Texture *target)
 {
 	storm3d_dip_calls = 0;
 

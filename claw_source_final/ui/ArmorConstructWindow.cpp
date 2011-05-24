@@ -21,7 +21,7 @@
 #include "../game/GameUI.h"
 #include "../game/Unit.h"
 
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 // button ids...
 // unit (armor) selection

@@ -15,7 +15,7 @@
 // Includes
 //------------------------------------------------------------------
 #include "storm3d_light.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 
 

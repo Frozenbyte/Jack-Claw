@@ -73,7 +73,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib"
+				AdditionalDependencies="winmm.lib user32.lib Comdlg32.lib"
 				OutputFile=".\Debug/scriptdev.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -172,7 +172,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib"
+				AdditionalDependencies="winmm.lib user32.lib Comdlg32.lib"
 				OutputFile=".\Release/scriptdev.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -1135,6 +1135,10 @@
 							ForcedIncludeFiles=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\..\game\userdata.cpp"
+					>
 				</File>
 			</Filter>
 		</Filter>

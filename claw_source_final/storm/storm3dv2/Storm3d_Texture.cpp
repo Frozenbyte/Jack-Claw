@@ -8,16 +8,16 @@
 #include "storm3d.h"
 #include "storm3d_adapter.h"
 #include "storm3d_texture.h"
-#include <istorm3d_logger.h>
+#include <IStorm3D_Logger.h>
 
 #include <stdio.h>
 #include <io.h>
 #include <map>
 #include <string>
-#include "..\..\filesystem\ifile_list.h"
-#include "..\..\filesystem\file_package_manager.h"
-#include "..\..\filesystem\input_stream_wrapper.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../filesystem/ifile_list.h"
+#include "../../filesystem/file_package_manager.h"
+#include "../../filesystem/input_stream_wrapper.h"
+#include "../../util/Debug_MemoryManager.h"
 
 #include <boost/lexical_cast.hpp>
 
@@ -1342,7 +1342,7 @@ void Storm3D_Texture::CopyTextureTo8BitSysMembuffer(BYTE *sysbuffer)
 
 
 
-void Storm3D_Texture::Copy32BitSysMembufferToTexture(DWORD *sysbuffer)
+void Storm3D_Texture::Copy32BitSysMembufferToTexture(uint32_t *sysbuffer)
 {
 	// If texture is not rendertarget, just make the sysmem pointer point to videomem surface (no copying needed)
 	if (!IsRenderTarget())
@@ -1454,7 +1454,7 @@ void Storm3D_Texture::Copy32BitSysMembufferToTexture(DWORD *sysbuffer)
 
 
 
-void Storm3D_Texture::CopyTextureTo32BitSysMembuffer(DWORD *sysbuffer)
+void Storm3D_Texture::CopyTextureTo32BitSysMembuffer(uint32_t *sysbuffer)
 {
 	// Copy texture to system memory, if it's rendertarget
 	if (IsRenderTarget()) 
@@ -1679,7 +1679,7 @@ const char *Storm3D_Texture::GetFilename()
 }
 
 
-DWORD Storm3D_Texture::GetTexIdentity()
+uint32_t Storm3D_Texture::GetTexIdentity()
 {
 	return tex_identity;
 }

@@ -5,7 +5,7 @@
 
 #include "terrain_lightmap.h"
 #include <boost/scoped_ptr.hpp>
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 #include <vector>
 
 namespace frozenbyte {

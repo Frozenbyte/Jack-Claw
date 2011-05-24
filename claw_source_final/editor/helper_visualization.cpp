@@ -7,9 +7,9 @@
 #include "terrain_units.h"
 #include "storm.h"
 
-#include <istorm3d.h>
+#include <IStorm3D.h>
 #include <istorm3d_line.h>
-#include <istorm3d_terrain.h>
+#include <IStorm3D_Terrain.h>
 #include <vector>
 #include <boost/shared_ptr.hpp>
 

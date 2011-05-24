@@ -7,21 +7,21 @@
 #include "../game/Game.h"
 #include "../game/GameUI.h"
 #include "../ui/GameCamera.h"
-#include "../game/gameProfiles.h"
+#include "../game/GameProfiles.h"
 #include "MenuCollection.h"
 #include "../game/DHLocaleManager.h"
 #include "../game/SimpleOptions.h"
 #include "../game/options/options_sounds.h"
-#include "gameController.h"
+#include "GameController.h"
 #include "../game/scripting/GameScripting.h"
 #include "../ogui/OguiSlider.h"
-#include "../system/timer.h"
+#include "../system/Timer.h"
 #include "../sound/SoundMixer.h"
 #include "../game/OptionApplier.h"
-#include "../system/logger.h"
+#include "../system/Logger.h"
 #include "../ogui/OguiCheckBox.h"
 #include "../game/options/options_all.h"
-#include "../storm/keyb3/keyb3.h"
+#include "keyb3.h"
 
 #include "../util/Debug_MemoryManager.h"
 
@@ -842,9 +842,9 @@ void OptionsMenu::setProfile( const std::string& profile )
 	currentProfile = profile;
 
 #ifdef LEGACY_FILES
-	std::string tmp = "Profiles/";
+	std::string tmp = "profiles/";
 	tmp += currentProfile;
-	tmp += "/Config/keybinds.txt";
+	tmp += "/config/keybinds.txt";
 #else
 	std::string tmp = "profiles/";
 	tmp += currentProfile;
@@ -947,9 +947,9 @@ void OptionsMenu::applyChanges()
 	
 	//
 #ifdef LEGACY_FILES
-	std::string tmp = "Profiles/";
+	std::string tmp = "profiles/";
 	tmp += currentProfile;
-	tmp += "/Config/keybinds.txt";
+	tmp += "/config/keybinds.txt";
 #else
 	std::string tmp = "profiles/";
 	tmp += currentProfile;

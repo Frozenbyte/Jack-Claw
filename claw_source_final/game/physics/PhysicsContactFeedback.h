@@ -2,7 +2,7 @@
 #ifndef PHYSICSCONTACTFEEDBACK_H
 #define PHYSICSCONTACTFEEDBACK_H
 
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 #include "IPhysicsContactListener.h"
 
 namespace game

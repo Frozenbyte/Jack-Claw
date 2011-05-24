@@ -5,7 +5,7 @@
 
 #include "exporter_lights.h"
 #include "export_options.h"
-#include "../ui/lightmanager.h"
+#include "../ui/LightManager.h"
 #include <vector>
 #include <fstream>
 #include <cassert>

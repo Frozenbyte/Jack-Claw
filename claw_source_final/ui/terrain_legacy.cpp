@@ -4,10 +4,10 @@
 #if 0
 
 #include "terrain_legacy.h"
-#include "../util/parser.h"
+#include "../util/Parser.h"
 #include "../filesystem/input_file_stream.h"
-#include "istorm3d_texture.h"
-#include "istorm3d.h"
+#include "IStorm3D_Texture.h"
+#include "IStorm3D.h"
 #include <string>
 #include <map>
 #include <boost/shared_ptr.hpp>

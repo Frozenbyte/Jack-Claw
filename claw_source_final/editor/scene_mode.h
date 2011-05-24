@@ -11,7 +11,7 @@
 #include <boost/scoped_ptr.hpp>
 #endif
 
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 
 namespace frozenbyte {
 namespace editor {

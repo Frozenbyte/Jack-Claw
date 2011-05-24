@@ -26,6 +26,8 @@ public:
 	void setAlpha(float alpha);
 	void update();
 	void render(IStorm3D_Scene *scene);
+
+	void getTextureCoords(float &x, float &y);
 };
 
 #endif

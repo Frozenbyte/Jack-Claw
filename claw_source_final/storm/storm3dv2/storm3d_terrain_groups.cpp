@@ -13,9 +13,9 @@
 #include "storm3d_material.h"
 #include "storm3d_scene.h"
 #include "storm3d_spotlight.h"
-#include "vertexformats.h"
-#include "storm3d_shadermanager.h"
-#include "storm3d_bone.h"
+#include "VertexFormats.h"
+#include "Storm3D_ShaderManager.h"
+#include "Storm3D_Bone.h"
 #include <c2_qtree.h>
 
 #include <map>
@@ -23,7 +23,7 @@
 #include <atlbase.h>
 #include <d3d9.h>
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 using namespace std;
 using namespace boost;

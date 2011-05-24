@@ -39,7 +39,7 @@ BurningMap::~BurningMap()
 	delete map;
 }
 
-__forceinline void clampCoord(int &c, const int &max)
+static void clampCoord(int &c, const int &max)
 {
 	if(c >= max) c = max - 1;
 	else if(c < 0) c = 0;

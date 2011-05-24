@@ -197,7 +197,7 @@ public:
 	void SetViewPosition(const D3DXVECTOR4 &p);
 	void SetAmbient(const Color &color);
 	void SetForceAmbient(const Color &color);
-	void SetLight(int index, Vector &position, const Color &color, float range);
+	void SetLight(int index, const Vector &position, const Color &color, float range);
 	void SetSun(const VC3 &direction, float strength);
 	void SetFog(float start, float range);
 	void SetTextureOffset(const VC2 &offset);

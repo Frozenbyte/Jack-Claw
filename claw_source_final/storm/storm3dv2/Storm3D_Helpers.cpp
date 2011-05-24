@@ -9,7 +9,7 @@
 #include "storm3d_model_object.h"
 #include "storm3d_model.h"
 #include "Storm3D_Bone.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 
 
@@ -47,21 +47,21 @@ IStorm3D_Bone *Storm3D_Helper_Camera::GetParentBone()
 	return parent_bone;
 }
 
-void Storm3D_Helper_Camera::SetPosition(VC3 &_position)
+void Storm3D_Helper_Camera::SetPosition(const VC3 &_position)
 {
 	position=_position;
 	update_globals=true;
 }
 
 
-void Storm3D_Helper_Camera::SetDirection(VC3 &_direction)
+void Storm3D_Helper_Camera::SetDirection(const VC3 &_direction)
 {
 	direction=_direction;
 	update_globals=true;
 }
 
 
-void Storm3D_Helper_Camera::SetUpVector(VC3 &_up)
+void Storm3D_Helper_Camera::SetUpVector(const VC3 &_up)
 {
 	upvec=_up;
 	update_globals=true;
@@ -244,14 +244,14 @@ IStorm3D_Bone *Storm3D_Helper_Vector::GetParentBone()
 	return parent_bone;
 }
 
-void Storm3D_Helper_Vector::SetPosition(VC3 &_position)
+void Storm3D_Helper_Vector::SetPosition(const VC3 &_position)
 {
 	position=_position;
 	update_globals=true;
 }
 
 
-void Storm3D_Helper_Vector::SetDirection(VC3 &_direction)
+void Storm3D_Helper_Vector::SetDirection(const VC3 &_direction)
 {
 	direction=_direction;
 	update_globals=true;
@@ -395,7 +395,7 @@ IStorm3D_Bone *Storm3D_Helper_Point::GetParentBone()
 	return parent_bone;
 }
 
-void Storm3D_Helper_Point::SetPosition(VC3 &_position)
+void Storm3D_Helper_Point::SetPosition(const VC3 &_position)
 {
 	position=_position;
 	update_globals=true;
@@ -521,7 +521,7 @@ IStorm3D_Bone *Storm3D_Helper_Box::GetParentBone()
 	return parent_bone;
 }
 
-void Storm3D_Helper_Box::SetPosition(VC3 &_position)
+void Storm3D_Helper_Box::SetPosition(const VC3 &_position)
 {
 	position=_position;
 	update_globals=true;
@@ -641,7 +641,7 @@ IStorm3D_Bone *Storm3D_Helper_Sphere::GetParentBone()
 	return parent_bone;
 }
 
-void Storm3D_Helper_Sphere::SetPosition(VC3 &_position)
+void Storm3D_Helper_Sphere::SetPosition(const VC3 &_position)
 {
 	position=_position;
 	update_globals=true;

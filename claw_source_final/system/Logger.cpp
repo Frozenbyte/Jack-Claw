@@ -9,10 +9,50 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
-#include <windows.h>
 #include <assert.h>
 
-#include "..\util\Debug_MemoryManager.h"
+
+#ifdef _WIN32
+
+#include <windows.h>
+
+#else  // _WIN32
+
+
+// FIXME: big hack
+// refactor this into something sane
+
+typedef pthread_mutex_t CRITICAL_SECTION;
+
+
+static inline void DeleteCriticalSection(CRITICAL_SECTION *c)
+{
+	pthread_mutex_destroy(c);
+}
+
+
+static inline void EnterCriticalSection(CRITICAL_SECTION *c)
+{
+	pthread_mutex_lock(c);
+}
+
+
+static inline void InitializeCriticalSection(CRITICAL_SECTION *c)
+{
+	pthread_mutex_init(c, NULL);
+}
+
+
+static inline void LeaveCriticalSection(CRITICAL_SECTION *c)
+{
+	pthread_mutex_unlock(c);
+}
+
+
+#endif  // _WIN32
+
+
+#include "../util/Debug_MemoryManager.h"
 
 Logger *Logger::instance = NULL;
 
@@ -34,7 +74,7 @@ Logger *Logger::getInstance()
 
 
 // not thread safe, need synchronization in case of multiple threads
-void Logger::createInstanceForLogfile(char *logfile)
+void Logger::createInstanceForLogfile(const char *logfile)
 {
 	cleanInstance();
 	if (instance == NULL)

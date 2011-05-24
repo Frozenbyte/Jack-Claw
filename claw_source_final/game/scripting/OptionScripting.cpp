@@ -16,7 +16,7 @@
 #include "../SimpleOptions.h"
 #include "../GameOptionManager.h"
 #include "VariableScriptingUtils.h"
-#include "../game/DHLocaleManager.h"
+#include "../DHLocaleManager.h"
 #include "../../ui/CombatWindow.h"
 #include "../../ui/ElaborateHintMessageWindow.h"
 

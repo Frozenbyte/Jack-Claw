@@ -12,7 +12,7 @@
 #include "uidefaults.h"
 #include "../game/DHLocaleManager.h"
 #include "../util/fb_assert.h"
-#include "../system/logger.h"
+#include "../system/Logger.h"
 #include "../convert/str2int.h"
 
 using namespace game;

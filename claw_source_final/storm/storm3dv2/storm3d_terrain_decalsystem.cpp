@@ -6,7 +6,7 @@
 #include "storm3d_terrain_utils.h"
 #include "storm3d_texture.h"
 #include "storm3d_material.h"
-#include "storm3d_shadermanager.h"
+#include "Storm3D_ShaderManager.h"
 #include "storm3d_spotlight.h"
 #include <c2_sphere.h>
 #include <c2_frustum.h>
@@ -17,7 +17,7 @@
 #include <vector>
 #include <deque>
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
 using namespace std;
 using namespace boost;
@@ -535,7 +535,7 @@ struct Storm3D_TerrainDecalSystem::Data
 		Decal decal;
 		decal.position = position;
 		decal.size = size;
-		decal.alpha = unsigned char(alpha * 255.f);
+		decal.alpha = static_cast<unsigned char>(alpha * 255.f);
 		decal.rotation = rotation;
 		decal.light = COL(1.f - alpha, 1.f - alpha, 1.f - alpha);
 
@@ -561,7 +561,7 @@ struct Storm3D_TerrainDecalSystem::Data
 		}
 	}
 
-	void Storm3D_TerrainDecalSystem::Data::createIndexBuffers(IDirect3DDevice9 &device)
+	void createIndexBuffers(IDirect3DDevice9 &device)
 	{
 		if(!indices)
 		{

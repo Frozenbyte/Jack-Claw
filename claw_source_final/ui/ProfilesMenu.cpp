@@ -1,6 +1,13 @@
 
 #include "precompiled.h"
 
+#if defined __GNUC__ && !defined __APPLE__
+// for alloca
+// for alloca.h does not do it. WHY?
+
+#include <malloc.h>
+#endif  // __GNUC__
+
 #include "ProfilesMenu.h"
 
 #include "../ogui/Ogui.h"
@@ -14,9 +21,9 @@
 #include "GameController.h"
 #include "MenuCollection.h"
 #include "../game/DHLocaleManager.h"
-#include "../system/timer.h"
+#include "../system/Timer.h"
 #include "../util/StringUtil.h"
-#include "../game/SaveGameVars.h"
+#include "../game/savegamevars.h"
 #include "../game/options/options_game.h"
 
 #include "../util/Debug_MemoryManager.h"
@@ -367,9 +374,9 @@ void ProfilesMenu::applyChanges()
 	setProfile(activeSelection);
 
 #ifdef LEGACY_FILES
-	std::string tmp = "Profiles/";
+	std::string tmp = "profiles/";
 	tmp += game->getGameProfiles()->getCurrentProfile( 0 );
-	tmp += "/Config/keybinds.txt";
+	tmp += "/config/keybinds.txt";
 #else
 	std::string tmp = "profiles/";
 	tmp += game->getGameProfiles()->getCurrentProfile( 0 );

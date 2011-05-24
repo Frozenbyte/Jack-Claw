@@ -1,6 +1,13 @@
 
 #include "precompiled.h"
 
+#if defined __GNUC__ && !defined __APPLE__
+// for alloca
+// for alloca.h does not do it. WHY?
+
+#include <malloc.h>
+#endif  // __GNUC__
+
 #include "GameStats.h"
 #include "Game.h"
 #include "GameUI.h"

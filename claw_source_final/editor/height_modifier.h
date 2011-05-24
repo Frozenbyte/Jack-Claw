@@ -4,7 +4,7 @@
 #define INCLUDED_EDITOR_HEIGHT_MODIFIER_H
 
 #include <boost/scoped_ptr.hpp>
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 
 namespace frozenbyte {
 namespace editor {

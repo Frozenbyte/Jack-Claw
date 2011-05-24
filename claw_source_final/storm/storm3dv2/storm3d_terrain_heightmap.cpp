@@ -5,7 +5,7 @@
 #include "storm3d_terrain_heightmap.h"
 #include "storm3d_terrain_lod.h"
 #include "storm3d_terrain_utils.h"
-#include "storm3d_shadermanager.h"
+#include "Storm3D_ShaderManager.h"
 #include "storm3d_spotlight.h"
 #include <c2_oobb.h>
 #include <c2_frustum.h>
@@ -22,8 +22,8 @@
 #include "storm3d_texture.h"
 
 #include "Storm3D_ObstacleMapDefs.h"
-#include "..\..\util\AreaMap.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/AreaMap.h"
+#include "../../util/Debug_MemoryManager.h"
 
 #include <d3dx9core.h>
 #include <d3dx9math.h>
@@ -834,7 +834,7 @@ void Storm3D_TerrainHeightmap::setHeightMap(const unsigned short *buffer, const 
 					}*/
 
 					int destIndex = ((j * heightmapMultiplier) + y) * destRes.x + ((i * heightmapMultiplier) + x);
-					destBuffer[destIndex] = unsigned short(value);
+					destBuffer[destIndex] = static_cast<unsigned short>(value);
 
 					ipX += factorDelta;
 				}

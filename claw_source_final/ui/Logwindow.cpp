@@ -15,7 +15,7 @@
 #include "../game/scripting/GameScripting.h"
 #include "../ui/uidefaults.h"
 
-#include "../system/logger.h"
+#include "../system/Logger.h"
 
 #include <vector>
 #include <string>

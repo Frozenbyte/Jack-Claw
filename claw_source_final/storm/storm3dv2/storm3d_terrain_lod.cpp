@@ -12,7 +12,7 @@
 #include <boost/static_assert.hpp>
 #include <boost/scoped_array.hpp>
 
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 //#include "../exporters/shared/nvtristrip.h"
 
 namespace {

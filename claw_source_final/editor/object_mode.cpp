@@ -30,7 +30,7 @@
 #include "group_list_utils.h"
 #include "group_save_dialog.h"
 #include "physics_mass.h"
-#include "../ui/lightmanager.h"
+#include "../ui/LightManager.h"
 #include "../util/SoundMaterialParser.h"
 #include "../util/ObjectDurabilityParser.h"
 #include "../filesystem/input_stream.h"
@@ -44,8 +44,8 @@
 // HACK: hack hack...
 #include "light_mode.h"
 
-#include <istorm3d.h>
-#include <istorm3d_model.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Model.h>
 #include <boost/shared_ptr.hpp>
 #include <boost/scoped_array.hpp>
 #include <stdlib.h>

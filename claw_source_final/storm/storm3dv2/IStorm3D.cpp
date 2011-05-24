@@ -6,7 +6,7 @@
 // Includes
 //------------------------------------------------------------------
 #include "storm3d.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 
  
 

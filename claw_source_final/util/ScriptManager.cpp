@@ -7,7 +7,6 @@
 #pragma warning( disable : 4786 )
 
 #include <assert.h>
-#include <process.h>
 #include "../convert/str2int.h"
 #include "../container/LinkedList.h"
 #include "../system/Logger.h"

@@ -4,7 +4,7 @@
 
 #include "IGameControllerKeyreader.h"
 
-#include <RawInputMouseHandler.h>
+#include "../storm/storm3dv2/RawInputMouseHandler.h"
 #include <string>
 // Note: these camera ctrl values equal the camera move values in GameCamera
 // They do not need to be the same, but keeping it so may be a good idea.

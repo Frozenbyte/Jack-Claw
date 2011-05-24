@@ -16,7 +16,7 @@
 #include "../util/LightMap.h"
 #include "../ui/VisualObject.h"
 #include "../ui/Spotlight.h"
-#include "../util/SpotlightCalculator.h"
+#include "../util/SpotLightCalculator.h"
 #include "../util/LightAmountManager.h"
 
 #include <boost/shared_ptr.hpp>

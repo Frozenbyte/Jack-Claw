@@ -15,7 +15,7 @@
 #include "../system/Logger.h"
 
 #include "../util/UnicodeConverter.h"
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 #include "../storm/storm3dv2/VertexFormats.h"
 

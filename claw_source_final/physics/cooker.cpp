@@ -3,8 +3,8 @@
 
 #include "cooker.h"
 #include "file_stream.h"
-#include <istorm3d_model.h>
-#include <istorm3d_mesh.h>
+#include <IStorm3D_Model.h>
+#include <IStorm3D_Mesh.h>
 
 #include "NxPhysics.h"
 #include "NxCooking.h"
@@ -13,8 +13,12 @@
 
 #include "../system/Logger.h"
 
-#ifdef PHYSICS_PHYSX
+#if defined PHYSICS_PHYSX && defined _MSC_VER
+#if NX_SDK_VERSION_BUGFIX > 1
+#pragma comment(lib, "PhysXCooking.lib")
+#else
 #pragma comment(lib, "NxCooking.lib")
+#endif
 #endif
 
 namespace frozenbyte {
@@ -576,7 +580,8 @@ bool Cooker::cookMesh(const char *filename, IStorm3D_Model *model)
 
 	if(meshDesc.numVertices > 0 && meshDesc.numTriangles > 0)
 	{
-		return data->cooker->NxCookTriangleMesh(meshDesc, OutputPhysicsStream(filename));
+		OutputPhysicsStream physStream(filename);
+		return data->cooker->NxCookTriangleMesh(meshDesc, physStream);
 	}
 	else
 	{
@@ -863,7 +868,8 @@ bool Cooker::cookHeightmap(const unsigned short *heightmap, const unsigned char 
 	meshDesc.triangles				= &indices[0];
 	meshDesc.flags					= NX_MF_HARDWARE_MESH; //NX_MF_FLIPNORMALS;
 
-	data->cooker->NxCookTriangleMesh(meshDesc, OutputPhysicsStream(filename));
+	OutputPhysicsStream physStream(filename);
+	data->cooker->NxCookTriangleMesh(meshDesc, physStream);
 
 	return true;
 }
@@ -928,7 +934,8 @@ bool Cooker::cookCylinder(const char *filename, float height, float radius, floa
 	convexDesc.points				= &vertices[0];
 	convexDesc.flags				= NX_CF_COMPUTE_CONVEX;
 
-	bool status = data->cooker->NxCookConvexMesh(convexDesc, OutputPhysicsStream(filename));
+	OutputPhysicsStream physStream(filename);
+	bool status = data->cooker->NxCookConvexMesh(convexDesc, physStream);
 
 	// TODO: check status
 
@@ -1282,7 +1289,8 @@ bool Cooker::cookApproxConvex(const char *filename, IStorm3D_Model_Object *objec
 	convexDesc.points				= &vertices[0];
 	convexDesc.flags				= NX_CF_COMPUTE_CONVEX;
 
-	bool status = data->cooker->NxCookConvexMesh(convexDesc, OutputPhysicsStream(filename));
+	OutputPhysicsStream physStream(filename);
+	bool status = data->cooker->NxCookConvexMesh(convexDesc, physStream);
 
 	// TODO: check status
 

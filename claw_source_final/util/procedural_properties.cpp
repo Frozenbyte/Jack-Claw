@@ -103,10 +103,11 @@ struct ProceduralProperties::Data
 	{
 		Parser parser;
 #ifdef LEGACY_FILES
-		filesystem::FilePackageManager::getInstance().getFile("Data/Effects/procedurals.txt") >> parser;
+		filesystem::InputStream proceduralEffectFile = filesystem::FilePackageManager::getInstance().getFile("Data/Effects/procedurals.txt");
 #else
-		filesystem::FilePackageManager::getInstance().getFile("data/effect/procedurals.txt") >> parser;
+		filesystem::InputStream proceduralEffectFile = filesystem::FilePackageManager::getInstance().getFile("data/effect/procedurals.txt");
 #endif
+		proceduralEffectFile >> parser;
 
 		const ParserGroup &root = parser.getGlobals();
 		textureSize.x = convertFromString<int> (root.getValue("size_x"), 128);

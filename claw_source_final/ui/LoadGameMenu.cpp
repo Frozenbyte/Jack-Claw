@@ -15,10 +15,10 @@
 	#endif
 #endif
 
-#include "../system/timer.h"
+#include "../system/Timer.h"
 #include "../ogui/Ogui.h"
 #include "../game/Game.h"
-#include "../game/SaveGameVars.h"
+#include "../game/savegamevars.h"
 #include "../game/GameUI.h"
 #include "MenuCollection.h"
 #include "../game/DHLocaleManager.h"
@@ -39,6 +39,16 @@
 #include <sstream>
 #include <assert.h>
 #include <boost/lexical_cast.hpp>
+
+
+#ifndef _WIN32
+
+#include <SDL.h>
+
+#define timeGetTime() SDL_GetTicks()
+
+#endif
+
 
 using namespace game;
 

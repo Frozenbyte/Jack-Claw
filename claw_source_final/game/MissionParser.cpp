@@ -23,7 +23,7 @@
 #include "scripting/GameScripting.h"
 
 #include "../filesystem/input_stream_wrapper.h"
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 
 #define DEFAULT_UNIT_TYPE_NAME "Armor"

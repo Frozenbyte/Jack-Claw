@@ -2,7 +2,7 @@
 #ifndef GUIEFFECTWINDOW_H
 #define GUIEFFECTWINDOW_H
 
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 
 class Ogui;
 class OguiWindow;

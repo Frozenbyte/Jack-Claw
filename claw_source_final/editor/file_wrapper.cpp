@@ -19,7 +19,7 @@
 #include <vector>
 #include <boost/scoped_ptr.hpp>
 #include <algorithm>
-#include <windows.h>
+#include <fstream>
 
 // for profiling...
 #include "../system/Timer.h"
@@ -451,6 +451,58 @@ std::string FileWrapper::resolveModelName(const std::string &rootDir, const std:
 	return fileName;
 }
 
+
+std::string getFileName(const std::string &fullFileName)
+{
+	for(int i = fullFileName.size() - 1; i >= 0; --i)
+	{
+		if(fullFileName[i] == '\\')
+		{
+			++i;
+			return fullFileName.substr(i, fullFileName.size() - i);
+		}
+	}
+
+	return fullFileName;
+}
+
+
+std::string getDirName(const std::string &fullFileName)
+{
+	for(int i = fullFileName.size() - 1; i >= 0; --i)
+	{
+		if(fullFileName[i] == '\\')
+		{
+			++i;
+			return fullFileName.substr(0, i);
+		}
+	}
+
+	return fullFileName;
+}
+
+
+bool fileExists(const std::string &fileName)
+{
+	if(!std::ifstream(fileName.c_str()))
+		return false;
+
+	return true;
+	/*
+	if(!fileName.empty())
+		return false;
+
+	filesystem::FB_FILE *fp = filesystem::fb_fopen(fileName.c_str(), "rb");
+	if(fp == 0)
+		return false;
+
+	filesystem::fb_fclose(fp);
+	return true;
+	*/
+
+}
+
+
 bool fileExists(const char *name)
 {
 	/*
@@ -475,6 +527,7 @@ bool fileExists(const char *name)
 	fclose(fp);
 	return true;
 }
+
 
 } // editor
 } // frozenbyte

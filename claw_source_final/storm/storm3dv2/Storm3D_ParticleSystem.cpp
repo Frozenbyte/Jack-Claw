@@ -14,7 +14,7 @@
 #include "Storm3D_ShaderManager.h"
 #include "VertexFormats.h"
 #include "storm3d_terrain_utils.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../util/Debug_MemoryManager.h"
 #include <boost/lexical_cast.hpp>
 
 using namespace frozenbyte::storm;

@@ -21,7 +21,7 @@
 #include "../ui/VisualEffectManager.h"
 #include "../ui/Map.h"
 #include "../ui/GameController.h"	// Probably breaks the design here but is used a to fix a bug. -Pete
-#include "../particle_editor2/ParticleEffect.h"
+#include "../particle_editor2/particleeffect.h"
 
 #ifdef PROJECT_SHADOWGROUNDS
 #include "../shadowgrounds/version.h"
@@ -174,7 +174,7 @@ bool isThisDeveloper()
 	if (developerGame != NULL
 		&& developerGame->getGameProfiles() != NULL
 		&& developerGame->getGameProfiles()->getCurrentProfile(0) != NULL
-		&& strcmp(developerGame->getGameProfiles()->getCurrentProfile(0), "Developer") == 0)
+		&& strcmp(developerGame->getGameProfiles()->getCurrentProfile(0), "developer") == 0)
 	{
 		return true;
 	}
@@ -427,6 +427,8 @@ namespace {
 		nextMissionOnSuccess = NULL;
 		nextMissionOnFailure = NULL;
 
+		missionSuccessCounter = 0;
+		missionFailureCounter = 0;
 		missionStartTime = 0;
 		pauseStartTime = 0;
 		missionPausedTime = 0;
@@ -842,7 +844,7 @@ namespace {
 		givePlayerBeginningStuff(singlePlayerNumber);
 
 #ifdef LEGACY_FILES
-		gameScripting->loadScripts("Config/user_autoexec.dhs", NULL);
+		gameScripting->loadScripts("config/user_autoexec.dhs", NULL);
 #else
 		gameScripting->loadScripts("config/user_autoexec.dhs", NULL);
 #endif
@@ -1638,7 +1640,7 @@ this->missionId = foocrap;
 						MISSIONPARSER_SECTION_AFTER);
 
 #ifdef LEGACY_FILES
-					gameScripting->loadScripts("Config/user_autoexec.dhs", NULL);
+					gameScripting->loadScripts("config/user_autoexec.dhs", NULL);
 #else
 					gameScripting->loadScripts("config/user_autoexec.dhs", NULL);
 #endif
@@ -1694,7 +1696,7 @@ this->missionId = foocrap;
 						MISSIONPARSER_SECTION_BEFORE);
 
 #ifdef LEGACY_FILES
-					gameScripting->loadScripts("Config/user_autoexec.dhs", NULL);
+					gameScripting->loadScripts("config/user_autoexec.dhs", NULL);
 #else
 					gameScripting->loadScripts("config/user_autoexec.dhs", NULL);
 #endif
@@ -2107,7 +2109,7 @@ bool game_in_start_combat = false;
 		SHOW_LOADING_BAR(70);
 
 #ifdef LEGACY_FILES
-		gameScripting->loadScripts("Config/user_autoexec.dhs", NULL);
+		gameScripting->loadScripts("config/user_autoexec.dhs", NULL);
 #else
 		gameScripting->loadScripts("config/user_autoexec.dhs", NULL);
 #endif
@@ -4661,7 +4663,7 @@ gameUI->getTerrain()->calculateLighting();
 			savefile = new char[64 + strlen(profiledir) + strlen(saveId) + 1];
 			strcpy(savefile, profiledir);
 #ifdef LEGACY_FILES
-			strcat(savefile, "/Save/save_");
+			strcat(savefile, "/save/save_");
 #else
 			strcat(savefile, "/save/save_");
 #endif
@@ -4752,7 +4754,7 @@ gameUI->getTerrain()->calculateLighting();
 			saveGameType = "savegame";
 			savefile = new char[64 + strlen(profiledir) + strlen(saveId) + 1];
 			strcpy(savefile, profiledir);
-			strcat(savefile, "/Save/save_");
+			strcat(savefile, "/save/save_");
 			strcat(savefile, saveId);
 			strcat(savefile, ".dhs");
 		}
@@ -4808,7 +4810,7 @@ gameUI->getTerrain()->calculateLighting();
 		{
 			savefile = new char[64 + strlen(profiledir) + strlen(saveId) + 1];
 			strcpy(savefile, profiledir);
-			strcat(savefile, "/Save/save_");
+			strcat(savefile, "/save/save_");
 			strcat(savefile, saveId);
 			strcat(savefile, ".dhs");
 		}
@@ -4932,9 +4934,9 @@ gameUI->getTerrain()->calculateLighting();
 
 				// different file for coop
 				if (SimpleOptions::getBool(DH_OPT_B_2ND_PLAYER_ENABLED))
-					strcat(savefile, "/Save/lastsave_coop.txt");
+					strcat(savefile, "/save/lastsave_coop.txt");
 				else
-					strcat(savefile, "/Save/lastsave.txt");
+					strcat(savefile, "/save/lastsave.txt");
 
 				FILE *f = fopen(savefile, "wb");
 				if (f != NULL)
@@ -4954,7 +4956,7 @@ gameUI->getTerrain()->calculateLighting();
 				const char *profiledir = profiles->getProfileDirectory( i );
 				char *savefile = new char[64 + strlen(profiledir) + strlen(saveId) + 1];
 				strcpy(savefile, profiledir);
-				strcat(savefile, "/Save/save_coop_");
+				strcat(savefile, "/save/save_coop_");
 				strcat(savefile, saveId);
 				strcat(savefile, ".dhs");
 
@@ -4970,7 +4972,7 @@ gameUI->getTerrain()->calculateLighting();
 		const char *profiledir = profiles->getProfileDirectory( 0 );
 		char *savefile = new char[64 + strlen(profiledir) + strlen(saveId) + 1];
 		strcpy(savefile, profiledir);
-		strcat(savefile, "/Save/save_");
+		strcat(savefile, "/save/save_");
 		strcat(savefile, saveId);
 		strcat(savefile, ".dhs");
 

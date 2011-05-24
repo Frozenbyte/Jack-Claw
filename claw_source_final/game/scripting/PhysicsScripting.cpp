@@ -21,7 +21,7 @@
 #include "../../ui/Terrain.h"
 
 #include "../../convert/int64_to_hex.h"
-#include "../physics/gamephysics.h"
+#include "../physics/GamePhysics.h"
 
 #ifdef PHYSICS_PHYSX
 #include "../../physics/physics_lib.h"
@@ -454,7 +454,7 @@ namespace game
 				{
 					if(!nullObjectA)
 					{
-						__int64 hexA = 0;
+						int64_t hexA = 0;
 						if (!jointParameters.objectA.empty())
 							hexA = hex_to_int64(jointParameters.objectA.c_str());
 
@@ -466,7 +466,7 @@ namespace game
 
 					if(!nullObjectB)
 					{
-						__int64 hexB = 0;
+						int64_t hexB = 0;
 						if (!jointParameters.objectB.empty())
 							hexB = hex_to_int64(jointParameters.objectB.c_str());
 

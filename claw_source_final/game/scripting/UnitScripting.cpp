@@ -1,6 +1,17 @@
 
 #include "precompiled.h"
 
+
+#if defined __GNUC__ && !defined __APPLE__
+// for alloca
+// for alloca.h does not do it. WHY?
+
+#include <malloc.h>
+#endif  // __GNUC__
+
+#include <float.h>
+
+
 #include "UnitScripting.h"
 
 #include "scripting_macros_start.h"
@@ -51,8 +62,8 @@
 #include "../UnitPhysicsUpdater.h"
 #include "../VisualObjectModelStorage.h"
 
-#include <istorm3d_mesh.h>
-#include <istorm3d_scene.h>
+#include <IStorm3D_Mesh.h>
+#include <IStorm3D_Scene.h>
 
 #include "../../convert/str2int.h"
 #include "../../util/ScriptProcess.h"
@@ -7926,7 +7937,7 @@ namespace game
 	}
 
 
-	Unit *UnitScripting::nextOwnedUnit(Game *game, VC3 &position, int player, Unit *fromUnit, bool only_active )
+	Unit *UnitScripting::nextOwnedUnit(Game *game, const VC3 &position, int player, Unit *fromUnit, bool only_active )
 	{
 		bool passedFrom = false;
 		Unit *first = NULL;

@@ -20,7 +20,7 @@
 #include "../system/Logger.h"
 
 #include <IStorm3D.h>
-#include <IStorm3D_VideoStreamer.h>
+#include <istorm3d_videostreamer.h>
 #include <string>
 #include <vector>
 #include <map>

@@ -127,7 +127,14 @@ public:
 	}
 };
 
-#define REGISTER_COMBATSUBWINDOW( x ) TemplatedCombatSubWindowConstructor< x >* temp_static_haxoring_constructing_thing = new TemplatedCombatSubWindowConstructor< x >( #x );
+
+#ifndef __GNUC__
+#define __attribute__(x)
+#endif
+
+
+#define REGISTER_COMBATSUBWINDOW( x ) TemplatedCombatSubWindowConstructor< x >* __attribute__((used)) temp_static_haxoring_constructing_thing##x = new TemplatedCombatSubWindowConstructor< x >( #x );
+
 
 ///////////////////////////////////////////////////////////////////////////////
 

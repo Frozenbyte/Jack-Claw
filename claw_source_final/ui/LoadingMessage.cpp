@@ -11,7 +11,7 @@
 using namespace std;
 #include <set>
 #include "../storm/storm3dv2/Iterator.h"
-#include <istorm3d_terrain_renderer.h>
+#include <istorm3D_terrain_renderer.h>
 
 namespace ui
 {

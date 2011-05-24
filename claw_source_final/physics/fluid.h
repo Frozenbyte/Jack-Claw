@@ -1,7 +1,7 @@
 #ifndef INCLUDED_FROZENBYTE_FLUID_H
 #define INCLUDED_FROZENBYTE_FLUID_H
 
-#include <datatypedef.h>
+#include <DatatypeDef.h>
 #include <vector>
 
 class NxFluid;

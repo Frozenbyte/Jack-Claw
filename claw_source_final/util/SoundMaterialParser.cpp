@@ -41,10 +41,11 @@ SoundMaterialParser::SoundMaterialParser()
 
 	Parser parser;
 #ifdef LEGACY_FILES
-	filesystem::FilePackageManager::getInstance().getFile("Data/Effects/sound_materials.txt") >> parser;
+	filesystem::InputStream	soundMaterialsFile = filesystem::FilePackageManager::getInstance().getFile("Data/Effects/sound_materials.txt");
 #else
-	filesystem::FilePackageManager::getInstance().getFile("data/effect/contact_materials.txt") >> parser;
+	filesystem::InputStream	soundMaterialsFile = filesystem::FilePackageManager::getInstance().getFile("data/effect/contact_materials.txt");
 #endif
+	soundMaterialsFile >> parser;
 
 	const ParserGroup &globals = parser.getGlobals();
 	int groups = globals.getSubGroupAmount();

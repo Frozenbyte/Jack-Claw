@@ -8,10 +8,10 @@
 #include "../game/GameUI.h"
 #include "../game/scripting/GameScripting.h"
 #include "../game/savegamevars.h"
-#include "gameController.h"
+#include "GameController.h"
 #include "MenuCollection.h"
 #include "../game/DHLocaleManager.h"
-#include "../system/logger.h"
+#include "../system/Logger.h"
 #include "../ogui/OguiFormattedText.h"
 #include "../ogui/OguiTypeEffectListener.h"
 // #include "../ogui/OguiFormatedText.h"
@@ -24,7 +24,7 @@
 	#include "CoopMenu.h"
 	#include "LoadGameMenu.h"
 	#include "SurvivalMenu.h"
-	#include "../game/gameProfiles.h"
+	#include "../game/GameProfiles.h"
 	#include "../filesystem/input_stream_wrapper.h"
 #endif
 
@@ -342,7 +342,7 @@ void MainMenu::menuContinue()
 #ifdef PROJECT_SURVIVOR
 	// get last savegame
 	//
-	std::string filename = std::string(game->getGameProfiles()->getProfileDirectory( 0 )) + "/Save/lastsave.txt";
+	std::string filename = std::string(game->getGameProfiles()->getProfileDirectory( 0 )) + "/save/lastsave.txt";
 	frozenbyte::filesystem::FB_FILE *f = frozenbyte::filesystem::fb_fopen(filename.c_str(), "rb");
 	if (f != NULL)
 	{

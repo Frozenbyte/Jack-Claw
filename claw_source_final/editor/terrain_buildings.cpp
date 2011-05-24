@@ -18,11 +18,11 @@
 #include "../filesystem/input_stream.h"
 #include "../util/buildingmap.h"
 #include "../util/buildinghandler.h"
-#include "../ui/lightmanager.h"
+#include "../ui/LightManager.h"
 #include <boost/shared_ptr.hpp>
 
-#include <istorm3d.h>
-#include <istorm3d_model.h>
+#include <IStorm3D.h>
+#include <IStorm3D_Model.h>
 #include <map>
 #include <vector>
 #include <cassert>

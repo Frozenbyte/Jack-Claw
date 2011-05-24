@@ -2,7 +2,7 @@
 #include "precompiled.h"
 
 #include "OguiButtonEvent.h"
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 
 OguiButtonEvent::OguiButtonEvent(EVENT_TYPE evt, int curnum, int scrx, int scry, int relx, int rely, 

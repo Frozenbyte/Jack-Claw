@@ -28,6 +28,24 @@ struct InputFileStreamBufferData
 		size(0)
 	{
 		fp = fopen(fileName.c_str(), "rb");
+
+#ifdef LINUX
+		// another ugly case sensitivity hack
+
+		if (!fp)
+		{
+			std::string filename = fileName;
+			for (unsigned int i = 0; i < filename.size(); i++)
+			{
+				if (isupper(filename[i]))
+					filename[i] = tolower(filename[i]);
+				else if (filename[i] == '\\')
+					filename[i] = '/';
+			}
+			fp = fopen(filename.c_str(), "rb");
+		}
+#endif  // LINUX
+
 		if(fp)
 		{
 			fseek(fp, 0, SEEK_END);

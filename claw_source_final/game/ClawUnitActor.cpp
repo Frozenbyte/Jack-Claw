@@ -31,7 +31,7 @@
 #include "../ui/animdefs.h"
 #include "keyb3.h"
 
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 static const int TARGET_ADVANCE_TICKS = 20;
 
@@ -78,7 +78,7 @@ frozenbyte::ai::Path *ClawUnitActor::solvePath(Unit *unit, const VC3 &startPosit
 }
 
 
-bool ClawUnitActor::setPathTo(Unit *unit, VC3 &destination_)
+bool ClawUnitActor::setPathTo(Unit *unit, const VC3 &destination_)
 {
 	VC3 destination = destination_;
 	frozenbyte::ai::Path *path = solvePath(unit, unit->getPosition(), destination);

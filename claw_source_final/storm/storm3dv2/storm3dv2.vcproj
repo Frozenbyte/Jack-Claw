@@ -318,7 +318,7 @@
 		</Configuration>
 		<Configuration
 			Name="Legacy debug|Win32"
-			OutputDirectory="$(ConfigurationName)"
+			OutputDirectory="E:\Claw"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
@@ -351,7 +351,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../include,."
-				PreprocessorDefinitions="D3D_DEBUG_INFO;WIN32;_DEBUG;_WINDOWS;_USRDLL;STORM3DV2_EXPORTS;STORM3D_NO_SCREENSHOT;BONE_MODEL_SPHERE_TRANSFORM;_CRT_SECURE_NO_DEPRECATE;LEGACY_FILES;LIGHT_MAX_AMOUNT=5"
+				PreprocessorDefinitions="D3D_DEBUG_INFO;WIN32;_DEBUG;_WINDOWS;_USRDLL;STORM3DV2_EXPORTS;STORM3D_NO_SCREENSHOT;BONE_MODEL_SPHERE_TRANSFORM;_CRT_SECURE_NO_DEPRECATE;LEGACY_FILES;LIGHT_MAX_AMOUNT=5;VIDEO_ENABLED"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				PrecompiledHeaderFile=".\Debug/storm3dv2.pch"
@@ -375,8 +375,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="vfw32.lib winmm.lib d3d9.lib d3dx9.lib odbc32.lib odbccp32.lib user32.lib"
-				OutputFile=".\Debug/storm3dv2.dll"
+				AdditionalDependencies="vfw32.lib winmm.lib d3d9.lib d3dx9.lib odbc32.lib odbccp32.lib user32.lib Comdlg32.lib ole32.lib"
+				OutputFile="$(OutDir)/storm3dv2.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../lib"
@@ -411,12 +411,12 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy debug\storm3dv2.dll ..\lib&#x0D;&#x0A;copy debug\storm3dv2.dll C:\claw&#x0D;&#x0A;copy debug\storm3dv2.lib ..\lib&#x0D;&#x0A;..\lib\copywinnt.bat&#x0D;&#x0A;"
+				CommandLine="copy release\storm3dv2.dll ..\lib&#x0D;&#x0A;copy release\storm3dv2.lib ..\lib&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Legacy release|Win32"
-			OutputDirectory="$(ConfigurationName)"
+			OutputDirectory="E:\Claw"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
@@ -450,7 +450,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="2"
 				AdditionalIncludeDirectories="../include,."
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;STORM3DV2_EXPORTS;BONE_MODEL_SPHERE_TRANSFORM;_CRT_SECURE_NO_DEPRECATE;LEGACY_FILES;LIGHT_MAX_AMOUNT=5;PROJECT_CLAW_PROTO"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;STORM3DV2_EXPORTS;BONE_MODEL_SPHERE_TRANSFORM;_CRT_SECURE_NO_DEPRECATE;LEGACY_FILES;LIGHT_MAX_AMOUNT=5;PROJECT_CLAW_PROTO;VIDEO_ENABLED"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -476,8 +476,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="vfw32.lib winmm.lib d3d9.lib d3dx9.lib"
-				OutputFile=".\Release/storm3dv2.dll"
+				AdditionalDependencies="vfw32.lib winmm.lib d3d9.lib d3dx9d.lib odbc32.lib odbccp32.lib user32.lib Comdlg32.lib ole32.lib"
+				OutputFile="$(OutDir)/storm3dv2.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../lib"
@@ -515,7 +515,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy release\storm3dv2.dll ..\lib&#x0D;&#x0A;copy release\storm3dv2.dll C:\claw&#x0D;&#x0A;copy release\storm3dv2.lib ..\lib&#x0D;&#x0A;..\lib\copywinnt.bat&#x0D;&#x0A;"
+				CommandLine="copy release\storm3dv2.dll ..\lib&#x0D;&#x0A;copy release\storm3dv2.lib ..\lib&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -3963,6 +3963,18 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="wmvsync"
+				>
+				<File
+					RelativePath=".\wmvsync\reader.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\wmvsync\rostream.cpp"
+					>
 				</File>
 			</Filter>
 		</Filter>

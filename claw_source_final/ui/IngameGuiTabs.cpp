@@ -9,7 +9,7 @@
 #include "../game/GameUI.h"
 #include "../game/DHLocaleManager.h"
 
-#include "../system/logger.h"
+#include "../system/Logger.h"
 #include <sstream>
 
 #include <vector>

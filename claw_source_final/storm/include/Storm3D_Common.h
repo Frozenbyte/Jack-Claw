@@ -14,14 +14,22 @@
 //------------------------------------------------------------------
 // Defines for DLL export/import
 //------------------------------------------------------------------
+#ifdef __GNUC__
+	// on targets using gcc we build a single monolithic binary
+	#define ST3D_EXP_DLLAPI
+	#define ST3D_IMP_DLLAPI
+
+#else
+
 #ifdef STORM3DV2_EXPORTS	// Do not define this inside your program!
 	#define ST3D_EXP_DLLAPI __declspec(dllexport)
 	#define ST3D_IMP_DLLAPI __declspec(dllimport)
 #else
 	#define ST3D_EXP_DLLAPI __declspec(dllimport)
 	#define ST3D_IMP_DLLAPI __declspec(dllexport)
-#endif
+#endif  // STORM3DV2_EXPORTS
 
+#endif  // __GNUC__
 
 
 //------------------------------------------------------------------

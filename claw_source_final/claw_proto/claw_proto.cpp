@@ -14,16 +14,20 @@
 #include <string.h>
 #include <time.h>
 #include <stdio.h>
-//#include <vector> // include std
 #include <Storm3D_UI.h>
 #include <keyb3.h>
+
+#ifndef _WIN32
+#include <SDL.h>
+#include "SDL_sound.h"
+#endif
 
 #include "version.h"
 #include "configuration.h"
 
 #include "../system/Logger.h"
 //#include "../util/Parser.h"
-#include "../editor/Parser.h"
+#include "../editor/parser.h"
 #include "../util/Checksummer.h"
 #include "../sound/SoundLib.h"
 #include "../sound/SoundMixer.h"
@@ -67,7 +71,7 @@
 
 #include "../system/Timer.h"
 #include "../system/SystemRandom.h"
-#include <istorm3d_logger.h>
+#include <IStorm3D_Logger.h>
 
 #ifdef SCRIPT_DEBUG
 #include "../game/ScriptDebugger.h"
@@ -93,6 +97,8 @@
 #include "../util/mod_selector.h"
 
 #include "../project_common/configuration_post_check.h"
+
+#include "../game/userdata.h"
 
 using namespace game;
 using namespace ui;
@@ -125,17 +131,23 @@ extern const char *version_branch_name;
 int scr_width = 0;
 int scr_height = 0;
 
+float mouse_sensitivity = 1.0f;
 
 bool lostFocusPause = false;
 
 // TEMP
-//IStorm3D *disposable_s3d = NULL;
+IStorm3D *disposable_s3d = NULL;
 
 
 int renderfunc(IStorm3D_Scene *scene)
 {
 	return scene->RenderScene();
 }
+
+
+#ifdef _WIN32
+// FIXME: this code is required for console and input text boxes
+// this functionality should be moved to keyb
 
 LRESULT WINAPI customMessageProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 {
@@ -194,6 +206,31 @@ LRESULT WINAPI customMessageProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 	}
 
 	return 0;
+}
+
+#endif  // _WIN32
+
+void set_mouse_borders()
+{
+	bool force_given_boundary = false;
+	if (SimpleOptions::getBool(DH_OPT_B_MOUSE_FORCE_GIVEN_BOUNDARY))
+	{
+		force_given_boundary = true;
+	}
+
+	if (force_given_boundary)
+	{
+		Keyb3_SetMouseBorders((int)(scr_width / mouse_sensitivity), 
+			(int)(scr_height / mouse_sensitivity));
+		Keyb3_SetMousePos((int)(scr_width / mouse_sensitivity) / 2, 
+			(int)(scr_height / mouse_sensitivity) / 2);
+	} else {
+		Storm3D_SurfaceInfo screenInfo = disposable_s3d->GetScreenSize();
+		Keyb3_SetMouseBorders((int)(screenInfo.width / mouse_sensitivity), 
+			(int)(screenInfo.height / mouse_sensitivity));
+		Keyb3_SetMousePos((int)(screenInfo.width / mouse_sensitivity) / 2, 
+			(int)(screenInfo.height / mouse_sensitivity) / 2);
+	}
 }
 
 namespace {
@@ -313,11 +350,14 @@ void error_whine()
 {
 	bool foundErrors = false;
 	FILE *fo = NULL;
+
 #ifdef LEGACY_FILES
-	FILE *f = fopen("log.txt", "rb");
+	std::string path = getUserDataPrefix() + "log.txt";
 #else
-	FILE *f = fopen("logs/log.txt", "rb");
+	std::string path = getUserDataPrefix() + "logs/log.txt";
 #endif
+
+	FILE *f = fopen(path.c_str(), "rb");
 	if (f != NULL)
 	{
 		fseek(f, 0, SEEK_END);
@@ -460,6 +500,53 @@ void error_whine()
 
 /* --------------------------------------------------------- */
 
+std::string get_path(const std::string &file)
+{
+  std::string::size_type pos = file.find_last_of('/');
+  if (pos != std::string::npos) return file.substr(0, pos + 1);
+  return "";
+}
+
+#ifdef __GLIBC__
+
+#ifndef __USE_GNU
+#define __USE_GNU
+#endif
+
+#include <execinfo.h>
+#include <ucontext.h>
+
+static void sighandler(int sig, siginfo_t *info, void *secret) {
+	ucontext_t *uc = (ucontext_t *) secret;
+
+	if (sig == SIGSEGV)
+#ifdef __x86_64__
+		printf("Got signal %d at %p from %p\n", sig, info->si_addr, (void *) uc->uc_mcontext.gregs[REG_RIP]);
+#else
+		printf("Got signal %d at %p from %p\n", sig, info->si_addr, (void *) uc->uc_mcontext.gregs[REG_EIP]);
+#endif
+	else
+		printf("Got signal %d\n", sig);
+	
+	exit(0);
+}
+#endif
+
+// need this so we can call exit in the case of segfault
+static void setsighandler(void) {
+#ifdef __GLIBC__
+	struct sigaction sa;
+
+	sa.sa_sigaction = sighandler;
+	sigemptyset (&sa.sa_mask);
+	sa.sa_flags = SA_RESTART | SA_SIGINFO;
+
+	sigaction(SIGSEGV, &sa, NULL);
+	sigaction(SIGUSR1, &sa, NULL);
+#endif
+}
+
+#ifdef _WIN32
 int WINAPI WinMain(HINSTANCE hInstance, 
 	HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -470,7 +557,50 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		if(FindWindow(get_application_classname_string(), get_application_name_string()))
 			return 0;
 	}
-	
+
+#else  // _WIN32
+
+int main(int argc, char * argv[])
+{
+try {
+	setsighandler();
+	{
+		// change working dir to the directory where the binary is located in
+		std::string path = get_path(argv[0]);
+		if (path != "" && path != "./") {
+			char wd[256];
+			if (getcwd(wd, 256) == wd) {
+				std::string cwd = wd + std::string("/") + path;
+				chdir(cwd.c_str());
+			} else {
+				fprintf(stderr, "Couldn't get current working directory.\n");
+				return -1;
+			}
+		}
+	}
+
+	// FIXME: this is pretty inefficient
+	// we build this string and parse_commandline just takes it apart again
+	std::string cmdLine;
+	for (int i = 1; i < argc; i++)
+	{
+		cmdLine.append(argv[i]);
+		cmdLine.push_back(' ');
+	}
+	const char *lpCmdLine = cmdLine.c_str();
+
+
+	// create log file in correct place
+#ifdef LEGACY_FILES
+	std::string path = getUserDataPrefix() + "log.txt";
+#else
+	std::string path = getUserDataPrefix() + "logs/log.txt";
+#endif
+
+	Logger::createInstanceForLogfile(path.c_str());
+
+#endif  // _WIN32
+
 	{
 		using namespace frozenbyte::filesystem;
 		boost::shared_ptr<IFilePackage> standardPackage(new StandardPackage());
@@ -512,6 +642,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	bool show_terrain_mem_info = false;
 	int loglevel = 1;
 	int showloglevel = 1;
+
+#ifndef _WIN32
+	if (Sound_Init() == 0)
+		Logger::getInstance()->error("SDL_Sound initialization failure.");
+#endif
 
 	Timer::init();
 
@@ -581,10 +716,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	editor::Parser main_config;
 #ifdef LEGACY_FILES
-	filesystem::FilePackageManager::getInstance().getFile("Config/main.txt") >> main_config;
+	filesystem::InputStream configFile = filesystem::FilePackageManager::getInstance().getFile("config/main.txt");
 #else
-	filesystem::FilePackageManager::getInstance().getFile("config/startup.txt") >> main_config;
+	filesystem::InputStream configFile = filesystem::FilePackageManager::getInstance().getFile("config/startup.txt");
 #endif
+	configFile >> main_config;
 
 	GameOptionManager::getInstance()->load();
 
@@ -601,18 +737,18 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	if (version_branch_failure)
 	{
 		Logger::getInstance()->error("Version data incorrect.");
-		MessageBox(0,"Required data missing.\nMake sure you have all the application files properly installed.\n\nSee game website for more info.","Error",MB_OK); 
+#ifdef _WIN32
+		MessageBox(0,"Required data missing.\nMake sure you have all the application files properly installed.\n\nSee game website for more info.","Error",MB_OK);
+#endif  // _WIN32
 		assert(!"Version data incorrect");
 		abort();
 		return 0;
 	}
 
-
 	bool windowedMode = false;
 	bool compileOnly = false;
 
-	char *cmdline = lpCmdLine;
-	parse_commandline(cmdline, &windowedMode, &compileOnly);
+	parse_commandline(lpCmdLine, &windowedMode, &compileOnly);
 
 	if (SimpleOptions::getBool(DH_OPT_B_WINDOWED))
 		windowedMode = true;
@@ -626,9 +762,13 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	StormLogger logger(*Logger::getInstance());
 	IStorm3D *s3d = IStorm3D::Create_Storm3D_Interface(true, &filesystem::FilePackageManager::getInstance(), &logger);
 
-//disposable_s3d = s3d;
+	disposable_s3d = s3d;
 
+#if defined _WIN32
+	// FIXME: this is important but should be implemented differently
+	// console is broken without this
 	s3d->SetUserWindowMessageProc(&customMessageProc);
+#endif // _WIN32
 
 	s3d->SetApplicationName(get_application_classname_string(), get_application_name_string());
 
@@ -745,10 +885,12 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		} else {
 			if(!s3d->SetWindowedMode(scr_width, scr_height, SimpleOptions::getBool(DH_OPT_B_WINDOW_TITLEBAR)))
 				stormInitSucces = false;
+#if defined _WIN32
 			if(SimpleOptions::getBool(DH_OPT_B_MAXIMIZE_WINDOW))
 			{
 				ShowWindow(s3d->GetRenderWindow(), SW_MAXIMIZE);
 			}
+#endif
 		}
 	} else {
 		int bpp = SimpleOptions::getInt(DH_OPT_I_SCREEN_BPP);
@@ -767,6 +909,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		delete s3d;
 		s3d = 0;
 
+#ifdef _WIN32
 		MSG msg = { 0 };
 		while(PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 		{
@@ -775,6 +918,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		}
 
 		MessageBox(0, error.c_str(), "Renderer initialization failure.", MB_OK);
+#endif  // _WIN32
+		// TODO: should show error message to user on non-win32
+
 		Logger::getInstance()->error("Failed to initialize renderer");
 		Logger::getInstance()->error(error.c_str());
 		return 0;
@@ -796,19 +942,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	Keyb3_Init(s3d->GetRenderWindow(), ctrlinit);
 	Keyb3_SetActive(1);
 	
-	if (force_given_boundary)
-	{
-		Keyb3_SetMouseBorders((int)(scr_width / mouse_sensitivity), 
-			(int)(scr_height / mouse_sensitivity));
-		Keyb3_SetMousePos((int)(scr_width / mouse_sensitivity) / 2, 
-			(int)(scr_height / mouse_sensitivity) / 2);
-	} else {
-		Storm3D_SurfaceInfo screenInfo = s3d->GetScreenSize();
-		Keyb3_SetMouseBorders((int)(screenInfo.width / mouse_sensitivity), 
-			(int)(screenInfo.height / mouse_sensitivity));
-		Keyb3_SetMousePos((int)(screenInfo.width / mouse_sensitivity) / 2, 
-			(int)(screenInfo.height / mouse_sensitivity) / 2);
-	}
+	set_mouse_borders();
+
 	Keyb3_UpdateDevices();
 
 	if (SimpleOptions::getBool(DH_OPT_B_SHOW_TERRAIN_MEMORY_INFO))
@@ -843,10 +978,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		IStorm3D_Material *m = s3d->CreateNewMaterial("Load screen");
 		m->SetBaseTexture(t);
 
-		RECT rc = { 0 };
-		GetClientRect(s3d->GetRenderWindow(), &rc);
+		Storm3D_SurfaceInfo surfinfo = s3d->GetScreenSize();
 		
-		disposable_scene->Render2D_Picture(m, Vector2D((float)rc.left,(float)rc.top), Vector2D((float)rc.right-1,(float)rc.bottom-1));
+		disposable_scene->Render2D_Picture(m, Vector2D(0,0), Vector2D((float)surfinfo.width-1,(float)surfinfo.height-1));
 		disposable_scene->RenderScene();
 
 		delete m;
@@ -978,7 +1112,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		//soundLib->setSpeakers(speakerType);
 		soundLib->setAcceleration(s_use_hardware, s_use_eax, s_req_hardchan, s_max_hardchan);
 
-		if(soundLib->initialize(s3d->GetRenderWindow()))
+		if(soundLib->initialize())
 		{
 			Logger::getInstance()->debug("Sound system initialized succesfully");
 			soundMixer = new SoundMixer(soundLib);
@@ -1024,6 +1158,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	gameUI->setOguiStormDriver(ogdrv);
 	game->setUI(gameUI);
 	gameUI->setErrorWindow(errorWin);
+
+	// add keyb3 callback
+	GameController *gc = gameUI->getController(0);
+	Keyb3_AddController(gc);
 
 	msgproc_gameUI = gameUI;
 
@@ -1109,8 +1247,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	while (!quitRequested)
 	{
-		Sleep(0);
-
 		ogui->UpdateCursorPositions();
 
 		// quick hack, if in single player game, don't allow very big leaps.
@@ -1156,7 +1292,13 @@ int WINAPI WinMain(HINSTANCE hInstance,
 			int maxfps_in_msec = 1000 / maxfps;
 			while(int(Timer::getTime() - curTime) < maxfps_in_msec)
 			{
+#ifdef _WIN32
+				// FIXME: Sleep(0) does not do what you expect
 				Sleep(0);
+#else  // _WIN32
+				usleep(0);
+#endif  // _WIN32
+
 				Timer::update();
 			}
 		}
@@ -1414,6 +1556,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 //			exit(0);
 		}
 
+#ifdef _WIN32
 		// wait here if minimized...
 		while (quitRequested == false)
 		{
@@ -1439,6 +1582,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 				break;
 			}
 		}
+#endif  // _WIN32
 	}
 
 // TEMP: end splash screen.
@@ -1527,6 +1671,10 @@ delete win;
 
 	Keyb3_Free();
 	
+#ifndef _WIN32
+	Sound_Quit();
+#endif
+
 	delete s3d;
 
 	GameOptionManager::cleanInstance();
@@ -1550,6 +1698,14 @@ delete win;
 		error_whine();
 	}
 
+
+#ifndef _WIN32
+	} catch (const std::exception &e) {
+		fprintf(stderr, "Caught std::exception %s.\n", e.what());
+	} catch (...) {
+		fprintf(stderr, "Caught unknown exception.\n");
+	}
+#endif  // _WIN32
+
 	return 0;
 }
- 

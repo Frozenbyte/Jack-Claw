@@ -1,6 +1,6 @@
 #include "precompiled.h"
 
-#include <IStorm3D_VideoStreamer.h>
+#include <istorm3d_videostreamer.h>
 
 #include <fstream>
 #include <string.h>
@@ -209,7 +209,6 @@ void ogui_storm_driver_error(const char *msg, const char *filename)
 
 
 OguiStormDriver::OguiStormDriver(IStorm3D *storm3d, IStorm3D_Scene *stormScene) 
-	throw (OguiException *)
 {
 	if (got_orvgui) throw new OguiException("OguiStormDriver - Multiple instances not allowed.");
 	og_setStorm3D(storm3d);
@@ -247,10 +246,12 @@ OguiStormDriver::~OguiStormDriver()
 		im->parent = NULL;
 	}
 
+#ifdef _WIN32
 	for(unsigned int i = 0; i < fontResources.size(); i++)
 	{
 		RemoveFontResource(fontResources[i].c_str());
 	}
+#endif  // _WIN32
 
 	og_setRendererScene(NULL);
 	og_setStorm3D(NULL);
@@ -420,6 +421,7 @@ IOguiFont *OguiStormDriver::LoadFont(const char *filename)
 			lineHeight = editor::convertFromString<int> (subgroup.getValue("line_height"), lineHeight);
 		}
 
+#ifdef _WIN32
 		if( fontFile.empty() == false )
 		{
 			if( AddFontResource( fontFile.c_str() ) == 0 )
@@ -429,6 +431,7 @@ IOguiFont *OguiStormDriver::LoadFont(const char *filename)
 				fontResources.push_back(fontFile);
 			}
 		}
+#endif  // _WIN32
 
 		// Convert
 		width = scr_size_x * width / 1024;
@@ -741,7 +744,6 @@ IOguiImage* OguiStormDriver::ConvertVideoToImage( IStorm3D_VideoStreamer* video_
 // exception here is very likely to be fatal anyway.
 
 void OguiStormDriver::prepareForNextStormGeneration(IStorm3D_Scene *stormScene)
-	throw (OguiException *)
 {
 	images->resetIterate();
 	while (images->iterateAvailable())
@@ -758,7 +760,6 @@ void OguiStormDriver::prepareForNextStormGeneration(IStorm3D_Scene *stormScene)
 }
 
 void OguiStormDriver::nextStormGeneration(IStorm3D_Scene *stormScene)
-	throw (OguiException *)
 {
 	// reload all storm textures, fonts and materials in all 
 	// ogui images and fonts because they are invalid now

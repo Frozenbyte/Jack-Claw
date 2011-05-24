@@ -2,6 +2,16 @@
 #ifndef UINT96HASH_H
 #define UINT96HASH_H
 
+
+#ifdef __GNUC__
+#include <stdint.h>
+
+#else  // __GNUC__
+typedef unsigned __int64 uint64_t;
+
+#endif  // __GNUC__
+
+
 #include "Debug_MemoryManager.h"
 
 namespace util
@@ -12,13 +22,13 @@ namespace util
 #pragma pack(4)
 	struct hashable_uint_96
 	{
-		hashable_uint_96(__int64 higherValue, int lowerValue)
+		hashable_uint_96(uint64_t higherValue, int lowerValue)
 		{
 			this->higherValue = higherValue;
 			this->lowerValue = lowerValue;
 		}
 
-		unsigned __int64 higherValue;
+		uint64_t higherValue;
 		unsigned int lowerValue;
 	};
 

@@ -3,7 +3,7 @@
 
 #include "Intersect.h"
 
-#include <Storm3D_datatypes.h>
+#include <Storm3D_Datatypes.h>
 
 namespace util {
 

@@ -9,7 +9,7 @@
 #include <sstream>
 #include <boost/lexical_cast.hpp>
 
-#include "../system/logger.h"
+#include "../system/Logger.h"
 #include "../game/DHLocaleManager.h"
 
 using namespace game;

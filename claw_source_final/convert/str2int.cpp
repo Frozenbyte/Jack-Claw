@@ -7,7 +7,7 @@
 
 #include <string.h>
 #include "str2int.h"
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 
 char convert_strbuf[16];

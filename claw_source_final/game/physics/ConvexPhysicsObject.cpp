@@ -14,7 +14,7 @@
 
 namespace game
 {
-	typedef std::map<std::string, boost::shared_ptr<frozenbyte::physics::ConvexMesh>> MeshHash;
+	typedef std::map<std::string, boost::shared_ptr<frozenbyte::physics::ConvexMesh> > MeshHash;
 
 	class ConvexPhysicsObjectImpl
 	{
@@ -38,7 +38,7 @@ namespace game
 			}
 
 			boost::shared_ptr<frozenbyte::physics::ConvexMesh> m = gamePhysics->getPhysicsLib()->createConvexMesh(this->filename.c_str());
-			meshHash.insert(std::pair<std::string, boost::shared_ptr<frozenbyte::physics::ConvexMesh>>(filename, m));
+			meshHash.insert(std::pair<std::string, boost::shared_ptr<frozenbyte::physics::ConvexMesh> >(filename, m));
 			return m;
 		}
 

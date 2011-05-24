@@ -5,8 +5,8 @@
 
 #include "storm_texture.h"
 #include "storm.h"
-#include <istorm3d_texture.h>
-#include <istorm3d.h>
+#include <IStorm3D_Texture.h>
+#include <IStorm3D.h>
 
 namespace frozenbyte {
 namespace editor {

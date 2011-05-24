@@ -14,8 +14,8 @@
 #include "storm3d_model_object.h"
 #include "storm3d_helper.h"
 #include "storm3d_light.h"
-#include "..\..\filesystem\input_stream_wrapper.h"
-#include "..\..\util\Debug_MemoryManager.h"
+#include "../../filesystem/input_stream_wrapper.h"
+#include "../../util/Debug_MemoryManager.h"
 
 int storm3d_bone_allocs = 0;
 using namespace frozenbyte;

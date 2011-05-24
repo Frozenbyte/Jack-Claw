@@ -3,7 +3,7 @@
 
 #include "OguiFormattedText.h"
 #include "IOguiFormattedCommand.h"
-#include "ogui.h"
+#include "Ogui.h"
 #include <assert.h>
 #include <stack>
 
@@ -12,7 +12,7 @@
 #include "../util/assert.h"
 #include "OguiFormattedCommandImg.h"
 
-#include "..\util\Debug_MemoryManager.h"
+#include "../util/Debug_MemoryManager.h"
 
 using namespace util;
 ///////////////////////////////////////////////////////////////////////////////

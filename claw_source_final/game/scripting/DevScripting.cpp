@@ -24,14 +24,14 @@
 #include "../UnitPhysicsUpdater.h"
 #include "../options/options_debug.h"
 #include "../options/options_cheats.h"
-#include "../ui/VisualEffectManager.h"
+#include "../../ui/VisualEffectManager.h"
 #include "../../util/assert.h"
 #include "../ParticleSpawnerManager.h"
-#include "../ui/SelectionVisualizer.h"
+#include "../../ui/SelectionVisualizer.h"
 #include "GameScripting.h"
 
 #ifndef PROJECT_SHADOWGROUNDS
-#include "../ui/MissionSelectionWindow.h"
+#include "../../ui/MissionSelectionWindow.h"
 #endif
 
 #include "../../convert/str2int.h"
@@ -42,10 +42,10 @@
 #include "../../physics_ode/physics_ode.h"
 #endif
 #ifdef PHYSICS_PHYSX
-#include "../game/physics/GamePhysics.h"
+#include "../../game/physics/GamePhysics.h"
 #include "../../physics/physics_lib.h"
 #endif
-#include "../game/physics/PhysicsContactDamageManager.h"
+#include "../../game/physics/PhysicsContactDamageManager.h"
 
 #include "../../util/Debug_MemoryManager.h"
 
