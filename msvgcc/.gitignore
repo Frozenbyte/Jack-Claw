@@ -1,0 +1,8 @@
+# binary of the compiler driver
+msvgcc
+msvgcc.hi
+
+# object files
+*.obj
+
+local.mk
