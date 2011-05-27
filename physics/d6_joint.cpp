@@ -2,7 +2,7 @@
 #include "physics_lib.h"
 #include "d6_joint.h"
 #include "actor_base.h"
-#include "NxPhysics.h"
+#include <NxPhysics.h>
 
 namespace frozenbyte {
 namespace physics {

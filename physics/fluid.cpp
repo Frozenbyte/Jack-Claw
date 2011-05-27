@@ -2,7 +2,7 @@
 #include "precompiled.h"
 
 #include "fluid.h"
-#include "NxPhysics.h"
+#include <NxPhysics.h>
 
 namespace frozenbyte {
 namespace physics {

@@ -3,7 +3,7 @@
 
 #include "convex_actor.h"
 #include "file_stream.h"
-#include "NxPhysics.h"
+#include <NxPhysics.h>
 
 namespace frozenbyte {
 namespace physics {

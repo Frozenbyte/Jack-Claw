@@ -5,7 +5,7 @@
 #include "visualizer.h"
 #include "physics_lib.h"
 #include <IStorm3D_Scene.h>
-#include "NxPhysics.h"
+#include <NxPhysics.h>
 
 
 namespace frozenbyte {

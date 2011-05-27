@@ -4,7 +4,7 @@
 
 
 // FIXME : standard stdint.h header is missing on MSVC
-#ifdef WIN32
+#ifdef _WIN32
 typedef unsigned char uint8_t;
 #else
 #include <stdint.h>

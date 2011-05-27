@@ -50,6 +50,7 @@ CXXFLAGS:=
 CXXFLAGS+=-I$(TOPDIR) -I$(TOPDIR)/claw_proto -I$(TOPDIR)/storm/include -I$(TOPDIR)/storm/keyb3
 CXXFLAGS+=/FI$(TOPDIR)/claw_proto/configuration.h
 CXXFLAGS+=-DLIGHT_MAX_AMOUNT=5
+CXXFLAGS+=-DDISABLE_STORM_DLL
 
 # enable exceptions or the compiler complains about its standard headers
 CXXFLAGS+=/EHsc
@@ -58,16 +59,19 @@ CXXFLAGS+=-D_CRT_SECURE_NO_DEPRECATE
 
 
 # linker settings
-LDFLAGS:=/subsystem:windows
-LDLIBS:=winmm.lib comdlg32.lib gdi32.lib
+LDFLAGS:=/subsystem:windows /nodefaultlib:libcmt.lib
+LDLIBS:=winmm.lib comdlg32.lib gdi32.lib user32.lib
 LDLIBS+=PhysXLoader.lib
-LDLIBS+=$(TOPDIR)/storm/lib/minizip.lib
-LDLIBS+=$(TOPDIR)/storm/lib/zlib.lib
-LDLIBS_d3d:=d3d9.lib d3dx9_33.lib dinput8.lib dxguid.lib vfw32.lib
-LDLIBS_opengl:=glew32.dll opengl32.lib glu32.lib SDL.lib SDL_image.lib SDL_ttf.lib
+LDLIBS+=minizip.lib zlib.lib
+LDLIBS_d3d:=d3d9.lib d3dx9.lib dinput8.lib dxguid.lib vfw32.lib
+LDLIBS_opengl:=glew32.lib opengl32.lib glu32.lib SDL.lib SDL_image.lib SDL_ttf.lib
 
-LDLIBS_fmod:=fmod.lib
+LDLIBS_fmod:=fmodvc.lib
 LDLIBS_openal:=boost-thread.lib
+
+
+# FIXME: WTF is this?
+LDLIBS+=/nodefaultlib:LIBCD.lib
 
 
 OBJSUFFIX:=.obj
@@ -81,7 +85,7 @@ PHYSX_INCDIR:=/usr/include/PhysX
 PHYSX_PARTS:=Physics Cooking NxExtensions NxCharacter Foundation PhysXLoader
 
 PHYSX_INCLUDE_DIRS:=$(foreach dir,$(PHYSX_PARTS), $(PHYSX_INCDIR)/v$(PHYSX_VERSION)/SDKs/$(dir)/include)
-LPHYSX:=-L$(PHYSX_LIBDIR)/v$(PHYSX_VERSION)
+LPHYSX:=
 
 IPHYSX:=$(foreach dir,$(PHYSX_INCLUDE_DIRS),-I$(dir))
 

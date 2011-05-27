@@ -6,7 +6,7 @@
 #include <IStorm3D_Model.h>
 #include <IStorm3D_Mesh.h>
 
-#include "NxPhysics.h"
+#include <NxPhysics.h>
 #include "NxCooking.h"
 #include <vector>
 #include <deque>

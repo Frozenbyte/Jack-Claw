@@ -1,7 +1,7 @@
 #include "precompiled.h"
 #include "spherical_joint.h"
 #include "actor_base.h"
-#include "NxPhysics.h"
+#include <NxPhysics.h>
 
 namespace frozenbyte {
 namespace physics {

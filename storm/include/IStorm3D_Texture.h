@@ -12,7 +12,7 @@
 #include "Storm3D_Datatypes.h"
 
 // FIXME : standard stdint.h header is missing on MSVC
-#ifdef WIN32
+#ifdef _WIN32
 typedef unsigned char uint8_t;
 typedef unsigned int uint32_t;
 #else

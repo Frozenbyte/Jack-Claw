@@ -1,6 +1,6 @@
 #include "precompiled.h"
 #include "joint_base.h"
-#include "NxPhysics.h"
+#include <NxPhysics.h>
 
 namespace frozenbyte {
 namespace physics {

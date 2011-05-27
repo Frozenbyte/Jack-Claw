@@ -14,7 +14,7 @@
 //------------------------------------------------------------------
 // Defines for DLL export/import
 //------------------------------------------------------------------
-#ifdef __GNUC__
+#if defined(__GNUC__) || defined (DISABLE_STORM_DLL)
 	// on targets using gcc we build a single monolithic binary
 	#define ST3D_EXP_DLLAPI
 	#define ST3D_IMP_DLLAPI

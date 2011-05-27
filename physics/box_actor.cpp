@@ -2,7 +2,7 @@
 #include "precompiled.h"
 
 #include "box_actor.h"
-#include "NxPhysics.h"
+#include <NxPhysics.h>
 #include <vector>
 #include <stdio.h>
 

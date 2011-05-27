@@ -3,7 +3,7 @@
 
 #include "../filesystem/input_stream.h"
 #include "../filesystem/output_stream.h"
-#include "NxPhysics.h"
+#include <NxPhysics.h>
 #include "NxStream.h"
 
 namespace frozenbyte {

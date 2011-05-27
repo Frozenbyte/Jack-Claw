@@ -21,7 +21,7 @@
 //#define PHYSX_SPAWN_TEST
 
 #ifdef PHYSX_SPAWN_TEST
-#include "NxPhysics.h"
+#include <NxPhysics.h>
 
 struct BoxStruct
 {

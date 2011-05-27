@@ -9,11 +9,6 @@
 #define PHYSICS_ACTOR boost::shared_ptr<frozenbyte::physics::ActorBase>
 #endif
 
-#ifdef PHYSICS_ODE
-#define PHYSICS_ACTOR PhysicsActorOde
-#include "../../physics_ode/physics_ode.h"
-#endif
-
 #ifdef PHYSICS_NONE
 #define PHYSICS_ACTOR PhysicsActorNone
 #include "physics_none.h"

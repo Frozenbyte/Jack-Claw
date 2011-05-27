@@ -37,7 +37,7 @@ namespace __gnu_cxx
 
 #else  // __GNUC__
 
-#define FB_HASH_MAP std::hash_map
+#define FB_HASH_MAP stdext::hash_map
 
 #endif  // __GNUC__
 

@@ -2,7 +2,7 @@
 #include "precompiled.h"
 
 #include "car_actor.h"
-#include "NxPhysics.h"
+#include <NxPhysics.h>
 
 namespace frozenbyte {
 namespace physics {

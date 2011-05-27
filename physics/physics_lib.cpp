@@ -13,7 +13,7 @@
 #include "spherical_joint.h"
 #include "d6_joint.h"
 #include "fluid.h"
-#include "NxPhysics.h"
+#include <NxPhysics.h>
 #include "../system/Logger.h"
 #include "../game/physics/physics_collisiongroups.h"
 #include <boost/lexical_cast.hpp>

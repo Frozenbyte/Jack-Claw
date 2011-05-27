@@ -26,7 +26,7 @@
 #include "../editor/string_conversions.h"
 #include "../filesystem/input_file_stream.h"
 
-#include "NxPhysics.h"
+#include <NxPhysics.h>
 
 #include <sstream>
 

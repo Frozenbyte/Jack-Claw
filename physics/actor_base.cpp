@@ -2,7 +2,7 @@
 #include "precompiled.h"
 
 #include "actor_base.h"
-#include "NxPhysics.h"
+#include <NxPhysics.h>
 #include <cassert>
 
 namespace frozenbyte {

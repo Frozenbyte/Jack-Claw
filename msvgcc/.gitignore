@@ -6,3 +6,6 @@ msvgcc.hi
 *.obj
 
 local.mk
+
+claw_d3d.exe
+claw_opengl.exe
