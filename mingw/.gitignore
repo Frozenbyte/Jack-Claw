@@ -1,0 +1,4 @@
+local.mk
+
+claw_opengl.exe
+claw_d3d.exe

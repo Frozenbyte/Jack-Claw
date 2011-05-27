@@ -44,7 +44,7 @@ LDLIBS:=$(shell sdl-config --libs)
 LDLIBS+=-lGLEW -lGL -lGLU
 LDLIBS+=-lSDL_image -lSDL_ttf -lSDL_sound
 #LDLIBS+=-L/usr/local/lib -lfmod-3.75
-LDLIBS+=-L. -lunzip -lz
+LDLIBS+=-lminizip -lz
 LDLIBS+=-lpthread
 
 LDLIBS_fmod:=-lfmod

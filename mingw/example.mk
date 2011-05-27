@@ -27,6 +27,7 @@ CXXFLAGS:=-g
 CXXFLAGS+=-I$(TOPDIR) -I$(TOPDIR)/claw_proto -I$(TOPDIR)/storm/include -I$(TOPDIR)/storm/keyb3
 CXXFLAGS+=-include $(TOPDIR)/claw_proto/configuration.h
 CXXFLAGS+=-DLIGHT_MAX_AMOUNT=5
+CXXFLAGS+=$(shell i386-mingw32msvc-sdl-config --cflags)
 # in a perfect world...
 #CXXFLAGS:=-Wall -Wextra -Werror
 # in the real world...

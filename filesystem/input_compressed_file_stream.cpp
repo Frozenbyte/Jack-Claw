@@ -13,8 +13,7 @@
 #include "input_compressed_file_stream.h"
 #include <fstream>
 #include <vector>
-//#include <zlib.h>
-#include "zlib.h"
+#include <zlib.h>
 
 #include "../system/Logger.h"
 #include "../util/Debug_MemoryManager.h"
